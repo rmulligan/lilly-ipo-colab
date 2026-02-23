@@ -214,6 +214,7 @@ def main():
     ap.add_argument("--dimensions-path", default="experiments/egist_32b/unified_dimensions.json")
     ap.add_argument("--classifier-path", default="experiments/lilly_subjective_32b/affect_classifier.pt")
     ap.add_argument("--probe-layer", type=int, default=52)
+    ap.add_argument("--use-4bit", action="store_true", default=True, help="Use 4-bit quantization if available")
     ap.add_argument("--num-candidates", type=int, default=4)
     ap.add_argument("--max-samples", type=int, default=800)
     ap.add_argument("--max-new-tokens", type=int, default=256)
@@ -238,21 +239,36 @@ def main():
 
     dims = json.loads(Path(args.dimensions_path).read_text())
 
-    # Load model (4-bit) + adapter (trainable not needed here)
-    bnb = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_quant_type="nf4",
-        bnb_4bit_compute_dtype=torch.bfloat16,
-        bnb_4bit_use_double_quant=True,
-    )
+    # Load model (4-bit if available) + adapter (trainable not needed here)
+    bnb = None
+    if args.use_4bit:
+        bnb = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_compute_dtype=torch.bfloat16,
+            bnb_4bit_use_double_quant=True,
+        )
     tokenizer = AutoTokenizer.from_pretrained(args.model_id, trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained(
-        args.model_id,
-        quantization_config=bnb,
-        device_map="auto",
-        trust_remote_code=True,
-        low_cpu_mem_usage=True,
-    )
+    try:
+        model = AutoModelForCausalLM.from_pretrained(
+            args.model_id,
+            quantization_config=bnb,
+            device_map="auto",
+            trust_remote_code=True,
+            low_cpu_mem_usage=True,
+        )
+    except Exception as e:
+        if args.use_4bit:
+            print(f"[warn] 4-bit load failed ({e}). Retrying without quantization.")
+            model = AutoModelForCausalLM.from_pretrained(
+                args.model_id,
+                torch_dtype=torch.bfloat16,
+                device_map="auto",
+                trust_remote_code=True,
+                low_cpu_mem_usage=True,
+            )
+        else:
+            raise
     if args.adapter_path and Path(args.adapter_path).exists():
         from peft import PeftModel
         model = PeftModel.from_pretrained(model, args.adapter_path)

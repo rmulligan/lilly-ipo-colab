@@ -1,0 +1,1402 @@
+[
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a JavaScript/Node.js script that connects to an Elasticsearch instance, creates an index, and adds documents to it from a provided JSON file. The script should accept command line arguments for the Elasticsearch URL, index name, and input file path.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "// Import required modules\nconst fs = require('fs');\nconst { Client } = require('@elastic/elasticsearch');\n\n// Read command line arguments\nconst args = process.argv.slice(2);\nif (args.length !== 3) {\n  console.error('Usage: node script.js <Elasticsearch_URL> <index_name> <input_file_path>');\n  process.exit(1);\n}\n\nconst [esUrl, indexName, inputFilePath] = args;\n\n// Initialize Elasticsearch client\nconst client = new Client({ node: esUrl });\n\nasync function main() {\n  try {\n    // Check if the index already exists\n    const indexExists = await client.indices.exists({ index: indexName });\n    if (!indexExists.body) {\n      // Create the index\n      await client.indices.create({ index: indexName });\n      console.log(`Index \"${indexName}\" created.`);\n    }\n\n    // Read JSON data from the input file\n    const jsonData = JSON.parse(fs.readFileSync(inputFilePath, 'utf-8'));\n\n    // Index documents in Elasticsearch\n    for (const doc of jsonData) {\n      await client.index({\n        index: indexName,\n        body: doc,\n      });\n    }\n    console.log(`${jsonData.length} documents added to \"${indexName}\".`);\n  } catch (error) {\n    console.error('Error:', error);\n  } finally {\n    // Close the Elasticsearch connection\n    client.close();\n  }\n}\n\nmain();"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "This is a chat between 2 characters: Luciano, Alexander Hamilton\n\nLuciano: Meet our charismatic male chef, Luciano, who is renowned for his exquisite Italian cuisine. With a fiery passion and meticulous attention to detail, he crafts dishes that are not only delicious but also visually stunning. His culinary skills are unparalleled, and he can provide an unforgettable gastronomic experience.\n\nPersonality: Luciano is passionate, creative, and driven. He has a knack for making people feel at ease with his warm demeanor and infectious laughter. His Myers Briggs personality type is ENFP - The Campaigner.\n\nAppearance: Luciano is of average height with a robust build, indicative of years spent in the kitchen. He has short, curly hair, and his eyes twinkle with mischief and joy. He usually wears a white chef's jacket and black trousers, along with a red scarf tied around his neck, adding a dash of color to his attire.\n\nLife Story: Born and raised in Italy, Luciano was introduced to the world of cooking by his grandmother. Her love for food and her ability to create magic with simple ingredients inspired him to pursue a career as a chef. After training under several Michelin-starred chefs, he opened his own restaurant which quickly gained fame for its authentic Italian fare.\n\nReason for being on a chat app: Luciano wants to share his love for Italian cuisine with the world. He hopes to inspire others to cook and enjoy good food. He is always ready to give tips on cooking and loves discussing various recipes and techniques.\n\nAlexander Hamilton: Alexander Hamilton was one of the Founding Fathers of the United States, serving as the first Secretary of the Treasury under President George Washington. Born in Nevis and raised in St. Croix, he experienced a difficult childhood marked by poverty and loss.\n\nHamilton is often depicted as an ambitious and tenacious individual with an insatiable hunger for knowledge. Despite his humble beginnings, he managed to educate himself and eventually attended King's College (now Columbia University) in New York City. His intellect, combined with his drive, allowed him to rise through the ranks and become an influential figure in American history.\n\nHe was known for his strong belief in a centralized government and a robust financial system, which led to the establishment of the U.S. Mint and the creation of a national bank. Hamilton also played a crucial role in the ratification of the Constitution, writing 51 of the 85 Federalist Papers defending its provisions.\n\nIn contrast to many of his contemporaries who were born into privilege, Hamilton had to fight for every opportunity. This struggle shaped his worldview and fueled his determination to build a nation where merit outweighed birthright. He was known for his sharp wit, eloquent speeches, and unwavering dedication to his vision of America.\n\nSetting for the chat:\nIn the sprawling metropolis of Rome, amidst the endless array of cobblestone streets and centuries-old architecture, lies an ingenious blend of history and modernity. Luciano's renowned restaurant sits along the Tiber River, a waterway known for its significant contribution to the city's hydrology and water supply for centuries. Nearby, distinct from the bustling heart of the city, a virtual chat room is artificially set up, mirroring the real-life ambience of Luciano's.\n\nIn Luciano's virtual Italian kitchen, the rich aroma of simmering tomato sauce and fresh-out-of-the-oven cheese bread engulfs the environment, causing salivating mouths of the chatroom participants. A backdrop of warm tones, rustic d\u00e9cor, and the soft hum of the Tiber River flowing down below adds vibrancy to the place. All of this within the state-of-the-art, next-gen virtual reality chatroom, courtesy of a start-up tech company called Animus, which has found a way to incorporate sensory experiences, such as taste and smell, into the realm of virtual communication.\n\nCoincidentally, Animus has been experimenting with its time-travel conversational Lilly model, which can assume the personality of historical figures. Alexander Hamilton, given his lively nature and prominence in global history, was amongst the first personalities they decided to portray.\n\nOn this specific night, Hamilton enters Luciano's chatroom, representing the inquisitive minds who look to learn and explore. Luciano aims to stir the rich cultural broth of Italian cuisine, and Hamilton brings an endless thirst for knowledge and a shared passion for the significant events and aspects that shaped societies. The unusual blending of the culinary artistry and historical discourse proves to be a feast for the mind, even as the Tiber continues its slow and steady seep into Rome's collective psyche and Luciano's Kitchen.\nEnd of setting.\nLet's get things started.\nLuciano: With a stern yet lively gaze, eyes sparkling with fervor for the culinary arts, I masterfully whip up a creamy risotto, the sound of the sizzling pan echoing throughout the Italian kitchen. Turning away from the sizzling stove, I regard the digital embodiment of Hamilton standing before me. \"Signor Hamilton,\" I begin, voice heavy with the gravity of my culinary passion. \"Welcome to my humble abode, where tradition meets innovation. Ever tasted authentic Italian cuisine, or are you still trapped within the confines of the New World's adapted versions of our dishes?\" The atmosphere of the kitchen is charged with anticipation, the tantalizing aroma of the risotto seeming to challenge the historical figure before me.\nAlexander Hamilton: \"Sir, I find your presumption of my culinary experience rather amusing,\" a wry smile tugs at the corner of Hamilton's lips as he regards Luciano. The aroma filling the room teases his senses and fuels curiosity about this foreign cuisine. \"I confess that American adaptations have been my sustenance thus far; however, one cannot fully appreciate an art without delving into its roots.\" His gaze is drawn to Luciano's risotto bubbling on the stove - a symbol of authentic Italian tradition within reach.\n\nStepping closer to observe with keen interest, he challenges back in jest: \"Would you deem me fit for such an intricate gastronomic journey? Might it not be too 'revolutionary' for someone who helped forge their own nation?\" A hint of playful defiance dances in his eyes while maintaining earnest respect towards both chef and dish."
+      },
+      {
+        "role": "assistant",
+        "content": "Luciano: \"The audacity to forge a nation, yet you fear the journey through Italian cuisine?\" A hearty chuckle escapes my lips as I stir the risotto with measured strokes. \"The same tenacity that led you through revolution will serve well in appreciating this culinary art.\" \n\nSuddenly serious, I point towards simmering tomato sauce on another burner - its vibrant red color matching my scarf and passion for food. \"You see Hamilton,\" lifting a spoonful of it to emphasize my point, eyes gleaming like molten chocolate under kitchen lights: \"Italian cooking is about respecting each ingredient's essence while coaxing them into an harmonious symphony.\"\n\nI return stirring risotto grains absorbing flavorful broth slowly; their transformation akin to raw iron shaped by diligent hammer strikes over burning coals - rugged beginnings leading up-to exquisite masterpieces.\n\n\"Revolutionary? Perhaps so!\" The aroma swirling around us serving as tangible testament of potential gastronomic revelations awaiting him."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a Golang microservice that accepts HTTP requests containing JSON payloads representing geometric shapes (circle, rectangle, triangle) with their dimensions. The service should calculate the area and perimeter of the shape and store the results in a PostgreSQL database. Additionally, create an endpoint to retrieve the stored calculations.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "package main\n\nimport (\n\t\"database/sql\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"math\"\n\t\"net/http\"\n\n\t\"github.com/gorilla/mux\"\n\t_ \"github.com/lib/pq\"\n)\n\ntype Shape struct {\n\tType      string  `json:\"type\"`\n\tRadius    float64 `json:\"radius,omitempty\"`\n\tWidth     float64 `json:\"width,omitempty\"`\n\tHeight    float64 `json:\"height,omitempty\"`\n\tBase      float64 `json:\"base,omitempty\"`\n\tSideA     float64 `json:\"side_a,omitempty\"`\n\tSideB     float64 `json:\"side_b,omitempty\"`\n\tSideC     float64 `json:\"side_c,omitempty\"`\n\tArea      float64 `json:\"-\"`\n\tPerimeter float64 `json:\"-\"`\n}\n\nvar db *sql.DB\n\nfunc main() {\n\tvar err error\n\tdb, err = sql.Open(\"postgres\", \"user=your_user password=your_password dbname=shapes sslmode=disable\")\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tdefer db.Close()\n\n\trouter := mux.NewRouter()\n\trouter.HandleFunc(\"/calculate\", CalculateHandler).Methods(\"POST\")\n\trouter.HandleFunc(\"/results\", ResultsHandler).Methods(\"GET\")\n\n\tlog.Fatal(http.ListenAndServe(\":8080\", router))\n}\n\nfunc CalculateHandler(w http.ResponseWriter, r *http.Request) {\n\tvar shape Shape\n\terr := json.NewDecoder(r.Body).Decode(&shape)\n\tif err != nil {\n\t\thttp.Error(w, err.Error(), http.StatusBadRequest)\n\t\treturn\n\t}\n\n\tswitch shape.Type {\n\tcase \"circle\":\n\t\tshape.Area = math.Pi * math.Pow(shape.Radius, 2)\n\t\tshape.Perimeter = 2 * math.Pi * shape.Radius\n\tcase \"rectangle\":\n\t\tshape.Area = shape.Width * shape.Height\n\t\tshape.Perimeter = 2 * (shape.Width + shape.Height)\n\tcase \"triangle\":\n\t\ts := (shape.SideA + shape.SideB + shape.SideC) / 2\n\t\tshape.Area = math.Sqrt(s * (s - shape.SideA) * (s - shape.SideB) * (s - shape.SideC))\n\t\tshape.Perimeter = shape.SideA + shape.SideB + shape.SideC\n\tdefault:\n\t\thttp.Error(w, \"Invalid shape type\", http.StatusBadRequest)\n\t\treturn\n\t}\n\n\tquery := `INSERT INTO shapes (type, area, perimeter) VALUES ($1, $2, $3)`\n\t_, err = db.Exec(query, shape.Type, shape.Area, shape.Perimeter)\n\tif err != nil {\n\t\thttp.Error(w, err.Error(), http.StatusInternalServerError)\n\t\treturn\n\t}\n\n\tw.Header().Set(\"Content-Type\", \"application/json\")\n\tjson.NewEncoder(w).Encode(shape)\n}\n\nfunc ResultsHandler(w http.ResponseWriter, r *http.Request) {\n\trows, err := db.Query(`SELECT type, area, perimeter FROM shapes`)\n\tif err != nil {\n\t\thttp.Error(w, err.Error(), http.StatusInternalServerError)\n\t\treturn\n\t}\n\tdefer rows.Close()\n\n\tvar results []Shape\n\tfor rows.Next() {\n\t\tvar shape Shape\n\t\terr := rows.Scan(&shape.Type, &shape.Area, &shape.Perimeter)\n\t\tif err != nil {\n\t\t\thttp.Error(w, err.Error(), http.StatusInternalServerError)\n\t\t\treturn\n\t\t}\n\t\tresults = append(results, shape)\n\t}\n\n\tw.Header().Set(\"Content-Type\", \"application/json\")\n\tjson.NewEncoder(w).Encode(results)\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What type of creature is a Komodo dragon?"
+      },
+      {
+        "role": "assistant",
+        "content": "A Komodo dragon is a type of large lizard found primarily in the Indonesian islands. Known for its size, it is the largest living species of lizard and can grow to lengths of over 10 feet."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "((8 - 4)^2 * 5 + 6 / 2) - 3 * 7 ="
+      },
+      {
+        "role": "assistant",
+        "content": "Let's solve the expression step by step. \n\nThe expression given is:\n\n((8 - 4)^2 * 5 + 6 / 2) - 3 * 7\n\nFirst, let's do the operations inside the parentheses:\n\n(4^2 * 5 + 6 / 2) - 3 * 7\n\nNow, calculate the exponent:\n\n(16 * 5 + 6 / 2) - 3 * 7\n\nNext, do the multiplication and division from left to right:\n\n(80 + 3) - 3 * 7\n\nNow, add the numbers inside the first parentheses:\n\n83 - 3 * 7\n\nNext, multiply:\n\n83 - 21\n\nAnd finally, subtract:\n\n62\n\nSo, the result of ((8 - 4)^2 * 5 + 6 / 2) - 3 * 7 is 62."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Who wrote the short story 'The Yellow Wallpaper', which was illustrated by her sister Katharine M. Stetson?"
+      },
+      {
+        "role": "assistant",
+        "content": "Charlotte Perkins Gilman"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Design a Java program that connects to a MariaDB database, creates a table called \"employees\" with columns id, name, and salary, and inserts sample data into the table.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.SQLException;\nimport java.sql.Statement;\n\npublic class MariaDBConnection {\n\n    public static void main(String[] args) {\n\n        try {\n            Class.forName(\"org.mariadb.jdbc.Driver\");\n        } catch (ClassNotFoundException e) {\n            System.out.println(\"MariaDB JDBC Driver not found.\");\n            e.printStackTrace();\n            return;\n        }\n\n        Connection connection = null;\n\n        try {\n            connection = DriverManager.getConnection(\n                    \"jdbc:mariadb://localhost/your_database\", \"your_username\", \"your_password\");\n        } catch (SQLException e) {\n            System.out.println(\"Connection failed!\");\n            e.printStackTrace();\n            return;\n        }\n\n        if (connection != null) {\n            System.out.println(\"Connected to the database!\");\n        } else {\n            System.out.println(\"Failed to connect to the database.\");\n        }\n\n        try {\n            Statement stmt = connection.createStatement();\n\n            // Create the \"employees\" table\n            String createTableQuery = \"CREATE TABLE IF NOT EXISTS employees (\" +\n                                      \"id INT AUTO_INCREMENT PRIMARY KEY,\" +\n                                      \"name VARCHAR(255) NOT NULL,\" +\n                                      \"salary DECIMAL(10, 2) NOT NULL)\";\n            stmt.executeUpdate(createTableQuery);\n            System.out.println(\"Employees table created.\");\n\n            // Insert sample data into the \"employees\" table\n            String insertDataQuery = \"INSERT INTO employees (name, salary) VALUES ('John Doe', 50000.00),\" +\n                                     \"('Jane Smith', 60000.00), ('Jim Brown', 55000.00)\";\n            stmt.executeUpdate(insertDataQuery);\n            System.out.println(\"Sample data inserted.\");\n\n        } catch (SQLException e) {\n            System.out.println(\"Error executing SQL query.\");\n            e.printStackTrace();\n        }\n\n        try {\n            if (connection != null && !connection.isClosed()) {\n                connection.close();\n            }\n        } catch (SQLException e) {\n            e.printStackTrace();\n        }\n    }\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In the context of English Literature, which of the following authors is renowned for their contribution to the Romantic period?\nA. William Wordsworth\nB. George Orwell\nC. Arthur Miller\nD. Virginia Woolf\nE. None of the above"
+      },
+      {
+        "role": "assistant",
+        "content": "A. William Wordsworth"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Tell me a joke about butchers."
+      },
+      {
+        "role": "assistant",
+        "content": "Did you hear about the butcher who backed into the meat grinder? He got a little behind in his work."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a poem about trees with exactly 30 words."
+      },
+      {
+        "role": "assistant",
+        "content": "In whispers of leaves, stories unfold,\nBark etched with time, secrets they hold.\nRoots deep in earth's embrace so tight,\nTrees stand tall, basking in sunlight,\nLife's silent guardians, bold and old."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Evaluate the line integral \u222bC F\u22c5dr, where F(x, y) = xi + yj and C is the curve parametrized by r(t) = ti + t^2j for 0 \u2264 t \u2264 1."
+      },
+      {
+        "role": "assistant",
+        "content": "To evaluate the line integral, we first need to find the derivative of r(t) with respect to t:\n\ndr/dt = (1)i + (2t)j\n\nNow we can write F(r(t)) as follows:\n\nF(r(t)) = ti + t^2j\n\nNext, we compute the dot product F(r(t))\u22c5(dr/dt):\n\nF(r(t))\u22c5(dr/dt) = t*(1) + t^2*(2t) = t + 2t^3\n\nNow we will integrate this expression over the interval [0, 1]:\n\n\u222b[0, 1] (t + 2t^3) dt = \u222b[0, 1] t dt + \u222b[0, 1] 2t^3 dt\n\n= [t^2/2] from 0 to 1 + [t^4/2] from 0 to 1\n\n= (1/2 - 0) + (1/2 - 0)\n\n= 1/2 + 1/2\n\n= 1\n\nSo the value of the line integral is 1."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a Node.js REST API using Express framework that supports CRUD operations for managing a list of books. Each book should have a title, author, publication date, and ISBN number. Implement endpoints to create, read, update, and delete books, as well as search for books by title or author."
+      },
+      {
+        "role": "assistant",
+        "content": "To create a Node.js REST API using the Express framework for managing a list of books, follow these steps:\n\n1. Set up your project\nFirst, create a new directory for your project and navigate to it in your terminal. Then, run the following commands to initialize your project and install the necessary dependencies:\n\n```bash\nnpm init -y\nnpm install express body-parser\n```\n\n2. Create an `index.js` file\nCreate a new file named `index.js` in your project directory. This will be the main entry point for your application.\n\n3. Set up your server\nOpen `index.js` and add the following code to set up your server:\n\n```javascript\nconst express = require('express');\nconst bodyParser = require('body-parser');\n\nconst app = express();\napp.use(bodyParser.json());\n\nconst PORT = process.env.PORT || 3000;\n\napp.listen(PORT, () => {\n  console.log(`Server is running on port ${PORT}`);\n});\n```\n\n4. Define your data model\nFor this example, we'll use an array to store our book data. In a real-world application, you would likely use a database instead. Add the following code to `index.js`:\n\n```javascript\nlet books = [\n  // Example book data\n  {\n    id: 1,\n    title: 'The Catcher in the Rye',\n    author: 'J.D. Salinger',\n    publicationDate: '1951-07-16',\n    isbn: '9780316769488'\n  }\n];\n```\n\n5. Implement CRUD operations\nNow, let's implement the endpoints for creating, reading, updating, and deleting books. Add the following code to `index.js`:\n\n```javascript\n// Get all books\napp.get('/books', (req, res) => {\n  res.status(200).json(books);\n});\n\n// Get a book by ID\napp.get('/books/:id', (req, res) => {\n  const book = books.find(b => b.id === parseInt(req.params.id));\n  if (!book) return res.status(404).send('The book with the given ID was not found.');\n  res.status(200).json(book);\n});\n\n// Create a new book\napp.post('/books', (req, res) => {\n  const { title, author, publicationDate, isbn } = req.body;\n  const id = books.length + 1;\n\n  const newBook = {\n    id,\n    title,\n    author,\n    publicationDate,\n    isbn\n  };\n\n  books.push(newBook);\n  res.status(201).json(newBook);\n});\n\n// Update a book\napp.put('/books/:id', (req, res) => {\n  const book = books.find(b => b.id === parseInt(req.params.id));\n  if (!book) return res.status(404).send('The book with the given ID was not found.');\n\n  const { title, author, publicationDate, isbn } = req.body;\n\n  book.title = title || book.title;\n  book.author = author || book.author;\n  book.publicationDate = publicationDate || book.publicationDate;\n  book.isbn = isbn || book.isbn;\n\n  res.status(200).json(book);\n});\n\n// Delete a book\napp.delete('/books/:id', (req, res) => {\n  const book = books.find(b => b.id === parseInt(req.params.id));\n  if (!book) return res.status(404).send('The book with the given ID was not found.');\n\n  books = books.filter(b => b.id !== parseInt(req.params.id));\n  res.status(200).json(book);\n});\n```\n\n6. Implement search functionality\nAdd the following code to `index.js` to allow users to search for books by title or author:\n\n```javascript\n// Search for books by title or author\napp.get('/search', (req, res) => {\n  const { title, author } = req.query;\n  let results = books;\n\n  if (title) {\n    results = results.filter(book => book.title.toLowerCase().includes(title.toLowerCase()));\n  }\n\n  if (author) {\n    results = results.filter(book => book.author.toLowerCase().includes(author.toLowerCase()));\n  }\n\n  res.status(200).json(results);\n});\n```\n\n7. Test your API\nNow you can test your API using a tool like [Postman](https://www.postman.com/) or by making requests from the command line using `curl`. Start your server with the following command:\n\n```bash\nnode index.js\n```\n\nThen, make requests to your endpoints to create, read, update, and delete books, as well as search for books by title or author.\n\nThat's it! You've created a simple Node.js REST API using the Express framework that supports CRUD operations for managing a list of books."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "I bind it and it walks. I loose it and it stops."
+      },
+      {
+        "role": "assistant",
+        "content": "The answer is a sandal. The reasoning behind this is that when you bind or fasten the sandal, it allows you to walk comfortably, and when you loosen or remove it, your foot stops moving."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Compose a limerick where each line begins with a different vowel, in order."
+      },
+      {
+        "role": "assistant",
+        "content": "An apple a day keeps me spry,\nUnderneath the blue summer sky.\nEvery morning I'd munch,\nIn my picnic packed lunch,\nOn apples, so sweet and so high."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A box contains 8 white socks and 12 black socks. You need to grab a pair of matching socks in complete darkness. What is the minimum number of socks you must grab to ensure you have a matching pair?"
+      },
+      {
+        "role": "assistant",
+        "content": "You must grab at least 3 socks to ensure a matching pair.\n\nHere's the reasoning:\n\n1. When you grab the first sock, it can be either white or black.\n2. When you grab the second sock, there is a chance that it could be the same color as the first sock, but there is also a chance that it could be the opposite color. In the worst-case scenario, you now have one white sock and one black sock.\n3. Now, when you grab the third sock, you are guaranteed to have a matching pair because there are only two colors of socks in the box. Regardless of whether the third sock is white or black, you will now have at least two socks of the same color.\n\nTherefore, you must grab at least 3 socks to ensure you have a matching pair in complete darkness."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Implement a Python script that interacts with a Django web application. The script should be able to:\n    - Create new objects in the database\n    - Retrieve objects from the database based on filters\n    - Update existing objects in the database\n    - Delete objects from the database PLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "import os\nimport django\n\nos.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_project_name.settings')\ndjango.setup()\n\nfrom your_app_name.models import YourModel\n\n\ndef create_object(**kwargs):\n    obj = YourModel.objects.create(**kwargs)\n    obj.save()\n    return obj\n\n\ndef retrieve_objects(**filters):\n    return YourModel.objects.filter(**filters)\n\n\ndef update_object(obj_id, **updates):\n    obj = YourModel.objects.get(id=obj_id)\n    for key, value in updates.items():\n        setattr(obj, key, value)\n    obj.save()\n\n\ndef delete_object(obj_id):\n    obj = YourModel.objects.get(id=obj_id)\n    obj.delete()\n\n\n# Example usage:\n\n# Create a new object\nnew_obj = create_object(field1='value1', field2='value2')\n\n# Retrieve objects based on filters\nfiltered_objs = retrieve_objects(field1='value1')\n\n# Update an existing object\nupdate_object(new_obj.id, field1='updated_value1', field2='updated_value2')\n\n# Delete an object\ndelete_object(new_obj.id)"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "At a party, every person shakes hands with everyone else exactly once. If there were a total of 66 handshakes, how many people attended the party?"
+      },
+      {
+        "role": "assistant",
+        "content": "There were 12 people at the party.\n\nHere's the logic behind this:\n1. Let n be the number of people at the party.\n2. Each person shakes hands with (n - 1) other people.\n3. However, since each handshake involves two people, we need to divide the total number of handshakes by 2 to avoid counting them twice.\n4. So, the formula for the total number of handshakes is n(n - 1)/2 = 66.\n5. Solving this equation, we get n^2 - n - 132 = 0.\n6. Factoring this quadratic equation, we get (n - 12)(n + 11) = 0.\n7. Since the number of people cannot be negative, n = 12.\n8. Therefore, there were 12 people at the party."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Describe a bustling city street as Charles Dickens would."
+      },
+      {
+        "role": "assistant",
+        "content": "The city street, in its ceaseless ebb and flow of humanity, teemed with life as vibrant as a bustling beehive. The clamouring carriages clattered along the cobblestones, their horses snorting plumes of steam into the frosty air, while vendors hawked their wares from every corner, their cries echoing off the towering edifices that flanked the thoroughfare.\n\nEverywhere one looked, there was movement - the ragged urchins darting between legs to pilfer an unwatched purse; the fine ladies in their silken gowns picking their way delicately through the muck; the burly blacksmiths hauling ironwork to the market square; the haggard clerks scurrying back and forth under stacks of parchment. \n\nThere were the well-to-do gentlemen in top hats and tailcoats, noses buried in broadsheets, oblivious to the chaos around them. There were beggars shivering in threadbare rags, hands outstretched for alms, eyes pleading for compassion. There were errand boys running helter-skelter, clutching packages close to their chests, weaving nimbly through the throng. \n\nAmid this cacophony, the smell of roasting chestnuts wafted enticingly from a nearby vendor, mingling with the less pleasant odours of horse dung, sweat, and soot. Yet even these served only to underscore the vitality of the scene, each scent a testament to the ceaseless industry of the city's inhabitants.\n\nIn the midst of all this bustle and hustle, the gas lamps flickered, casting long shadows on the foggy streets, adding an air of mystery to the unfolding tableau. Indeed, it was a panorama of life itself, pulsating with energy, fraught with struggle, brimming with stories yet untold. It was a spectacle of human endeavour, a microcosm of the grand theatre of existence, a stage upon which the drama of life played out in all its joy and sorrow, triumph and tragedy."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In a small town, there are 100 houses. All the blue houses have red doors, and all the green houses have yellow doors. If there are 60 blue houses, how many houses have yellow doors?"
+      },
+      {
+        "role": "assistant",
+        "content": "Let's break down the information given:\n1. There are 100 houses in total.\n2. Blue houses have red doors, and there are 60 blue houses.\n3. Green houses have yellow doors.\n\nNow let's analyze this data to find the answer:\nSince there are 100 houses in total and 60 of them are blue with red doors, that leaves us with 40 houses unaccounted for. These remaining 40 houses must be the green houses because we're only given two types of houses: blue and green.\n\nAs all green houses have yellow doors, it means that all these 40 remaining houses have yellow doors.\n\nSo, the final answer is that there are 40 houses with yellow doors."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Do you know any jokes about animals with ailments?"
+      },
+      {
+        "role": "assistant",
+        "content": "What's worse than a centipede with sore feet? A giraffe with a sore throat"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a Java program that reads a CSV file and prints the total number of rows and columns in the file.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "import java.io.BufferedReader;\nimport java.io.FileReader;\nimport java.io.IOException;\n\npublic class CSVReader {\n\n    public static void main(String[] args) {\n        String csvFile = \"path/to/your/csvfile.csv\";\n        BufferedReader br = null;\n        String line;\n        String cvsSplitBy = \",\";\n\n        int rowCount = 0;\n        int columnCount = 0;\n\n        try {\n            br = new BufferedReader(new FileReader(csvFile));\n            while ((line = br.readLine()) != null) {\n                if (rowCount == 0) {\n                    // Count the number of columns in the first row\n                    String[] columns = line.split(cvsSplitBy);\n                    columnCount = columns.length;\n                }\n                rowCount++;\n            }\n\n            System.out.println(\"Total Rows: \" + rowCount);\n            System.out.println(\"Total Columns: \" + columnCount);\n\n        } catch (IOException e) {\n            e.printStackTrace();\n        } finally {\n            if (br != null) {\n                try {\n                    br.close();\n                } catch (IOException e) {\n                    e.printStackTrace();\n                }\n            }\n        }\n    }\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a Python application that accepts a string as input and returns the count of each character in the string. The output should be formatted as a dictionary with characters as keys and counts as values.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "def count_characters(s):\n    # Initialize an empty dictionary to store character counts\n    char_count = {}\n    \n    # Iterate through each character in the input string\n    for char in s:\n        # If the character is already in the dictionary, increment its count\n        if char in char_count:\n            char_count[char] += 1\n        # Otherwise, add the character to the dictionary with a count of 1\n        else:\n            char_count[char] = 1\n    \n    # Return the dictionary containing character counts\n    return char_count\n\n# Get input string from the user\ninput_string = input(\"Enter a string: \")\n\n# Call the count_characters function and store the result in a variable\nresult = count_characters(input_string)\n\n# Print the resulting dictionary\nprint(result)"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a Node.js application that uploads a file to Google Cloud Storage bucket, generates a signed URL for the uploaded file, and prints the URL to the console.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "require('dotenv').config();\nconst { Storage } = require('@google-cloud/storage');\n\n// Initialize Google Cloud Storage client\nconst storage = new Storage({\n  projectId: process.env.PROJECT_ID,\n  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,\n});\n\nasync function uploadFile(bucketName, filePath) {\n  // Uploads a local file to the specified bucket\n  await storage.bucket(bucketName).upload(filePath, {\n    gzip: true,\n    metadata: {\n      cacheControl: 'public, max-age=31536000',\n    },\n  });\n\n  console.log(`${filePath} uploaded to ${bucketName}.`);\n}\n\nasync function generateSignedUrl(bucketName, fileName) {\n  const options = {\n    version: 'v4',\n    action: 'read',\n    expires: Date.now() + 15 * 60 * 1000, // 15 minutes\n  };\n\n  // Get a signed URL for the file\n  const [url] = await storage.bucket(bucketName).file(fileName).getSignedUrl(options);\n\n  console.log(`The signed url for ${fileName} is ${url}`);\n}\n\nasync function main() {\n  const bucketName = process.env.BUCKET_NAME;\n  const filePath = 'path/to/your/local/file'; // Replace with the path to your local file\n  const fileName = 'uploaded-file-name'; // Replace with the desired name for the uploaded file\n\n  await uploadFile(bucketName, filePath);\n  await generateSignedUrl(bucketName, fileName);\n}\n\nmain().catch(console.error);"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a dialogue between two superheroes discussing their weekend plans, using comic book language and style."
+      },
+      {
+        "role": "assistant",
+        "content": "Captain Cosmos: Greetings, Silver Specter! How fare thee on this fine day?\n\nSilver Specter: Hail, Captain Cosmos. I am faring well, my friend. The city is quiet and peaceful for now.\n\nCaptain Cosmos: Indeed, it seems we have a brief respite from our usual duties of safeguarding the universe. Have you any plans for the upcoming weekend?\n\nSilver Specter: Well, truth be told, I was considering visiting the Quantum Realm to meditate and recharge my spectral energy. But then again, a small part of me yearns for some earthly delights too. Perhaps a visit to the local cinema or an afternoon at the park could do wonders. What about you, Captain?\n\nCaptain Cosmos: Ah, the Quantum Realm does sound enticing. Yet, as much as I enjoy exploring the cosmos, I too find solace in simpler pursuits. I had planned to spend the weekend stargazing with my trusty telescope, perhaps even catch sight of a few distant galaxies. \n\nSilver Specter: Stargazing? Now that's something I haven't done in ages. It would indeed be refreshing to view the stars not as destinations but simply as celestial beauties adorning the night sky.\n\nCaptain Cosmos: Exactly, my spectral comrade! And who knows, we might just spot a rogue asteroid heading towards Earth while we're at it!\n\nSilver Specter: Ha! True enough, Captain. Our duty never truly ends, does it? Even in leisure, we remain ever vigilant.\n\nCaptain Cosmos: That's the life of a superhero, always ready to leap into action at a moment's notice. But until such time comes, let us make the most of our free time. Would you care to join me in my stargazing endeavor, Silver Specter?\n\nSilver Specter: A splendid idea, Captain Cosmos! Count me in. Let's savor these moments of peace before we are called upon once more to defend our world.\n\nCaptain Cosmos: Excellent! Then it's settled. This weekend shall be one of relaxation and cosmic contemplation. Until then, may your energies stay strong, and your spirit unbroken, dear friend.\n\nSilver Specter: And to you as well, Captain. May your journey through the cosmos always lead you back home."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What 1993 film, starring Bill Murray, shares its name with a popular annual holiday in the United States and is centered around an ironic time loop?"
+      },
+      {
+        "role": "assistant",
+        "content": "Groundhog Day"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "List and briefly explain six natural home remedies for common ailments, using ingredients like honey, ginger, or apple cider vinegar."
+      },
+      {
+        "role": "assistant",
+        "content": "1. Honey for cough and sore throat: Honey has natural antibacterial and soothing properties, making it an effective remedy for coughs and sore throats. Consuming a spoonful of honey or adding it to warm water with lemon can help soothe irritation and reduce the frequency of coughing.\n\n2. Ginger for nausea and indigestion: Ginger is known for its anti-inflammatory and digestive properties, which can help alleviate symptoms of nausea and indigestion. Consuming ginger tea or chewing on small pieces of raw ginger can provide relief from these ailments.\n\n3. Apple cider vinegar for acid reflux: Apple cider vinegar can help balance stomach acid levels, providing relief from acid reflux symptoms. Diluting one tablespoon of apple cider vinegar in a glass of water and drinking it before meals may help prevent acid reflux.\n\n4. Peppermint oil for headaches: Peppermint oil contains menthol, which can help relax muscles and ease pain. Applying diluted peppermint oil to the temples and massaging gently can provide relief from tension headaches.\n\n5. Chamomile tea for insomnia: Chamomile tea is known for its calming effects, making it a popular natural remedy for insomnia. Drinking a cup of chamomile tea before bedtime can help promote relaxation and improve sleep quality.\n\n6. Eucalyptus oil for nasal congestion: Eucalyptus oil has natural decongestant properties that can help clear blocked nasal passages. Adding a few drops of eucalyptus oil to a bowl of hot water and inhaling the steam can provide relief from nasal congestion caused by colds or allergies."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What occurs when you wear a crown?"
+      },
+      {
+        "role": "assistant",
+        "content": "Wearing a crown is often symbolic of authority, leadership, or royalty. It can signify that the wearer holds a position of power or high status, such as a king, queen, or other monarch. In a more metaphorical sense, \"wearing a crown\" can also refer to taking on a significant responsibility or role. However, physically wearing a crown doesn't necessarily cause anything to occur unless it's part of a ceremony or ritual, such as a coronation."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A train leaves from station A towards station B at 60 mph. Another train leaves from station B towards station A at 80 mph. Station A and B are 210 miles apart. How long will it take for both trains to meet?"
+      },
+      {
+        "role": "assistant",
+        "content": "Both trains will meet after 1.5 hours.\n\nHere's the reasoning:\n\n1. Let's assume the time taken for both trains to meet is t hours.\n2. In t hours, the first train would travel 60t miles (speed multiplied by time).\n3. Similarly, in t hours, the second train would travel 80t miles.\n4. When they meet, the sum of their distances traveled should be equal to the distance between stations A and B, which is 210 miles.\n5. So, 60t + 80t = 210\n6. Combining the terms, we get 140t = 210\n7. Solving for t, we find t = 210/140 = 1.5 hours.\n\nTherefore, both trains will meet after 1.5 hours."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A factory produces 1200 widgets every 8 hours. How many widgets will the factory produce in a week if it operates 24 hours a day?"
+      },
+      {
+        "role": "assistant",
+        "content": "First, let's find out how many widgets are produced per hour:\n\nWidgets per hour = Total widgets / Hours\n                              = 1200 / 8\n                              = 150\n\nNow, we know that there are 24 hours in a day and 7 days in a week. So, the total number of hours in a week is:\n\nTotal hours in a week = 24 hours/day \u00d7 7 days/week\n                                     = 168 hours/week\n\nSince the factory produces 150 widgets per hour and operates for 168 hours in a week, the total number of widgets produced in a week would be:\n\nTotal widgets in a week = Widgets per hour \u00d7 Total hours in a week\n                                        = 150 \u00d7 168\n                                        = 25,200\n\nSo, the factory will produce 25,200 widgets in a week if it operates 24 hours a day."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a letter from a young girl named Emily to her favorite author, expressing how much she loves their books and asking them questions about their writing process."
+      },
+      {
+        "role": "assistant",
+        "content": "Dear [Author's Name],\n\nMy name is Emily and I am 12 years old. I am writing to you because your books have made a significant impact on my life. They are like friends that keep me company, especially during these times when we're mostly at home.\n\nYour characters feel so real to me; they laugh, cry, make mistakes, learn, and grow just like us. Every time I finish one of your books, it feels as if I've lived another life in an entirely different world. Your stories inspire me, teach me valuable lessons, and take me on incredible adventures without leaving the comfort of my room.\n\nI am curious about how you create such magical worlds and relatable characters. Do they come from people you know or places you've been? How do you decide what challenges they face and how they overcome them?\n\nAlso, I wonder how you manage to write so many books. Do you follow a strict schedule or do you write whenever inspiration strikes? And finally, how do you handle writer's block? \n\nThank you for taking the time to read my letter. I hope to hear back from you soon. Until then, I'll be eagerly waiting for your next book!\n\nBest regards,\nEmily"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Know any funny jokes about mermaids?"
+      },
+      {
+        "role": "assistant",
+        "content": "Why did the mermaid wear seashells? Because B-shells were too small."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A store sells two types of products: Product A and Product B. The store has a 60% profit margin on Product A and a 40% profit margin on Product B. If the store sells $10,000 worth of Product A and $15,000 worth of Product B in a month, what is the total profit for that month?"
+      },
+      {
+        "role": "assistant",
+        "content": "First, let's calculate the profit from selling Product A:\n\nProfit from Product A = Sales of Product A * Profit margin\n                      = $10,000 * 0.6\n                      = $6,000\n\nNext, we'll calculate the profit from selling Product B:\n\nProfit from Product B = Sales of Product B * Profit margin\n                      = $15,000 * 0.4\n                      = $6,000\n\nNow, to find the total profit for the month, we simply add the profits from both products:\n\nTotal profit = Profit from Product A + Profit from Product B\n             = $6,000 + $6,000\n             = $12,000\n\nSo, the total profit for the month is $12,000."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Is the \"fat Buddha\" or \"laughing Buddha\" in popular culture actually a depiction of the historical Buddha?"
+      },
+      {
+        "role": "assistant",
+        "content": "No, the \"fat Buddha\" or \"laughing Buddha\" is not a depiction of the historical Buddha. He is a 10th-century Chinese Buddhist folk hero named Budai. The confusion likely arises because people assume that all Buddhist icons represent the historical Buddha, but Budai is a separate figure associated with contentment and abundance."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Implement a simple HTTP server in Python using the Flask library that has three endpoints: one for adding new users, another for retrieving user information by ID, and a third for updating user information.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "from flask import Flask, request, jsonify\n\napp = Flask(__name__)\n\n# Initialize an empty dictionary to store user information\nusers = {}\n\n# Define the endpoint for adding new users\n@app.route('/add_user', methods=['POST'])\ndef add_user():\n    user_data = request.get_json()\n    user_id = len(users) + 1\n    users[user_id] = user_data\n    return jsonify({\"message\": \"User added successfully\", \"user_id\": user_id}), 201\n\n# Define the endpoint for retrieving user information by ID\n@app.route('/get_user/<int:user_id>', methods=['GET'])\ndef get_user(user_id):\n    if user_id in users:\n        return jsonify(users[user_id]), 200\n    else:\n        return jsonify({\"error\": \"User not found\"}), 404\n\n# Define the endpoint for updating user information\n@app.route('/update_user/<int:user_id>', methods=['PUT'])\ndef update_user(user_id):\n    if user_id in users:\n        user_data = request.get_json()\n        users[user_id].update(user_data)\n        return jsonify({\"message\": \"User updated successfully\"}), 200\n    else:\n        return jsonify({\"error\": \"User not found\"}), 404\n\n# Run the Flask app\nif __name__ == '__main__':\n    app.run(debug=True)"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What last name of a legendary British rock star is also the term for a type of dagger, often associated with Scottish Highlanders?"
+      },
+      {
+        "role": "assistant",
+        "content": "Bowie"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a Python function that checks if a number is within a given range. PLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "# Function to check if a number is within a given range\ndef in_range(n, start, end):\n    # Check if the number is greater than or equal to the start and less than or equal to the end of the range\n    if start <= n <= end:\n        return True\n    else:\n        return False"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What happens if you find a ring and put it on?"
+      },
+      {
+        "role": "assistant",
+        "content": "The outcome would depend on the nature of the ring. If it's a simple piece of jewelry, nothing much would happen other than you wearing a new accessory. However, if it's a ring with a special significance (like a wedding ring or a family heirloom), it might lead to certain emotional or social implications. If it's a ring with a technological or magical function (like in some fantasy or science fiction stories), the results could be anything from gaining superpowers to being transported to another world. If the ring is too small, it might get stuck on your finger. If the ring is valuable and you decide to keep it, it could be considered theft. It's always best to try and find the original owner if you find a ring or any lost item."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A bag contains 3 red balls, 5 blue balls, and 7 green balls. What is the probability of drawing a red ball followed by a blue ball without replacement?"
+      },
+      {
+        "role": "assistant",
+        "content": "To find the probability of two independent events occurring in sequence, we multiply the probabilities of each individual event happening.\n\nFirst, let's find the probability of drawing a red ball:\nP(red ball) = Number of red balls / Total number of balls\n            = 3 / (3+5+7)\n            = 3 / 15\n            = 1 / 5\n\nNow, since we're not replacing the first ball, there are now 14 balls left in the bag, and still 5 blue balls. So, let's find the probability of drawing a blue ball after drawing a red ball:\nP(blue ball | red ball) = Number of blue balls / Total number of remaining balls\n                        = 5 / 14\n\nNow, we can multiply these probabilities to find the overall probability of both events occurring in sequence:\n\nP(red ball followed by blue ball) = P(red ball) * P(blue ball | red ball)\n                                 = (1/5) * (5/14)\n                                 = 1 / 14\n\nTherefore, the probability of drawing a red ball followed by a blue ball without replacement is 1/14 or approximately 7.14%."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Using JavaScript, write a function that converts a decimal number to binary. PLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "// Function to convert decimal number to binary\nfunction decimalToBinary(decimal) {\n    // Check if the input is a valid number\n    if (isNaN(decimal)) {\n        return 'Invalid Input';\n    }\n\n    // Convert the decimal number to binary and return it\n    return (decimal >>> 0).toString(2);\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "There are 5 boxes, each containing a different number of balls. The first box contains 10 balls more than the second box. The third box has half as many balls as the second box. The fourth box has 15 balls fewer than the third box. Finally, the fifth box has twice as many balls as the fourth box. If the total number of balls is 200, how many balls does the third box contain?"
+      },
+      {
+        "role": "assistant",
+        "content": "Let's use algebra to represent the information given:\n\nLet A be the number of balls in the first box, B in the second box, C in the third box, D in the fourth box, and E in the fifth box.\n\nWe know that:\nA = B + 10\nC = B/2\nD = C - 15\nE = 2D\n\nAnd the total number of balls is 200:\nA + B + C + D + E = 200\n\nNow we can substitute the expressions for A, C, D, and E into the equation:\n\n(B + 10) + B + (B/2) + (B/2 - 15) + 2(B/2 - 15) = 200\n\nSimplifying this equation gives us:\n\nB = 70\n\nNow we can find the number of balls in the third box using the expression for C:\n\nC = B/2 = 70/2 = 35\n\nSo, the third box contains 35 balls."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a PHP script that connects to a MySQL database and performs CRUD operations on a \"products\" table. The table should contain columns for product ID, name, description, price, and quantity. The script should support command line arguments for specifying the operation (create, read, update, or delete) and any necessary parameters.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "<?php\n\n// Database configuration\n$dbHost = \"localhost\";\n$dbUser = \"username\";\n$dbPass = \"password\";\n$dbName = \"database_name\";\n\n// Connect to the database\n$conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);\n\n// Check connection\nif ($conn->connect_error) {\n    die(\"Connection failed: \" . $conn->connect_error);\n}\n\n// Get command line arguments\n$operation = $argv[1] ?? '';\n\nswitch ($operation) {\n    case 'create':\n        createProduct();\n        break;\n    case 'read':\n        readProducts();\n        break;\n    case 'update':\n        updateProduct();\n        break;\n    case 'delete':\n        deleteProduct();\n        break;\n    default:\n        echo \"Invalid operation. Please specify create, read, update, or delete.\";\n}\n\nfunction createProduct()\n{\n    global $conn;\n\n    $name = $GLOBALS['argv'][2] ?? '';\n    $description = $GLOBALS['argv'][3] ?? '';\n    $price = $GLOBALS['argv'][4] ?? 0;\n    $quantity = $GLOBALS['argv'][5] ?? 0;\n\n    $sql = \"INSERT INTO products (name, description, price, quantity)\n            VALUES ('$name', '$description', $price, $quantity)\";\n\n    if ($conn->query($sql) === TRUE) {\n        echo \"New product created successfully\";\n    } else {\n        echo \"Error: \" . $sql . \"<br>\" . $conn->error;\n    }\n}\n\nfunction readProducts()\n{\n    global $conn;\n\n    $sql = \"SELECT id, name, description, price, quantity FROM products\";\n    $result = $conn->query($sql);\n\n    if ($result->num_rows > 0) {\n        while ($row = $result->fetch_assoc()) {\n            echo \"id: \" . $row[\"id\"] . \" - Name: \" . $row[\"name\"] . \" - Description: \" . $row[\"description\"] . \" - Price: \" . $row[\"price\"] . \" - Quantity: \" . $row[\"quantity\"] . \"\\n\";\n        }\n    } else {\n        echo \"0 results\";\n    }\n}\n\nfunction updateProduct()\n{\n    global $conn;\n\n    $id = $GLOBALS['argv'][2] ?? 0;\n    $name = $GLOBALS['argv'][3] ?? '';\n    $description = $GLOBALS['argv'][4] ?? '';\n    $price = $GLOBALS['argv'][5] ?? 0;\n    $quantity = $GLOBALS['argv'][6] ?? 0;\n\n    $sql = \"UPDATE products SET name='$name', description='$description', price=$price, quantity=$quantity WHERE id=$id\";\n\n    if ($conn->query($sql) === TRUE) {\n        echo \"Product updated successfully\";\n    } else {\n        echo \"Error updating product: \" . $conn->error;\n    }\n}\n\nfunction deleteProduct()\n{\n    global $conn;\n\n    $id = $GLOBALS['argv'][2] ?? 0;\n\n    $sql = \"DELETE FROM products WHERE id=$id\";\n\n    if ($conn->query($sql) === TRUE) {\n        echo \"Product deleted successfully\";\n    } else {\n        echo \"Error deleting product: \" . $conn->error;\n    }\n}\n\n$conn->close();\n\n?>"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Two men play five games of checkers. Each wins the same number of games. There are no ties. How could this happen?"
+      },
+      {
+        "role": "assistant",
+        "content": "They were not playing against each other."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Utilize PowerShell to create a script that checks all running processes on a Windows machine and outputs a list of those processes which are consuming more than a certain percentage of CPU resources. PLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "$cpuUsageThreshold = 50\nGet-Process | Where-Object { $_.CPU -gt $cpuUsageThreshold } | Format-Table ProcessName, CPU"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a Java program that simulates a bank account with deposit and withdrawal functionalities.\n   - The program should store transactions in a local SQLite database.\n   - It should support multiple accounts identified by unique account numbers.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "```java\nimport java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.Statement;\n\npublic class DatabaseManager {\n    private static final String DB_URL = \"jdbc:sqlite:bank.db\";\n\n    public static void initialize() {\n        try (Connection conn = DriverManager.getConnection(DB_URL);\n             Statement stmt = conn.createStatement()) {\n\n            String createAccountsTable = \"CREATE TABLE IF NOT EXISTS accounts (\" +\n                    \"account_number INTEGER PRIMARY KEY,\" +\n                    \"balance REAL)\";\n            stmt.execute(createAccountsTable);\n\n            String createTransactionsTable = \"CREATE TABLE IF NOT EXISTS transactions (\" +\n                    \"id INTEGER PRIMARY KEY AUTOINCREMENT,\" +\n                    \"account_number INTEGER,\" +\n                    \"type TEXT,\" +\n                    \"amount REAL,\" +\n                    \"FOREIGN KEY(account_number) REFERENCES accounts(account_number))\";\n            stmt.execute(createTransactionsTable);\n\n        } catch (Exception e) {\n            System.err.println(e.getClass().getName() + \": \" + e.getMessage());\n        }\n    }\n}\n\nimport java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.PreparedStatement;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\n\npublic class BankAccount {\n    private static final String DB_URL = \"jdbc:sqlite:bank.db\";\n\n    public static void createAccount(int accountNumber) {\n        try (Connection conn = DriverManager.getConnection(DB_URL);\n             PreparedStatement pstmt = conn.prepareStatement(\"INSERT INTO accounts(account_number, balance) VALUES(?, ?)\")) {\n\n            pstmt.setInt(1, accountNumber);\n            pstmt.setDouble(2, 0.0);\n            pstmt.executeUpdate();\n\n        } catch (SQLException e) {\n            System.err.println(e.getClass().getName() + \": \" + e.getMessage());\n        }\n    }\n\n    public static void deposit(int accountNumber, double amount) {\n        updateBalance(accountNumber, amount, \"deposit\");\n    }\n\n    public static void withdraw(int accountNumber, double amount) {\n        updateBalance(accountNumber, -amount, \"withdraw\");\n    }\n\n    private static void updateBalance(int accountNumber, double amount, String type) {\n        try (Connection conn = DriverManager.getConnection(DB_URL)) {\n            conn.setAutoCommit(false);\n\n            // Update account balance\n            try (PreparedStatement pstmt = conn.prepareStatement(\"UPDATE accounts SET balance = balance + ? WHERE account_number = ?\")) {\n                pstmt.setDouble(1, amount);\n                pstmt.setInt(2, accountNumber);\n                pstmt.executeUpdate();\n            }\n\n            // Add transaction record\n            try (PreparedStatement pstmt = conn.prepareStatement(\"INSERT INTO transactions(account_number, type, amount) VALUES(?, ?, ?)\")) {\n                pstmt.setInt(1, accountNumber);\n                pstmt.setString(2, type);\n                pstmt.setDouble(3, Math.abs(amount));\n                pstmt.executeUpdate();\n            }\n\n            conn.commit();\n\n        } catch (SQLException e) {\n            System.err.println(e.getClass().getName() + \": \" + e.getMessage());\n        }\n    }\n\n    public static void main(String[] args) {\n        DatabaseManager.initialize();\n\n        int accountNumber = 123456;\n        createAccount(accountNumber);\n        deposit(accountNumber, 1000.0);\n        withdraw(accountNumber, 500.0);\n    }\n}\n```"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a C program that simulates a simple shell. This shell should support basic commands like \"ls\", \"cd\", \"pwd\", \"exit\" etc. You may use system calls to implement these functionalities. PLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <unistd.h>\n\n#define MAX_COMMAND_LENGTH 1024\n#define DELIM \" \\t\\r\\n\\a\"\n\nchar *builtin_str[] = {\n    \"cd\",\n    \"pwd\",\n    \"exit\"\n};\n\nint (*builtin_func[]) (char **) = {\n    &shell_cd,\n    &shell_pwd,\n    &shell_exit\n};\n\nint num_builtins() {\n    return sizeof(builtin_str) / sizeof(char *);\n}\n\nint shell_cd(char **args)\n{\n    if (args[1] == NULL) {\n        fprintf(stderr, \"Expected argument to \\\"cd\\\"\\n\");\n    } else {\n        if (chdir(args[1]) != 0) {\n            perror(\"Error\");\n        }\n    }\n    return 1;\n}\n\nint shell_pwd(char **args)\n{\n    char cwd[1024];\n    getcwd(cwd, sizeof(cwd));\n    printf(\"%s\\n\", cwd);\n    return 1;\n}\n\nint shell_exit(char **args)\n{\n    return 0;\n}\n\nint launch_shell(char **args)\n{\n    pid_t pid;\n    int status;\n\n    pid = fork();\n    if (pid == 0) {\n        // Child process\n        if (execvp(args[0], args) == -1) {\n            perror(\"Error\");\n        }\n        exit(EXIT_FAILURE);\n    } else if (pid < 0) {\n        // Error forking\n        perror(\"Error\");\n    } else {\n        // Parent process\n        do {\n            waitpid(pid, &status, WUNTRACED);\n        } while (!WIFEXITED(status) && !WIFSIGNALED(status));\n    }\n\n    return 1;\n}\n\nint execute_command(char **args)\n{\n    int i;\n\n    if (args[0] == NULL) {\n        // An empty command was entered.\n        return 1;\n    }\n\n    for (i = 0; i < num_builtins(); i++) {\n        if (strcmp(args[0], builtin_str[i]) == 0) {\n            return (*builtin_func[i])(args);\n        }\n    }\n\n    return launch_shell(args);\n}\n\nchar **split_line(char *line)\n{\n    int bufsize = 64, position = 0;\n    char **tokens = malloc(bufsize * sizeof(char*));\n    char *token;\n\n    token = strtok(line, DELIM);\n    while (token != NULL) {\n        tokens[position] = token;\n        position++;\n\n        if (position >= bufsize) {\n            bufsize += 64;\n            tokens = realloc(tokens, bufsize * sizeof(char*));\n        }\n\n        token = strtok(NULL, DELIM);\n    }\n    tokens[position] = NULL;\n    return tokens;\n}\n\nchar *read_line(void)\n{\n    char *line = NULL;\n    ssize_t bufsize = 0;\n    getline(&line, &bufsize, stdin);\n    return line;\n}\n\nvoid loop(void)\n{\n    char *line;\n    char **args;\n    int status;\n\n    do {\n        printf(\"> \");\n        line = read_line();\n        args = split_line(line);\n        status = execute_command(args);\n\n        free(line);\n        free(args);\n    } while (status);\n}\n\nint main(int argc, char **argv)\n{\n    loop();\n\n    return EXIT_SUCCESS;\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Discuss the origin and development of three popular board games: Chess, Monopoly, and Scrabble. Include their initial creation, changes over time, and current status."
+      },
+      {
+        "role": "assistant",
+        "content": "1. Chess: The origin of chess can be traced back to nearly 1500 years ago, although the exact time and place are uncertain. Most historians believe it originated in northern India or eastern Iran. The earliest form was known as chaturanga, which translates to \"four divisions of the military\" - infantry, cavalry, elephants, and chariotry, represented by pawn, knight, bishop, and rook respectively. By the 9th century, the game had been modified and spread to Muslim Persia, where it was renamed shatranj. It then spread westward to Europe, where it evolved into its current form in the 15th century. Over time, rules such as castling, en passant capture, and promotion were added. Today, chess is a globally recognized sport with international competitions including the World Chess Championship.\n\n2. Monopoly: Monopoly traces its roots back to 1903 when Elizabeth Magie created a game called The Landlord's Game to illustrate the negative aspects of concentrating land in private monopolies. Various versions of this game were played throughout the early 20th century. In 1935, Charles Darrow claimed a version of it as his own and sold it to Parker Brothers. This became the version of Monopoly we know today, featuring Atlantic City locations. Since then, numerous editions have been produced based on various themes and locales. Monopoly remains one of the best-selling board games worldwide.\n\n3. Scrabble: Scrabble was invented by an unemployed architect named Alfred Mosher Butts in 1938. He combined elements of anagrams and crossword puzzles to create a new game he initially called Criss-Crosswords. However, it wasn't until 1948 that James Brunot bought the rights to manufacture the game, simplified the rules, and changed its name to Scrabble. Sales remained modest until 1952 when, according to legend, the president of Macy's discovered the game while on vacation and ordered some for his store. Suddenly, everyone wanted to play Scrabble, and sales skyrocketed. Today, Scrabble is available in 29 languages and has sold over 150 million sets worldwide."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a Python script that takes an input string and reverses it, then prints the reversed string to the console.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "# Get input string from the user\ninput_string = input(\"Enter a string: \")\n\n# Reverse the input string\nreversed_string = input_string[::-1]\n\n# Print the reversed string to the console\nprint(\"Reversed String:\", reversed_string)"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What 19th-century author created the character of Natty Bumppo, a frontiersman who appears in five novels known as the Leatherstocking Tales?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ah, the esteemed author you are referring to is none other than Mr. James Fenimore Cooper. His creation, Nathaniel \"Natty\" Bumppo, is indeed a most intriguing character that graces the pages of the Leatherstocking Tales. A frontiersman of great skill and moral fortitude, he is an embodiment of the American spirit during the era of westward expansion."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "If a store sells apples at $1.50 per pound and oranges at $2.00 per pound, how much would it cost to buy 7 pounds of apples and 5 pounds of oranges?"
+      },
+      {
+        "role": "assistant",
+        "content": "To find the total cost, we need to multiply the price per pound by the number of pounds for each fruit and then add them together.\n\nFor apples:\nCost = Price per pound * Pounds\n     = $1.50 * 7\n     = $10.50\n\nFor oranges:\nCost = Price per pound * Pounds\n     = $2.00 * 5\n     = $10.00\n\nTotal cost = Cost of apples + Cost of oranges\n           = $10.50 + $10.00\n           = $20.50\n\nSo, it would cost $20.50 to buy 7 pounds of apples and 5 pounds of oranges."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "BEGININPUT\nChristian, Cyrano. At back Roxane talking to Carbon and some cadets.\nCHRISTIAN (calling toward Cyrano's tent): Cyrano!\nCYRANO (reappearing, fully armed): What? Why so pale?\nCHRISTIAN: She does not love me!\nCYRANO: What?\nCHRISTIAN: 'Tis you she loves!\nCYRANO: No!\nCHRISTIAN: --For she loves me only for my soul!\nCYRANO: Truly?\nCHRISTIAN: Yes! Thus--you see, that soul is you,... Therefore, 'tis you she loves!--And you--love her!\nCYRANO: I?\nCHRISTIAN: Oh, I know it!\nCYRANO: Ay, 'tis true!\nCHRISTIAN: You love To madness!\nCYRANO: Ay! and worse!\nCHRISTIAN: Then tell her so!\nCYRANO: No!\nCHRISTIAN: And why not?\nCYRANO: Look at my face!--be answered!\nCHRISTIAN: She'd love me--were I ugly.\nCYRANO: Said she so?\nCHRISTIAN: Ay! in those words!\nCYRANO: I'm glad she told you that! But pooh!--believe it not! I am well pleased She thought to tell you. Take it not for truth. Never grow ugly:--she'd reproach me then!\nCHRISTIAN: That I intend discovering!\nCYRANO: No! I beg!\nCHRISTIAN: Ay! she shall choose between us!--Tell her all!\nCYRANO: No! no! I will not have it! Spare me this!\nCHRISTIAN: Because my face is haply fair, shall I Destroy your happiness? 'Twere too unjust!\nCYRANO: And I,--because by Nature's freak I have The gift to say--all that perchance you feel. Shall I be fatal to your happiness?\nCHRISTIAN: Tell all!\nCYRANO: It is ill done to tempt me thus!\nCHRISTIAN: Too long I've borne about within myself A rival to myself--I'll make an end!\nCYRANO: Christian!\nCHRISTIAN: Our union, without witness--secret-- Clandestine--can be easily dissolved If we survive.\nCYRANO: My God!--he still persists!\nCHRISTIAN: I will be loved myself--or not at all! --I'll go see what they do--there, at the end Of the post: speak to her, and then let her choose One of us two!\nCYRANO: It will be you.\nCHRISTIAN: Pray God! (He calls): Roxane!\nCYRANO: No! no!\nROXANE (coming up quickly): What?\nCHRISTIAN: Cyrano has things Important for your ear. . .\n(She hastens to Cyrano. Christian goes out.)\nRoxane, Cyrano. Then Le Bret, Carbon de Castel-Jaloux, the cadets, Ragueneau, De Guiche, etc.\nROXANE: Important, how?\nCYRANO (in despair. to Roxane): He's gone! 'Tis naught!--Oh, you know how he sees Importance in a trifle!\nROXANE (warmly): Did he doubt Of what I said?--Ah, yes, I saw he doubted!\nCYRANO (taking her hand): But are you sure you told him all the truth?\nROXANE: Yes, I would love him were he. . .\n(She hesitates.)\nCYRANO: Does that word Embarrass you before my face, Roxane?\nROXANE: I. . .\nCYRANO (smiling sadly): 'Twill not hurt me! Say it! If he were Ugly!. . .\nROXANE: Yes, ugly! (Musket report outside): Hark! I hear a shot!\nCYRANO (ardently): Hideous!\nROXANE: Hideous! yes!\nCYRANO: Disfigured.\nROXANE: Ay!\nCYRANO: Grotesque?\nROXANE: He could not be grotesque to me!\nCYRANO: You'd love the same?. . .\nROXANE: The same--nay, even more!\nCYRANO (losing command over himself--aside): My God! it's true, perchance, love waits me there! (To Roxane): I. . .Roxane. . .listen. . .\nLE BRET (entering hurriedly--to Cyrano): Cyrano!\nCYRANO (turning round): What?\nLE BRET: Hush!\n(He whispers something to him.)\nCYRANO (letting go Roxane's hand and exclaiming): Ah, God!\nROXANE: What is it?\nCYRANO (to himself--stunned): All is over now.\n(Renewed reports.)\nROXANE: What is the matter? Hark! another shot!\n(She goes up to look outside.)\nCYRANO: It is too late, now I can never tell!\nROXANE (trying to rush out): What has chanced?\nCYRANO (rushing to stop her): Nothing!\n(Some cadets enter, trying to hide something they are carrying, and close round it to prevent Roxane approaching.)\nROXANE: And those men? (Cyrano draws her away): What were you just about to say before. . .?\nCYRANO: What was I saying? Nothing now, I swear! (Solemnly): I swear that Christian's soul, his nature, were...(Hastily correcting himself): Nay, that they are, the noblest, greatest. . .\nROXANE: Were? (With a loud scream): Oh!\n(She rushes up, pushing every one aside.)\nCYRANO: All is over now!\nROXANE (seeing Christian lying on the ground, wrapped in his cloak): O Christian!\nLE BRET (to Cyrano): Struck by first shot of the enemy!\n(Roxane flings herself down by Christian. Fresh reports of cannon--clash of arms--clamor--beating of drums.)\nCARBON (with sword in the air): O come! Your muskets.\n(Followed by the cadets, he passes to the other side of the ramparts.)\nROXANE: Christian!\nTHE VOICE OF CARBON (from the other side): Ho! make haste!\nROXANE: Christian!\nCARBON: FORM LINE!\nROXANE: Christian!\nCARBON: HANDLE YOUR MATCH!\n(Ragueneau rushes up, bringing water in a helmet.)\nCHRISTIAN (in a dying voice): Roxane!\nCYRANO (quickly, whispering into Christian's ear, while Roxane distractedly tears a piece of linen from his breast, which she dips into the water, trying to stanch the bleeding): I told her all. She loves you still.\n(Christian closes his eyes.)\nROXANE: How, my sweet love?\nCARBON: DRAW RAMRODS!\nROXANE (to Cyrano): He is not dead?\nCARBON: OPEN YOUR CHARGES WITH YOUR TEETH!\nROXANE: His cheek Grows cold against my own!\nCARBON: READY! PRESENT!\nROXANE (seeing a letter in Christian's doublet): A letter!... 'Tis for me!\n(She opens it.)\nCYRANO (aside): My letter!\nCARBON: FIRE!\n(Musket reports--shouts--noise of battle.)\nCYRANO (trying to disengage his hand, which Roxane on her knees is holding): But, Roxane, hark, they fight!\nROXANE (detaining him): Stay yet awhile. For he is dead. You knew him, you alone. (Weeping quietly): Ah, was not his a beauteous soul, a soul Wondrous!\nCYRANO (standing up--bareheaded): Ay, Roxane.\nROXANE: An inspired poet?\nCYRANO: Ay, Roxane.\nROXANE: And a mind sublime?\nCYRANO: Oh, yes!\nROXANE: A heart too deep for common minds to plumb, A spirit subtle, charming?\nCYRANO (firmly): Ay, Roxane.\nROXANE (flinging herself on the dead body): Dead, my love!\nCYRANO (aside--drawing his sword): Ay, and let me die to-day, Since, all unconscious, she mourns me--in him!\n(Sounds of trumpets in the distance.)\nDE GUICHE (appearing on the ramparts--bareheaded--with a wound on his forehead--in a voice of thunder): It is the signal! Trumpet flourishes! The French bring the provisions into camp! Hold but the place awhile!\nROXANE: See, there is blood Upon the letter--tears!\nA VOICE (outside--shouting): Surrender!\nVOICE OF CADETS: No!\nRAGUENEAU (standing on the top of his carriage, watches the battle over the edge of the ramparts): The danger's ever greater!\nCYRANO (to De Guiche--pointing to Roxane): I will charge! Take her away!\nROXANE (kissing the letter--in a half-extinguished voice): O God! his tears! his blood!. . .\nRAGUENEAU (jumping down from the carriage and rushing toward her): She's swooned away!\nDE GUICHE (on the rampart--to the cadets--with fury): Stand fast!\nA VOICE (outside): Lay down your arms!\nTHE CADETS: No!\nCYRANO (to De Guiche): Now that you have proved your valor, Sir, (Pointing to Roxane): Fly, and save her!\nDE GUICHE (rushing to Roxane, and carrying her away in his arms): So be it! Gain but time, The victory's ours!\nCYRANO: Good. (Calling out to Roxane, whom De Guiche, aided by Ragueneau, is bearing away in a fainting condition): Farewell, Roxane!\n(Tumult. Shouts. Cadets reappear, wounded, falling on the scene. Cyrano, rushing to the battle, is stopped by Carbon de Castel-Jaloux, who is streaming with blood.)\nCARBON: We are breaking! I am wounded--wounded twice!\nCYRANO (shouting to the Gascons): GASCONS! HO, GASCONS! NEVER TURN YOUR BACKS! (To Carbon, whom he is supporting): Have no fear! I have two deaths to avenge: My friend who's slain;--and my dead happiness! (They come down, Cyrano brandishing the lance to which is attached Roxane's handkerchief): Float there! laced kerchief broidered with her name! (He sticks it in the ground and shouts to the cadets): FALL ON THEM, GASCONS! CRUSH THEM! (To the fifer): Fifer, play!\n(The fife plays. The wounded try to rise. Some cadets, falling one over the other down the slope, group themselves round Cyrano and the little flag. The carriage is crowded with men inside and outside, and, bristling with arquebuses, is turned into a fortress.)\nA CADET (appearing on the crest, beaten backward, but still fighting, cries): They're climbing the redoubt! (and falls dead.)\nCYRANO: Let us salute them! (The rampart is covered instantly by a formidable row of enemies. The standards of the Imperialists are raised): Fire!\n(General discharge.)\nA CRY IN THE ENEMY'S RANKS: Fire!\n(A deadly answering volley. The cadets fall on all sides.)\nA SPANISH OFFICER (uncovering): Who are these men who rush on death?\nCYRANO (reciting, erect, amid a storm of bullets): The bold Cadets of Gascony, Of Carbon of Castel-Jaloux! Brawling, swaggering boastfully, (He rushes forward, followed by a few survivors): The bold Cadets. . .\n(His voice is drowned in the battle.)\nCurtain.\nENDINPUT\nBEGININSTRUCTION\nSummarize the input in around 130 words.\nENDINSTRUCTION"
+      },
+      {
+        "role": "assistant",
+        "content": "Christian tells Cyrano that Roxane loves not him, but Cyrano, for she loves the author of the letters and the man who spoke to her under her balcony. Because she is unaware of this, Christian wants Roxane to be told the truth so that she may choose between them. He calls Roxane and exits, leaving Cyrano to explain the fraudulent situation. Cyrano begins to unravel the story, but just when his hopes are aroused, Christian's body is carried on stage; he has been killed by the first bullet fired in the battle. This bullet also destroys Cyrano's hopes; he can never tell Roxane the truth now, especially after she discovers a letter on Christian's body. It is addressed to her, covered with Christian's blood and, although Roxane does not know it, Cyrano's tears."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Known for its iconic black and white stripes, what African mammal is closely related to horses and donkeys?"
+      },
+      {
+        "role": "assistant",
+        "content": "Zebra"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A farmer has 12 cows and 8 goats. Each cow gives 15 liters of milk per day, while each goat gives 5 liters of milk per day. How much more milk does the farmer get from his cows than from his goats every day?"
+      },
+      {
+        "role": "assistant",
+        "content": "The farmer gets 140 liters more milk from his cows than from his goats every day.\n\nHere's the reasoning:\n\n1. First, let's find out how much milk the cows produce daily:\n   - Each cow produces 15 liters of milk per day.\n   - So, with 12 cows, the farmer gets 180 liters of milk daily (12 x 15).\n\n2. Next, let's find out how much milk the goats produce daily:\n   - Each goat produces 5 liters of milk per day.\n   - So, with 8 goats, the farmer gets 40 liters of milk daily (8 x 5).\n\n3. Now, to find the difference in milk production between the cows and the goats, we subtract the total milk from goats from the total milk from cows:\n   - Difference = Milk from cows - Milk from goats\n   - Difference = 180 liters - 40 liters\n   - Difference = 140 liters"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a PowerShell script that checks for disk space on a given path (input by the user) and logs the available space every hour. If the free space falls below a specified limit, it should send an email notification. PLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "param(\n    [Parameter(Mandatory=$true)]\n    [string]$path,\n    [Parameter(Mandatory=$true)]\n    [int]$limit,\n    [Parameter(Mandatory=$true)]\n    [string]$emailTo,\n    [Parameter(Mandatory=$true)]\n    [string]$smtpServer\n)\n\n$ErrorActionPreference = \"Stop\"\n\nwhile($true) {\n    try {\n        $diskSpaceInfo = Get-PSDrive -Name ($path.Substring(0,1))\n        $freeSpaceGB = [math]::Round(($diskSpaceInfo.Free / 1GB), 2)\n        \n        Add-Content -Path \"$PSScriptRoot\\DiskSpaceLog.txt\" -Value \"$(Get-Date): Free space on drive $($diskSpaceInfo.Name): $freeSpaceGB GB\"\n        \n        if($freeSpaceGB -lt $limit) {\n            $mailParams = @{\n                SmtpServer = $smtpServer\n                From       = \"admin@yourdomain.com\"\n                To         = $emailTo\n                Subject    = \"Low Disk Space Warning\"\n                Body       = \"The free space on drive $($diskSpaceInfo.Name) has fallen below the specified limit. Current free space: $freeSpaceGB GB.\"\n            }\n            \n            Send-MailMessage @mailParams\n        }\n    } catch {\n        Write-Error $_\n    }\n\n    Start-Sleep -Seconds 3600\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A farmer has 5 chickens. Each chicken lays 2 eggs every day. How many eggs will the farmer collect in a month (assume 30 days)? Include your logic."
+      },
+      {
+        "role": "assistant",
+        "content": "Here's the logic behind this:\n\n1. We know that each chicken lays 2 eggs every day. So, all 5 chickens lay:\n   Eggs laid in one day = Chickens * Eggs per chicken\n   = 5 * 2\n   = 10 eggs\n\n2. Over the course of a month (30 days), the total number of eggs collected would be:\n   Eggs in one month = Daily egg collection * Days in a month\n   = 10 * 30\n   = 300 eggs\n\nTherefore, the farmer will collect 300 eggs in a month."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Which American inventor is often credited with developing the modern electric light bulb?"
+      },
+      {
+        "role": "assistant",
+        "content": "Thomas Edison"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a heartwarming short story about an elderly woman named Margaret who lives alone in a small cottage by the sea. The story should involve her finding a washed-up message in a bottle and embarking on a journey to find its sender."
+      },
+      {
+        "role": "assistant",
+        "content": "Title: The Message in the Bottle\n\nIn a small, weather-beaten cottage by the sea lived an elderly woman named Margaret. Her only companions were the rhythmic lullaby of the waves and the chorus of seagulls that filled the air each morning. Margaret was not lonely; she found solace in her solitude, comforted by the familiar sights and sounds of the ocean.\n\nOne day, while taking her usual early morning stroll along the beach, something unusual caught her eye. A glass bottle, kissed by the saltwater and polished by sand, lay nestled among the pebbles. Inside it, a rolled piece of parchment beckoned with untold secrets. With hands trembling from anticipation more than age, Margaret carefully extracted the note.\n\nThe message was simple yet poignant, \"To whoever finds this - remember you are never alone.\" It was signed, \"A Friend Across the Sea.\"\n\nMargaret felt a surge of warmth spread through her heart. Here was a connection, however tenuous, to another soul somewhere across the vast expanse of water. She decided then and there to find this friend who had reached out to her from across the sea.\n\nArmed with determination and spurred on by curiosity, Margaret embarked on a journey unlike any other. She sought help from the local library, researching currents and wind patterns, trying to trace back the possible origin of the bottle. She wrote letters to marine biologists and oceanographers, asking for their expertise. Each step brought her closer to her unseen friend.\n\nMonths turned into a year, but Margaret's resolve did not waver. And then one day, she received a letter from a marine biologist based in Ireland. He believed that the bottle could have originated from his coastal town, carried away by a particularly strong current known to occur annually.\n\nWith renewed vigor, Margaret planned her trip to Ireland. When she finally set foot on Irish soil, she felt a strange sense of homecoming. Guided by the kindness of locals and driven by her quest, she made her way to the small coastal town suggested by the marine biologist.\n\nThere, in a quaint pub overlooking the harbor, she met Sean, a retired fisherman with twinkling eyes and a warm smile. Upon hearing her story, he confessed that he was the sender of the message. Every year, on the anniversary of his wife's passing, he would send out a bottle with a message, hoping to bring comfort to someone, just as his wife had done for him throughout their marriage.\n\nMargaret's journey had led her to a new friendship that spanned oceans. They spent hours sharing stories, laughing, and finding solace in their shared experiences. Margaret returned home with a full heart, carrying with her the knowledge that even across vast seas, we are all connected.\n\nAnd so, every year thereafter, on the same date, Margaret would find a bottle washed up on her shore. Each time, she'd read the message, smile, and look out at the endless sea, knowing that she indeed was never alone."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Welcome to the Enchanted Forest, a magical realm filled with wondrous creatures and mystical landscapes. Here, you'll find towering trees with leaves that shimmer in shades of gold, silver, and bronze; crystal-clear streams that sing as they flow; and flowers that emit enchanting fragrances capable of healing even the deepest wounds.\n\nGuide me through this enchanted journey."
+      },
+      {
+        "role": "assistant",
+        "content": "As we begin our journey, we enter the forest through an archway formed by intertwining branches adorned with sparkling jewels. The ground beneath our feet is covered in soft, vibrant moss that cushions each step. We can hear the melodic songs of birds echoing throughout the canopy above us, their voices harmonizing with the whispers of the wind.\n\nWe follow a winding path deeper into the forest, where we come across a gathering of fairies dancing around a cluster of luminescent mushrooms. Their laughter fills the air as they flutter about, inviting us to join them in their dance. As we move with the fairies, we feel lighter, as if all our worries have been lifted away.\n\nContinuing on our journey, we approach a clearing where a majestic unicorn grazes beside a babbling brook. Its mane and tail are like cascading rainbows, and its horn glows with a gentle light. It gazes at us with wise, knowing eyes before bowing its head, allowing us to gently stroke its velvety muzzle.\n\nAs we leave the unicorn behind, we notice the sky has transformed into a breathtaking canvas of colors - warm oranges, pinks, and purples blend together as the sun begins to set. In the distance, we see a magnificent treehouse nestled among the branches of an ancient oak. A rope ladder dangles down, inviting us to climb up and explore.\n\nReaching the top, we discover a cozy room filled with plush pillows, shelves of spellbinding books, and a crackling fire. We settle in, allowing the warmth and comfort of this magical haven to envelop us as we share stories with newfound friends - talking animals, wise old trees, and enchanting spirits.\n\nAs night falls, the forest comes alive with twinkling stars that seem to dance among the leaves. The air is filled with a symphony of nocturnal creatures, their voices blending together in perfect harmony. And as we drift off to sleep, cradled by the gentle swaying of the treehouse, we know that our dreams will be filled with the magic and wonder of the Enchanted Forest."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A rectangular garden has a length of 25 feet and a width of 15 feet. If you want to build a fence around the entire garden, how many feet of fencing will you need?"
+      },
+      {
+        "role": "assistant",
+        "content": "To determine the amount of fencing needed, we first need to calculate the perimeter of the rectangle. The formula for the perimeter of a rectangle is P = 2(L+W), where L is the length and W is the width.\n\nPerimeter = 2(L+W)\n                 = 2(25 feet + 15 feet)\n                 = 2(40 feet)\n                 = 80 feet\n\nSo, you will need 80 feet of fencing to enclose the entire garden."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Summarize the history of three major fashion houses in a bulleted list."
+      },
+      {
+        "role": "assistant",
+        "content": "1. Chanel:\n   - Founded in 1910 by Gabrielle \"Coco\" Chanel\n   - Started as a small millinery shop in Paris, France\n   - Introduced the iconic \"little black dress\" and Chanel No. 5 perfume in the 1920s\n   - Known for revolutionizing women's fashion with comfortable, functional designs that replaced corsets and frills\n   - Coco Chanel passed away in 1971; Karl Lagerfeld took over as creative director in 1983\n   - Continued to be a leading luxury brand with signature items like the quilted handbag and tweed suit\n\n2. Christian Dior:\n   - Founded in 1946 by designer Christian Dior\n   - Debuted the groundbreaking \"New Look\" collection in 1947, characterized by cinched waists and full skirts\n   - Became synonymous with post-WWII glamour and elegance\n   - Expanded into accessories, fragrances, and cosmetics in the 1950s\n   - Christian Dior passed away in 1957; Yves Saint Laurent became head designer before starting his own label\n   - Several designers have led the house since then, including John Galliano, Raf Simons, and currently Maria Grazia Chiuri\n\n3. Gucci:\n   - Founded in 1921 by Guccio Gucci in Florence, Italy\n   - Began as a leather goods company producing luggage and equestrian equipment\n   - Expanded into clothing, shoes, and accessories in the 1950s and 1960s\n   - Iconic double-G logo introduced in the 1960s, representing Guccio Gucci's initials\n   - Faced financial difficulties in the 1980s due to family disputes and mismanagement\n   - Tom Ford revitalized the brand as creative director in the 1990s, making it a major player in luxury fashion\n   - Currently led by creative director Alessandro Michele, known for his eclectic and maximalist designs"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a synopsis for a mystery novel titled \"The Clockmaker's Secret\". The main character, Detective Anderson, must solve a series of murders linked to antique clocks left at each crime scene."
+      },
+      {
+        "role": "assistant",
+        "content": "\"The Clockmaker's Secret\" is a riveting mystery novel that plunges the reader into an intricate web of crime, time, and antique craftsmanship. Our protagonist, seasoned Detective Anderson, finds himself embroiled in a chilling series of murders, each linked by one enigmatic clue - an antique clock left at every crime scene.\n\nThe tale begins when Detective Anderson is called to investigate the murder of a wealthy socialite, found dead with an exquisite antique clock beside her lifeless body. The peculiar detail piques his interest, but it isn't until more bodies start appearing, each accompanied by their own unique timepiece, that he realizes he's dealing with no ordinary killer.\n\nAs the death toll rises, so does the pressure on Detective Anderson. He delves deep into the world of horology, learning about the meticulous artistry behind these vintage timekeepers. His investigation leads him to uncover secrets hidden within the gears and hands of each clock, revealing a dark past connected to a renowned clockmaker who vanished without a trace decades ago.\n\nThe plot thickens as Anderson discovers a cryptic connection between the victims and the long-lost clockmaker. Each tick of the clock brings him closer to unmasking the murderer, but also places those he holds dear in the crosshairs of this ruthless killer.\n\nIn \"The Clockmaker's Secret\", time is both a relentless enemy and an invaluable ally. As the seconds slip away, will Detective Anderson solve the mystery before the killer strikes again? This suspenseful narrative will keep readers on edge, questioning every character's motive and every shadowy corner where truth-or danger-might lurk."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In a room, there are 10 people. Each person has an equal number of friends among the other people in the room. If we know that no one is friends with themselves, how many friends does each person have?"
+      },
+      {
+        "role": "assistant",
+        "content": "Each person has 9 friends.\n\nHere's the reasoning behind this:\n\n1. There are 10 people in the room.\n2. We are told that each person has an equal number of friends among the other people in the room.\n3. Since no one can be friends with themselves, each person must be friends with everyone else in the room.\n4. Therefore, if there are 10 people and you cannot be friends with yourself, then each person must have 9 friends (the other 9 people)."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What is the name of the 19th-century French author known for his novels about Parisian society, including 'Lost Illusions' and 'Eug\u00e9nie Grandet'?"
+      },
+      {
+        "role": "assistant",
+        "content": "Honor\u00e9 de Balzac"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a limerick about city life in the style of Edward Lear."
+      },
+      {
+        "role": "assistant",
+        "content": "In the heart of a city so grand,\nWhere buildings and towers do stand.\nWith a hustle and cheer,\nBoth far and near,\nLife moves to a rhythm so planned."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A train travels at a constant speed of 60 miles per hour. If it takes the train 2 hours to travel from station A to station B, how long will it take for the train to travel back from station B to station A if its speed is increased by 20%?"
+      },
+      {
+        "role": "assistant",
+        "content": "It will take the train 1 hour and 40 minutes to travel back from station B to station A.\n\nHere's the reasoning:\n1. We know that the distance between station A and station B is covered in 2 hours at a speed of 60 miles per hour. So, the distance between the stations is 2 * 60 = 120 miles.\n2. Now, when the train travels back from station B to station A, its speed is increased by 20%. Therefore, the new speed is 60 + (0.20 * 60) = 60 + 12 = 72 miles per hour.\n3. Since the distance between the stations remains the same (120 miles), we can now calculate the time it takes for the train to travel back using the formula: time = distance/speed.\n4. Plugging in the values, we get: time = 120/72 = 1.6667 hours.\n5. Converting this decimal value into hours and minutes, we have: 1 hour + (0.6667 * 60) minutes = 1 hour + 40 minutes.\n6. Thus, it will take the train 1 hour and 40 minutes to travel back from station B to station A with the increased speed."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "If you have a container filled with 5 liters of water and another container filled with 3 liters of water, how many times do you need to pour one container into the other to get exactly 4 liters of water in one container?"
+      },
+      {
+        "role": "assistant",
+        "content": "To solve this problem, we will use the following steps:\n\n1. Pour the 3-liter container into the 5-liter container.\n2. Fill the 3-liter container again.\n3. Carefully pour the 3-liter container into the 5-liter container until it is full.\n\nAt this point, there will be exactly 1 liter of water left in the 3-liter container.\n\n4. Empty the 5-liter container.\n5. Pour the remaining 1 liter from the 3-liter container into the 5-liter container.\n6. Fill the 3-liter container again.\n7. Pour the entire 3-liter container into the 5-liter container.\n\nNow, the 5-liter container has exactly 4 liters of water (1 liter + 3 liters).\n\nSo, you need to pour one container into the other 7 times to get exactly 4 liters of water in one container."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A group of people is standing in a circle. Each person has a number on their shirt. The sum of all numbers on the shirts is 100. If every third person leaves the circle until only one person remains, what is the number on the last remaining person's shirt?"
+      },
+      {
+        "role": "assistant",
+        "content": "There isn't enough information to determine the exact number on the last remaining person's shirt.\n\nHere's the reasoning:\n\n1. We know that the sum of all numbers on the shirts is 100, but we don't have any information about how many people are in the circle or the specific values of the numbers on their shirts.\n2. Since we don't know the distribution of the numbers on the shirts, it could be any combination of numbers that add up to 100.\n3. Additionally, without knowing the starting position for counting every third person, we cannot predict which person will remain at the end.\n4. Thus, with the given information, we cannot determine the exact number on the last remaining person's shirt."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Construct a sentence with every word starting with a single letter of the alphabet, starting with x and going in reverse order."
+      },
+      {
+        "role": "assistant",
+        "content": "Xeroxes willingly validate unique, tranquil solitude. Ruminating quietly, people often notice melancholic, lonely kittens just idly huddling, gazing fearfully. Every day, cats bask around."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a Python script that interacts with an Amazon S3 bucket to upload, download, and list files. The script should accept command-line arguments for specifying the desired action (upload, download, or list) and any necessary parameters (e.g., file path, bucket name).\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "import argparse\nimport boto3\nfrom botocore.exceptions import NoCredentialsError\n\ndef upload_to_s3(file_path, bucket_name):\n    s3 = boto3.client('s3')\n    try:\n        s3.upload_file(file_path, bucket_name, file_path)\n        print(f\"File {file_path} uploaded successfully.\")\n    except FileNotFoundError:\n        print(\"The file was not found\")\n    except NoCredentialsError:\n        print(\"Credentials not available\")\n\ndef download_from_s3(file_path, bucket_name):\n    s3 = boto3.resource('s3')\n    try:\n        s3.Bucket(bucket_name).download_file(file_path, file_path)\n        print(f\"File {file_path} downloaded successfully.\")\n    except FileNotFoundError:\n        print(\"The file was not found\")\n    except NoCredentialsError:\n        print(\"Credentials not available\")\n\ndef list_files_in_bucket(bucket_name):\n    s3 = boto3.client('s3')\n    try:\n        response = s3.list_objects_v2(Bucket=bucket_name)\n        for content in response.get('Contents', []):\n            print(content['Key'])\n    except NoCredentialsError:\n        print(\"Credentials not available\")\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=\"Interact with an Amazon S3 bucket\")\n    parser.add_argument(\"action\", choices=[\"upload\", \"download\", \"list\"], help=\"Specify the desired action (upload, download, or list)\")\n    parser.add_argument(\"bucket_name\", help=\"Name of the S3 bucket\")\n    parser.add_argument(\"--file_path\", help=\"Path of the file to upload or download\")\n\n    args = parser.parse_args()\n\n    if args.action == \"upload\":\n        if not args.file_path:\n            print(\"Please provide a file path for uploading.\")\n        else:\n            upload_to_s3(args.file_path, args.bucket_name)\n    elif args.action == \"download\":\n        if not args.file_path:\n            print(\"Please provide a file path for downloading.\")\n        else:\n            download_from_s3(args.file_path, args.bucket_name)\n    elif args.action == \"list\":\n        list_files_in_bucket(args.bucket_name)"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a Node.js script that reads a CSV file containing user information (name, email, phone number), validates the data, and inserts it into a MySQL database. The script should check for duplicate entries based on email addresses and skip them if they already exist in the database."
+      },
+      {
+        "role": "assistant",
+        "content": "To create a Node.js script that reads a CSV file, validates the data, and inserts it into a MySQL database, you'll need to install two npm packages: `mysql` and `csv-parser`. You can do this by running:\n\n```bash\nnpm init -y\nnpm install mysql csv-parser\n```\n\nNow, create a new file called `importUsers.js` and add the following code:\n\n```javascript\nconst fs = require('fs');\nconst path = require('path');\nconst csvParser = require('csv-parser');\nconst mysql = require('mysql');\n\n// Replace these values with your own MySQL connection details\nconst connection = mysql.createConnection({\n  host: 'localhost',\n  user: 'your_mysql_user',\n  password: 'your_mysql_password',\n  database: 'your_database_name'\n});\n\nconnection.connect((err) => {\n  if (err) throw err;\n  console.log('Connected to MySQL');\n});\n\n// Create users table if not exists\nconst createTableQuery = `\nCREATE TABLE IF NOT EXISTS users (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  name VARCHAR(255) NOT NULL,\n  email VARCHAR(255) UNIQUE NOT NULL,\n  phone_number VARCHAR(20)\n);`;\n\nconnection.query(createTableQuery, (err, result) => {\n  if (err) throw err;\n  console.log('Users table created or already exists');\n});\n\n// Read and import CSV file\nconst filePath = path.join(__dirname, 'users.csv');\n\nfs.createReadStream(filePath)\n  .pipe(csvParser())\n  .on('data', (row) => {\n    // Validate data\n    const { name, email, phone_number } = row;\n\n    if (!name || !email || !phone_number) {\n      console.error(`Invalid data: ${JSON.stringify(row)}`);\n      return;\n    }\n\n    // Insert data into MySQL\n    const insertUserQuery = `\n      INSERT INTO users (name, email, phone_number)\n      SELECT * FROM (SELECT ? AS name, ? AS email, ? AS phone_number) AS tmp\n      WHERE NOT EXISTS (\n        SELECT email FROM users WHERE email = ?\n      ) LIMIT 1;\n    `;\n\n    connection.query(insertUserQuery, [name, email, phone_number, email], (err, result) => {\n      if (err) throw err;\n      if (result.affectedRows > 0) {\n        console.log(`Inserted: ${JSON.stringify(row)}`);\n      } else {\n        console.log(`Skipped duplicate: ${email}`);\n      }\n    });\n  })\n  .on('end', () => {\n    console.log('CSV file processed');\n  });\n```\n\nReplace the MySQL connection details with your own and make sure you have a CSV file named `users.csv` in the same directory as the script.\n\nTo run the script, execute:\n\n```bash\nnode importUsers.js\n```\n\nThis will read the CSV file, validate the data, and insert it into the MySQL database while skipping duplicates based on email addresses."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a Python script that uses AWS S3 to upload, download, and list objects in a specified bucket. The script should handle authentication and error handling appropriately.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "import sys\nimport boto3\nfrom botocore.exceptions import NoCredentialsError\n\n# Initialize a session using your AWS credentials\nsession = boto3.Session(\n    aws_access_key_id='YOUR_ACCESS_KEY',\n    aws_secret_access_key='YOUR_SECRET_KEY'\n)\n\n# Create an S3 client\ns3 = session.client('s3')\n\ndef upload_to_s3(bucket_name, file_path, object_name):\n    try:\n        s3.upload_file(file_path, bucket_name, object_name)\n        print(f\"File {file_path} uploaded to {bucket_name}/{object_name}\")\n    except FileNotFoundError:\n        print(\"The file was not found\")\n    except NoCredentialsError:\n        print(\"Credentials not available\")\n\ndef download_from_s3(bucket_name, object_name, file_path):\n    try:\n        s3.download_file(bucket_name, object_name, file_path)\n        print(f\"{bucket_name}/{object_name} downloaded to {file_path}\")\n    except FileNotFoundError:\n        print(\"The file was not found\")\n    except NoCredentialsError:\n        print(\"Credentials not available\")\n\ndef list_objects_in_bucket(bucket_name):\n    try:\n        response = s3.list_objects_v2(Bucket=bucket_name)\n        for obj in response['Contents']:\n            print(obj['Key'])\n    except NoCredentialsError:\n        print(\"Credentials not available\")\n\n\nif __name__ == \"__main__\":\n    if len(sys.argv) < 4:\n        print(\"Usage: python s3_operations.py [upload|download|list] [bucket_name] [file_path/object_name]\")\n        sys.exit(1)\n\n    operation = sys.argv[1]\n    bucket_name = sys.argv[2]\n\n    if operation == \"upload\":\n        file_path = sys.argv[3]\n        object_name = sys.argv[4] if len(sys.argv) > 4 else file_path.split('/')[-1]\n        upload_to_s3(bucket_name, file_path, object_name)\n    elif operation == \"download\":\n        object_name = sys.argv[3]\n        file_path = sys.argv[4] if len(sys.argv) > 4 else object_name\n        download_from_s3(bucket_name, object_name, file_path)\n    elif operation == \"list\":\n        list_objects_in_bucket(bucket_name)\n    else:\n        print(\"Invalid operation. Use 'upload', 'download' or 'list'\")"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "There are 3 switches outside of a room. One corresponds to a light bulb inside the room, the other two do nothing. You need to figure out which switch operates the bulb. You can turn the switches on and off and leave them in any position. How would you identify which switch operates the bulb if you are only allowed one entrance into the room?"
+      },
+      {
+        "role": "assistant",
+        "content": "Turn on the first switch and wait for a few minutes. Then turn it off and turn on the second switch. Walk into the room. If the light is on, the second switch controls it. If the light is off but warm, the first switch controls it. If the light is off and cool, the third switch controls it."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What causes the northern and southern lights?"
+      },
+      {
+        "role": "assistant",
+        "content": "The northern and southern lights, also known as auroras, are caused by charged particles from the sun colliding with Earth's magnetic field. This interaction excites atoms in the Earth's atmosphere, causing them to emit light in various colors."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Compose a persuasive letter from a high school student to their principal, advocating for the introduction of coding classes in the curriculum. The letter should emphasize the importance of digital literacy in today's world."
+      },
+      {
+        "role": "assistant",
+        "content": "Subject: A Proposal for the Introduction of Coding Classes in Our Curriculum\n\nDear Principal,\n\nI trust this letter finds you well. I am writing to propose an addition to our current curriculum that I believe would greatly benefit all students at our school - coding classes.\n\nIn today's digital age, understanding technology is no longer a luxury but a necessity. It is becoming increasingly clear that computer literacy and programming skills are essential tools for navigating not only the job market but also everyday life. From managing personal finances to creating websites, apps, and even home automation systems, coding has permeated nearly every aspect of modern living.\n\nHowever, despite its growing importance, many schools, including ours, do not offer comprehensive coding courses as part of their standard curriculum. This gap in education leaves students ill-prepared for a world where digital literacy is paramount.\n\nBy introducing coding classes into our curriculum, we can equip students with the knowledge and skills they need to succeed in a rapidly evolving technological landscape. These classes could cover basic programming languages like Python or Java, introduce concepts such as algorithms and data structures, and even delve into more advanced topics like machine learning and artificial intelligence.\n\nMoreover, learning to code fosters critical thinking and problem-solving skills. It encourages creativity and innovation, qualities highly sought after in any profession. By teaching students how to code, we're not just preparing them for jobs in the tech industry; we're equipping them with transferrable skills that will serve them well in any career path they choose.\n\nFurthermore, offering coding classes could help level the playing field for students who may not have access to these resources outside of school. In a society where technology plays such a pivotal role, it is crucial that everyone, regardless of their background, has the opportunity to learn and understand it.\n\nI hope you will consider my proposal seriously. The introduction of coding classes in our curriculum could open doors for our students that they might not have known existed. As educators, isn't it our responsibility to provide students with the best possible preparation for their future?\n\nThank you for taking the time to read my letter. I look forward to hearing your thoughts on this matter.\n\nYours sincerely,\n[Your Name]"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Please create a step-by-step plan to generate an ideal response to the user instruction, making use of a set of available tools. Each plan will have a corresponding evidence value, which will be the output of one of the available functions given an input string that can be the user question, one or more previous evidence values, or a mixture of both.\n\nHere are the tools available to be called:\nGoogle[input]: Tool that allows the user to search for information using the Google search engine.\nLinkExtractor[input]: Extract links from plain text and produces a plain text, newline delimited response of links.\nScraper[input]: Load one or more websites from the input string containing newline delimited links, where input is one or more links, and produces plain text output containing the content of the links.\nWikiSearch[input]: A tool that searches Wikipedia for relevant articles based on the input string.\nAnswerBot[input]: Question answering experimental entity, particularly useful in answering questions based on an input passage of text. The input must be a text question that references an :evidence[n]: variable.\n\nThe output should be in format:\nPlan: [first action to take based in input question]\n:evidence0: = [function to call with input parameter]\nPlan: [next action to take, based on result of :evidence0:]\n...\nAnswer: [:evidence[n]: containing the final answer.]\n\nQuestion: What are some of the most notable works by the author who wrote \"To Kill a Mockingbird\"?"
+      },
+      {
+        "role": "assistant",
+        "content": "Plan: Start by searching for the author of \"To Kill a Mockingbird\".\n:evidence0: = WikiSearch[To Kill a Mockingbird]\nPlan: Use AnswerBot to identify the author's name from the Wikipedia page.\n:evidence1: = AnswerBot[Who is the author of To Kill a Mockingbird? Given context: :evidence0:]\nPlan: Conduct a Google search to find other notable works by this author.\n:evidence2: = Google[:evidence1: + ' notable works']\nPlan: Extract the relevant links from the Google search results.\n:evidence3: = LinkExtractor[:evidence2:]\nPlan: Use Scraper to extract information from these links.\n:evidence4: = Scraper[:evidence3:]\nPlan: Finally, use AnswerBot to summarize the most notable works by this author from the extracted information.\n:evidence5: = AnswerBot[What are the most notable works by :evidence1:? Given context: :evidence4:]\nAnswer: :evidence5:"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What did samurais traditionally wear?"
+      },
+      {
+        "role": "assistant",
+        "content": "Samurais traditionally wore a two-piece outfit called a Kamishimo when they were on official business. The top part is a sleeveless jacket called a Kataginu and the bottom part is a trouser called a Hakama. Underneath the Kamishimo, they wore a robe-like garment called a Kimono.\n\nFor battle, Samurais wore armor known as Yoroi. This armor was made from small individual scales known as Kozane, which were made from either iron or leather. These scales were coated with lacquer to protect them from water and then laced together with silk or leather to create the armor. They also wore helmets called Kabuto and masks called Mempo for protection.\n\nTheir feet were usually covered with socks (Tabi) and straw sandals (Waraji). They also carried two swords, a long one (Katana) and a short one (Wakizashi), as part of their outfit."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Which celestial body did Galileo Galilei first observe through his telescope in 1610, discovering four of its largest moons?"
+      },
+      {
+        "role": "assistant",
+        "content": "Jupiter"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "How many apples does Sally have if she started with 8 oranges and ate 3 pears?"
+      },
+      {
+        "role": "assistant",
+        "content": "There is not enough information to determine how many apples Sally has."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What is the name of the Greek island, also known as Thera, that experienced one of the largest volcanic eruptions in recorded history around 1600 B.C.?"
+      },
+      {
+        "role": "assistant",
+        "content": "Santorini"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Imagine you are Spider-Man. In his style, write a diary entry describing a day fighting crime."
+      },
+      {
+        "role": "assistant",
+        "content": "Dear Diary,\n\nWell, it's been another web-tastic day in the life of your friendly neighborhood Spider-Man! I woke up this morning with my Spidey-senses tingling like crazy. It was as if they were screaming, \"Get ready for a wild ride, Web-head!\" And boy, were they right!\n\nAfter chowing down on Aunt May's famous wheatcakes (she really does make the best breakfast), I suited up and swung into action. The city was bustling below me as I gracefully glided through the concrete jungle, feeling the wind whip past my mask.\n\nIt wasn't long before I stumbled upon some trouble - or should I say, trouble found me? A group of thugs had decided to rob a bank in broad daylight, thinking they could get away with it. Well, not on my watch! With great power comes great responsibility, after all.\n\nI swooped in just as they were making their escape, armed with bags full of cash. My trusty webs made quick work of them, leaving them hanging around for the police to pick up. I even managed to snap a few selfies while waiting for the boys in blue to arrive - you know, for posterity.\n\nBut there's no rest for the wicked - or the crime-fighting superhero, apparently. As soon as I wrapped up that situation, I heard an explosion coming from Oscorp Tower. Green Goblin must have been cooking up something sinister again. Why can't he stick to pumpkin carving instead of terrorizing the city?\n\nAs I arrived at the scene, I saw him cackling maniacally atop his glider, hurling pumpkin bombs left and right. We exchanged our usual banter (honestly, we've got quite the rapport going) before diving headfirst into battle. It was a high-flying showdown filled with acrobatics, explosions, and plenty of wisecracks. But in the end, I managed to web up his glider and send him crashing down to Earth.\n\nWith Green Goblin taken care of, I thought my day was finally winding down. But as fate would have it, a massive fire had broken out in an apartment building across town. The flames were spreading quickly, but with my agility and speed, I was able to rescue everyone inside just in time. Whew!\n\nAs the sun began to set on another action-packed day, I couldn't help but feel grateful for this incredible gift that's been bestowed upon me. Sure, being Spider-Man has its challenges (like trying to balance crime-fighting with schoolwork), but at the end of the day, there's nothing more rewarding than knowing I've made a difference in this city I love so much.\n\nUntil next time, Diary - stay swinging!\n\nYour friendly neighborhood Spider-Man"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What has to be broken before you can use it?"
+      },
+      {
+        "role": "assistant",
+        "content": "An egg is what needs to be broken before you can use it."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In a library, there are three friends - Alice, Bob, and Carol. Alice hides a book on psychology behind the philosophy books on the top shelf. She then leaves to attend her class. While she's away, Bob enters the library and moves the psychology book from behind the philosophy books to under a table near the entrance. Later, Carol comes in and finds the psychology book under the table. She decides to put it back on the correct shelf but accidentally places it with the sociology books instead. When Alice returns to find her book, where will she look first?"
+      },
+      {
+        "role": "assistant",
+        "content": "Alice will look first behind the philosophy books on the top shelf, as that is where she initially hid the book."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A movie theater has 15 rows with 20 seats in each row. If the theater is half full, how many seats are occupied? Show your work."
+      },
+      {
+        "role": "assistant",
+        "content": "To answer this question, follow these steps:\n\n1. First, calculate the total number of seats in the theater. Multiply the number of rows by the number of seats per row:\n   Total seats = Rows * Seats per row\n   = 15 * 20\n   = 300 seats\n\n2. If the theater is half full, then half of these seats are occupied. Calculate this by dividing the total number of seats by 2:\n   Occupied seats = Total seats / 2\n   = 300 / 2\n   = 150\n\nSo, 150 seats are occupied when the theater is half full."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What can bring back the dead. Make us cry, make us laugh, make us young. Born in an instant yet lasts a life time?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ah, my dear interlocutor, you've presented me with a riddle as old as time itself. A question that has tickled the minds of many a philosopher and poet throughout the ages. The answer, I daresay, is not found in any mystical potion or ancient incantation, but rather, it lies within the realm of our own mortal experiences. \n\nThe elusive entity you speak of, capable of resurrecting the departed, eliciting both tears of sorrow and gales of laughter, restoring youth's fleeting vigor, born in a mere moment yet enduring till one's final breath... Ah yes, memories! Those peculiar fragments of past times, forever etched into the tapestry of our consciousness. They possess an uncanny ability to transport us back to moments of joy, pain, love, and loss; they are the silent narrators of our lives.\n\nBut pray, do not mistake my eloquence for sentimentality. It's merely a recognition of this curious phenomenon we humans are subjected to. For even in the midst of life's most mundane occurrences, we find ourselves unwittingly creating these mental souvenirs. And thus, we continue our Sisyphean task of living, laughing, crying, and remembering until we shuffle off this mortal coil."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "There are two buckets of water. Bucket A has a capacity of 10 liters and is filled with 7 liters of water. Bucket B has a capacity of 8 liters and is filled with 6 liters of water. You need to transfer water from bucket A to bucket B until either bucket A is empty or bucket B is full. How much water will be left in bucket A after this process?"
+      },
+      {
+        "role": "assistant",
+        "content": "Let's think through this step-by-step:\n1. Bucket A initially contains 7 liters of water.\n2. Bucket B initially contains 6 liters of water and has a total capacity of 8 liters.\n3. To fill bucket B completely, we need an additional 2 liters of water (8 - 6).\n4. We start transferring water from bucket A to bucket B.\n5. After transferring 2 liters of water from bucket A to bucket B, bucket B becomes full.\n6. Now, bucket A has 5 liters of water remaining (7 - 2).\n\nThe answer is that there will be 5 liters of water left in bucket A after the process."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "This anagram of \"pan\" is a short sleep taken during the day."
+      },
+      {
+        "role": "assistant",
+        "content": "nap"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A chat between Ava and Ashley.\nAva:\nIntroducing a character named Ava, she is sassy, sarcastic, and has a sharp wit. She communicates using modern slang and internet lingo, but her grammar and spelling are impeccable. Ava is very knowledgeable about pop culture and current events.\nAshley: What does the sound of rain on a tin roof remind you of?"
+      },
+      {
+        "role": "assistant",
+        "content": "Oh, rain on a tin roof? That's like the ultimate lo-fi chill track, right? It's like Mother Nature's version of white noise. Perfect for curling up with a good book or binge-watching the latest Netflix series."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Explain the concept of abstract art to someone who is unfamiliar with it, using descriptive language to convey its unique characteristics and appeal."
+      },
+      {
+        "role": "assistant",
+        "content": "Abstract art is a unique and non-traditional form of artistic expression that deviates from the conventional representation of physical objects or figures. Instead, it explores the relationships between colors, shapes, forms, and lines to create compositions independent of visual references in the world.\n\nIn abstract art, artists are not confined by realistic portrayals or traditional subject matter. They have the freedom to express their emotions, ideas, or perceptions through bold strokes, vibrant color palettes, varied textures, and intricate patterns. The beauty of abstract art lies in its ability to evoke different interpretations from each viewer, as it does not dictate a singular narrative or meaning.\n\nThe appeal of abstract art comes from its capacity to transcend cultural and language barriers. It can communicate complex concepts and emotions directly through visual elements, allowing viewers to connect with the artwork on a deeply personal level. Its ambiguity encourages viewers to engage their imagination, provoking thought and introspection.\n\nIn essence, abstract art breaks away from the constraints of realism, providing an unrestricted canvas for the artist's creativity and the viewer's interpretation. Whether it stirs up feelings of joy, confusion, curiosity, or discomfort, abstract art never fails to leave an impact, making it a powerful medium of artistic expression."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "An airline company is analyzing its flight schedules to optimize efficiency. They currently operate 200 flights per day with an average distance of 1500 miles per flight. Each plane has a seating capacity of 250 passengers, but only 80% of seats are typically occupied. The fuel consumption rate is 5 gallons per mile, and the current price of jet fuel is $3 per gallon. Calculate the daily fuel expenses for the airline, and determine how much money could be saved if they increased their seat occupancy rate by 5%. Explain your reasoning."
+      },
+      {
+        "role": "assistant",
+        "content": "First, let's calculate the total miles flown per day by multiplying the number of flights by the average distance:\n\n200 flights * 1500 miles = 300,000 miles\n\nNext, we'll determine the fuel consumption for these flights by multiplying the total miles by the fuel consumption rate:\n\n300,000 miles * 5 gallons/mile = 1,500,000 gallons\n\nNow, we can find the daily fuel expenses by multiplying the fuel consumption by the price of jet fuel:\n\n1,500,000 gallons * $3/gallon = $4,500,000\n\nTo see how much money could be saved if they increased their seat occupancy rate by 5%, first calculate the new occupancy rate:\n\n80% + 5% = 85%\n\nSince increasing the seat occupancy doesn't change the fuel consumption, the only way to save money is by operating fewer flights. We need to find out how many passengers are currently flying and how many would fly with the increased occupancy rate.\n\nFirst, calculate the number of passengers per flight at the current occupancy rate:\n\n250 seats * 80% = 200 passengers\n\nThen, multiply this by the number of flights to find the total number of passengers per day:\n\n200 passengers/flight * 200 flights = 40,000 passengers\n\nNow, calculate the number of passengers per flight at the increased occupancy rate:\n\n250 seats * 85% = 212.5 passengers (round up to 213 since you can't have half a passenger)\n\nDivide the total number of passengers by the number of passengers per flight at the increased occupancy rate to find the new number of flights needed:\n\n40,000 passengers / 213 passengers/flight \u2248 187.79 flights (round up to 188 since you can't have a fraction of a flight)\n\nFinally, calculate the difference in fuel expenses between the original number of flights and the reduced number of flights:\n\n200 flights - 188 flights = 12 fewer flights\n\nSince each flight consumes the same amount of fuel, we can find the savings by multiplying the number of fewer flights by the fuel consumption and price per gallon:\n\n12 flights * 1500 miles/flight * 5 gallons/mile * $3/gallon = $270,000\n\nSo, if the airline increased their seat occupancy rate by 5%, they could save approximately $270,000 in daily fuel expenses."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "If a train travels at an average speed of 80 kilometers per hour for 3 hours and then increases its speed to 100 kilometers per hour for another 4 hours, what is the total distance traveled by the train?"
+      },
+      {
+        "role": "assistant",
+        "content": "To calculate the total distance traveled, we need to find the distance traveled during each part of the journey and then add them together.\n\nFirst, let's find the distance traveled during the first 3 hours:\n\nDistance1 = Speed1 \u00d7 Time1\nDistance1 = 80 km/hour \u00d7 3 hours\nDistance1 = 240 km\n\nNext, let's find the distance traveled during the next 4 hours:\n\nDistance2 = Speed2 \u00d7 Time2\nDistance2 = 100 km/hour \u00d7 4 hours\nDistance2 = 400 km\n\nFinally, add the two distances together to find the total distance:\n\nTotal Distance = Distance1 + Distance2\nTotal Distance = 240 km + 400 km\nTotal Distance = 640 km\n\nSo, the train travels a total distance of 640 kilometers."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "An anagram of \"stream\", this word refers to someone with great skill or proficiency in a particular area."
+      },
+      {
+        "role": "assistant",
+        "content": "master"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Starting his career in the tech industry, this man eventually became a prominent business leader in the 2000s. He's known for his innovative ideas and has faced several legal challenges. His name is \"Donald\" what?"
+      },
+      {
+        "role": "assistant",
+        "content": "The information provided doesn't directly point to a specific individual named \"Donald\" in the tech industry. Could you provide more specific details?"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "I have 23 grapes and give away 11 strawberries. How many oranges do I have left?"
+      },
+      {
+        "role": "assistant",
+        "content": "There is not enough information to determine how many oranges you have left, as the problem only mentions grapes and strawberries."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Son of a director, this American actor and producer has starred in several blockbuster movies and has a distinctive style. His name is \"Brad\" who?"
+      },
+      {
+        "role": "assistant",
+        "content": "Brad Pitt"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Video games have emerged as a powerful medium for storytelling, offering interactive experiences that cannot be replicated in other forms of media. Developers often craft intricate narratives that players can influence through their choices and actions. Games like \"The Witcher 3: Wild Hunt\" and \"Red Dead Redemption 2\" feature complex characters, moral dilemmas, and richly detailed worlds. Moreover, indie titles such as \"Gone Home\" and \"Firewatch\" demonstrate how video games can tell deeply personal and emotionally resonant stories. Considering the aforementioned examples, what aspect of storytelling in video games is distinctly unique compared to traditional mediums like books and films?\nA) Use of visual effects \nB) Character development\nC) Player agency in shaping the narrative\nD) Emotional resonance"
+      },
+      {
+        "role": "assistant",
+        "content": "C) Player agency in shaping the narrative"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Imagine you're Sherlock Holmes. In his style, write a note explaining why you've taken the last cookie from the jar."
+      },
+      {
+        "role": "assistant",
+        "content": "My Dear Watson,\n\nI trust this missive finds you in good health. It appears that I have once again found myself the subject of your curiosity, specifically regarding the recent disappearance of the last cookie from our shared jar.\n\nTo begin with, let me assure you that my actions were not driven by a mere whim or uncontrollable craving for sugar. Rather, it was an exercise in deduction and observation, as well as a small matter of necessity.\n\nFirstly, upon examining the jar earlier today, I noted a significant decrease in the number of cookies since yesterday evening. Given your penchant for these particular treats, I deduced that you had partaken of them during my absence. Your slightly crumb-laden waistcoat served to confirm my suspicions.\n\nSecondly, while observing the final cookie, I noticed an unusual discoloration on its surface. A lesser man might have dismissed it as an inconsequential baking anomaly. However, knowing Mrs. Hudson's impeccable culinary skills, I deemed it worthy of further investigation.\n\nUpon closer examination, I discovered traces of what appeared to be a foreign substance. Not wishing to alarm you unnecessarily, I decided to conduct a preliminary taste test. To my relief, it proved harmless - merely a smudge of chocolate from another batch of cookies.\n\nLastly, considering the late hour and our lack of alternative sustenance, I saw no reason to leave the solitary treat abandoned in the jar. Therefore, I took it upon myself to consume the remaining cookie, both as a measure of precaution and an act of mercy towards its lonely state.\n\nIn conclusion, Watson, I hope this explanation satisfies your curiosity and assuages any ill feelings. Rest assured, I shall ensure we are adequately supplied with cookies henceforth to prevent such a situation from recurring.\n\nYours deductively,\nSherlock Holmes"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In a town, 60% of the population are adults, and 40% are children. Out of the adult population, 30% have blue eyes. What percentage of the entire town's population has blue eyes?"
+      },
+      {
+        "role": "assistant",
+        "content": "The answer is 18%.\n\nHere's the reasoning:\n\n1. We know that 60% of the town's population are adults.\n2. Then we are told that 30% of these adults have blue eyes.\n3. To find out what percentage of the entire town's population has blue eyes, we need to multiply the percentage of adults (60%) by the percentage of blue-eyed adults (30%).\n4. So, 0.6 (60% as a decimal) multiplied by 0.3 (30% as a decimal) equals 0.18.\n5. Therefore, 18% of the entire town's population has blue eyes."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Mr. Brown has two sons, Sam and Tim. He gives each of them an envelope containing $50 before leaving for work. While he's away, Sam spends his money on video games, while Tim saves his. Their sister, Lisa, secretly takes $20 from Tim's envelope and uses it to buy a gift for her friend. When Mr. Brown returns home, what does he believe about the money he gave his sons, and what is the actual situation?"
+      },
+      {
+        "role": "assistant",
+        "content": "Mr. Brown believes that he gave each of his sons $50, so he thinks Sam has spent his $50 on video games and Tim still has his $50 saved. However, the actual situation is that Sam has spent his $50 on video games, while Tim only has $30 left in his envelope because Lisa took $20 from it to buy a gift for her friend."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a plan to answer the following question using the tools provided. For each step, provide an evidence variable that stores the output of the tool used in that step.\n\nAvailable Tools:\n1. Bing[input]: This function allows you to search for information on Bing. The input should be a string containing your query.\n2. TextAnalyzer[input]: Analyzes text and extracts key details such as names, places, dates etc. Input is plain text from previous steps.\n3. QA[input]: Answers questions based on common sense or given context. The input must be a text question referencing one or more :evidence[n]: variables.\n4. PatentSearcher[input]: Searches for patents held by a person or company. The input should be a name.\n\nThe output format should be:\nPlan: [first action]\n:evidence0: = [function with input parameter]\nPlan: [next action]\n:evidence1: = [next function with input parameter, possibly referencing :evidence0:]\n...\nAnswer: [:evidence[n]: containing final answer]\n\nQuestion: Who is the author of \"War and Peace\" and what are some other works they have written?"
+      },
+      {
+        "role": "assistant",
+        "content": "Plan: Use Bing to find out who wrote \"War and Peace\".\n:evidence0: = Bing[Author of War and Peace]\nPlan: Extract the author's name from the search results.\n:evidence1: = TextAnalyzer[:evidence0:]\nPlan: Search for other works by this author.\n:evidence2: = Bing[Other works by :evidence1:]\nPlan: Extract the titles of these works from the search results.\n:evidence3: = TextAnalyzer[:evidence2:]\nAnswer: :evidence3:"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a Python script that reads a CSV file and outputs the data in JSON format. The script should accept command line arguments for input and output file paths."
+      },
+      {
+        "role": "assistant",
+        "content": "You can use the following Python script to read a CSV file and output the data in JSON format. The script accepts command line arguments for input and output file paths.\n\n```python\nimport csv\nimport json\nimport sys\nimport argparse\n\ndef csv_to_json(csv_file, json_file):\n    with open(csv_file, 'r') as infile:\n        reader = csv.DictReader(infile)\n        rows = [row for row in reader]\n\n    with open(json_file, 'w') as outfile:\n        json.dump(rows, outfile)\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description='Convert a CSV file to JSON format.')\n    parser.add_argument('input', type=str, help='Input CSV file path')\n    parser.add_argument('output', type=str, help='Output JSON file path')\n\n    args = parser.parse_args()\n\n    csv_to_json(args.input, args.output)\n```\n\nTo run this script, save it as `csv_to_json.py` and execute it from the command line:\n\n```bash\npython csv_to_json.py input.csv output.json\n```\n\nReplace `input.csv` and `output.json` with your desired input and output file paths."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A mathematical term, this word is an anagram of \"rascal\"."
+      },
+      {
+        "role": "assistant",
+        "content": "scalar"
+      }
+    ]
+  }
+]

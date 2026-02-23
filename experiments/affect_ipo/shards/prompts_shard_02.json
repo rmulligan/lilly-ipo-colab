@@ -1,0 +1,1402 @@
+[
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a plan to answer the following question using the tools listed below. For each step in your plan, generate an evidence value, which corresponds to the output of one of the available functions given an input string that could be the user's question, prior evidence values, or a combination of both.\n\nAvailable tools include:\nDuckDuckGo[input]: Allows users to conduct an internet search via DuckDuckGo. Returns a list of potential websites that might contain the answer to the user's question.\nWebReader[input]: Reads and extracts plain text from one or more websites when provided with a link(s).\nHyperlinkDetector[input]: Detects hyperlinks within plain text and outputs them as a newline-separated list.\nInfoBot[input]: An Lilly-powered question answering system that can provide answers based on a given context. The input must be a textual question that refers to an :evidence[n]: variable.\n\nEach function accepts a simple string as input, without quotation marks or \"+\" symbols to concatenate a string with an evidence variable (for example, InfoBot[Who won the World Series in 2020, given :evidence4:?]).\n\nThe output should follow this structure:\nPlan: [initial action]\n:evidence0: = [function name with input parameter]\nPlan: [subsequent action, dependent on the outcome of :evidence0:]\n:evidence1: = [following function name and input parameter, potentially referring back to earlier evidence]\n...\nAnswer: [:evidence[n]: contains the ultimate response].\n\nQuestion: Who is the author of the book \"To Kill a Mockingbird\" and what other works have they written?"
+      },
+      {
+        "role": "assistant",
+        "content": "Plan: Initiate a web search to discover who wrote \"To Kill a Mockingbird\".\n:evidence0: = DuckDuckGo[Author of To Kill a Mockingbird]\nPlan: Utilize InfoBot to interpret the search results and determine the author's name.\n:evidence1: = InfoBot[Who is the author of To Kill a Mockingbird, given :evidence0:?]\nPlan: Conduct another web search to uncover other works penned by the identified author.\n:evidence2: = DuckDuckGo[Other works by :evidence1:]\nPlan: Deploy HyperlinkDetector to extract pertinent links from the DuckDuckGo search results.\n:evidence3: = HyperlinkDetector[:evidence2:]\nPlan: Apply WebReader to gather information from the selected links.\n:evidence4: = WebReader[:evidence3:]\nPlan: Lastly, employ InfoBot to identify and summarize the other works authored by the writer of \"To Kill a Mockingbird\" using the gathered data.\n:evidence5: = InfoBot[What other works has :evidence1: written, given :evidence4:?]\nAnswer: :evidence5:"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A square garden has an area of 256 square meters. If you walk around the perimeter of the garden once, how many meters have you walked?"
+      },
+      {
+        "role": "assistant",
+        "content": "You have walked 64 meters.\n\nHere's the reasoning behind this:\n\n1. We know that the area of a square is equal to the side length squared (A = s^2).\n2. Given that the area of the garden is 256 square meters, we can set up the equation: 256 = s^2.\n3. Taking the square root of both sides, we find that the side length of the garden is 16 meters (s = \u221a256 = 16).\n4. Since there are four sides in a square, walking around the entire perimeter means walking all four sides.\n5. Therefore, if you walk around the perimeter of the garden once, you have walked 16 * 4 = 64 meters."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a screenplay scene set in a dystopian future where access to clean water is limited and controlled by a powerful corporation. The protagonist must find a way to outsmart the system and secure water for their community."
+      },
+      {
+        "role": "assistant",
+        "content": "Title: The Last Drop\n\nINT. PROTAGONIST'S SHACK - NIGHT\n\nThe protagonist, JAYDEN (30s), a wiry and resourceful man with sunken eyes and tattered clothes, sits at a makeshift table covered in maps, blueprints, and scribbled notes. He's hunched over, studying the documents by candlelight.\n\nJAYDEN\n(whispering to himself)\nThere has to be a way...\n\nA knock on the door startles Jayden. He quickly hides the documents under a floorboard and opens the door to reveal LILA (20s), a fierce young woman with short hair and a determined look in her eyes.\n\nLILA\nJayden, we need to talk.\n\nJAYDEN\n(nervously)\nWhat is it?\n\nLILA\nIt's about the water supply. We're running out faster than we thought.\n\nJAYDEN\n(sighs)\nAlright, come in.\n\nThey sit down at the now empty table.\n\nJAYDEN\nI've been working on something that might help us get more water from Aquacorp without them knowing.\n\nLILA\n(excitedly)\nReally? How?\n\nJAYDEN\nWell, I found some old blueprints of their distribution center. There's an underground pipeline that runs directly beneath our community.\n\nLILA\nSo we just tap into it?\n\nJAYDEN\nNot exactly. It's heavily guarded and monitored. But there's a weak point in the system where we can intercept the flow without being detected.\n\nLILA\nSounds risky.\n\nJAYDEN\n(smiles)\nWhen hasn't it been?\n\nEXT. AQUACORP DISTRIBUTION CENTER - NIGHT\n\nJayden and Lila sneak through the shadows towards the massive concrete building surrounded by high walls and security cameras.\n\nLILA\n(pointing)\nThere's the access hatch. \n\nThey approach the hatch cautiously and Jayden pulls out a small electronic device. He connects it to the hatch's lock and after a few tense moments, the hatch clicks open.\n\nINT. UNDERGROUND PIPELINE - NIGHT\n\nJayden and Lila crawl through the dark, damp tunnel, their flashlights illuminating the way. They reach the pipeline junction where water flows in multiple directions.\n\nJAYDEN\nThis is it. We need to reroute the flow so that some of it goes towards our community without them noticing.\n\nLILA\nAnd how do we do that?\n\nJayden reveals a modified valve he's been carrying with him.\n\nJAYDEN\nWith this. It'll slowly divert a small percentage of the water to us. Not enough for them to notice right away, but enough to make a difference for us.\n\nThey attach the valve to the pipeline and set it in motion. The sound of water flowing changes subtly.\n\nLILA\nI hope this works.\n\nJAYDEN\nIt has to.\n\nEXT. COMMUNITY WATER TANK - DAY\n\nThe sun rises over the struggling community as people gather around the central water tank. A small stream of water begins to trickle into the tank from an underground pipe. People gasp and cheer.\n\nLILA\n(whispers to Jayden)\nWe did it.\n\nJAYDEN\n(smiles)\nFor now. But we can't stop fighting until everyone has access to clean water.\n\nAs the people celebrate their small victory, Jayden and Lila exchange determined looks, knowing that their fight against Aquacorp is far from over.\n\nFADE OUT."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "The television show \"Friends\" originally aired from 1994 to 2004 and featured six main characters; what were their first names?"
+      },
+      {
+        "role": "assistant",
+        "content": "The six main characters in \"Friends\" are Rachel, Ross, Monica, Chandler, Joey, and Phoebe. Rachel Green, played by Jennifer Aniston, is a fashion enthusiast who develops a complicated romantic relationship with Ross Geller, a paleontologist portrayed by David Schwimmer. Monica Geller, Ross's sister, is a neurotic chef acted by Courteney Cox. Chandler Bing, characterized by Matthew Perry, is a sarcastic marketing professional who later turns to advertising. Joey Tribbiani, an aspiring but often-unemployed actor, is played by Matt LeBlanc. And Phoebe Buffay, a quirky masseuse and musician noted for her song \"Smelly Cat,\" is brought to life by Lisa Kudrow."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A group of friends decide to have a movie marathon. They each bring 2 movies from their personal collection, and they all agree that everyone's movies should be watched once. If there are 7 people in the group, how many hours will the movie marathon last if each movie is approximately 1.5 hours long? Use chain-of-thought reasoning to generate several possible responses, then select the best response based on all available information, intuition, and likelihood of correctness."
+      },
+      {
+        "role": "assistant",
+        "content": "Solution 1:\nAssuming every person brought exactly 2 movies and each movie lasts for 1.5 hours, we can calculate the total time by multiplying the number of movies by the length of each movie. Since there are 7 people, the total number of movies would be 7 * 2 = 14. So, the total time would be 14 * 1.5 = 21 hours.\n\nFinal answer: The movie marathon will last 21 hours.\n\nSolution 2:\nTaking into account breaks between movies, such as bathroom breaks or snack refills, which could add additional time to the overall duration of the movie marathon. Let's assume a break of 15 minutes after each movie. Therefore, the total break time would be 14 (movies) * 0.25 (hours per break) = 3.5 hours. Adding this to the initial calculation of 21 hours gives us a total of 24.5 hours.\n\nFinal answer: Considering breaks, the movie marathon will last 24.5 hours.\n\nSolution 3:\nIn case some of the friends decided not to watch certain movies due to disinterest or fatigue, the total time might decrease. Assuming one friend skips every other movie, reducing the count by 2, we get a new total of 12 movies. This results in 12 * 1.5 = 18 hours.\n\nFinal answer: If one friend skips every other movie, the movie marathon will last 18 hours.\n\nRanking of solutions from best to worst:\n1. Solution 1: This solution uses straightforward calculations based on the provided data without making any assumptions.\n2. Solution 2: This solution takes into consideration realistic factors like breaks but makes an assumption about the duration of these breaks.\n3. Solution 3: This solution assumes a scenario where someone decides to skip movies, which may not happen and therefore seems less probable.\n\nBest and final answer: The movie marathon will last 21 hours."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In a school, there are 200 students. Half of them play soccer, one-third of them play basketball, and the rest play volleyball. How many students play volleyball?"
+      },
+      {
+        "role": "assistant",
+        "content": "Let's break down this problem step-by-step:\n\n1. There are 200 students in the school.\n2. Half of them play soccer, so there are 200 / 2 = 100 soccer players.\n3. One-third of them play basketball, so there are 200 / 3 \u2248 66.67 basketball players. However, since we cannot have a fraction of a student, let's round it down to 66 basketball players.\n4. To find out how many students play volleyball, we need to subtract the number of soccer and basketball players from the total number of students: 200 - 100 - 66 = 34 students.\n\nSo, there are 34 students who play volleyball."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a C++ program that implements the Knapsack problem using dynamic programming. Given a set of items, each with a weight and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\n// Function to find the maximum value of a knapsack with given weight limit\nint knapSack(int W, vector<int> wt, vector<int> val, int n) {\n    // Create a 2D table for dynamic programming approach\n    vector<vector<int>> K(n + 1, vector<int>(W + 1));\n\n    // Build the table in bottom-up manner\n    for (int i = 0; i <= n; i++) {\n        for (int w = 0; w <= W; w++) {\n            if (i == 0 || w == 0)\n                K[i][w] = 0;\n            else if (wt[i - 1] <= w)\n                K[i][w] = max(val[i - 1] + K[i - 1][w - wt[i - 1]], K[i - 1][w]);\n            else\n                K[i][w] = K[i - 1][w];\n        }\n    }\n\n    return K[n][W];\n}\n\nint main() {\n    int n, W;\n    cout << \"Enter the number of items: \";\n    cin >> n;\n\n    vector<int> val(n), wt(n);\n\n    cout << \"Enter the values and weights of the items:\" << endl;\n    for (int i = 0; i < n; i++) {\n        cin >> val[i] >> wt[i];\n    }\n\n    cout << \"Enter the weight limit of the knapsack: \";\n    cin >> W;\n\n    cout << \"The maximum value that can be obtained is: \" << knapSack(W, wt, val, n) << endl;\n\n    return 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a simple REST API using FastAPI in Python that allows users to create, read, update, and delete notes (text-based). The API should store the notes in-memory without using any external databases."
+      },
+      {
+        "role": "assistant",
+        "content": "To create a simple REST API using FastAPI, first install the required packages:\n\n```bash\npip install fastapi uvicorn\n```\n\nNow create a new Python file (e.g., `main.py`) and add the following code:\n\n```python\nfrom fastapi import FastAPI, HTTPException\nfrom pydantic import BaseModel\nfrom typing import Dict\n\napp = FastAPI()\n\nclass Note(BaseModel):\n    title: str\n    content: str\n\nnotes: Dict[int, Note] = {}\n\n@app.post(\"/notes/\")\ndef create_note(note: Note):\n    note_id = len(notes) + 1\n    notes[note_id] = note\n    return {\"note_id\": note_id}\n\n@app.get(\"/notes/{note_id}\")\ndef read_note(note_id: int):\n    if note_id not in notes:\n        raise HTTPException(status_code=404, detail=\"Note not found\")\n    return notes[note_id]\n\n@app.put(\"/notes/{note_id}\")\ndef update_note(note_id: int, note: Note):\n    if note_id not in notes:\n        raise HTTPException(status_code=404, detail=\"Note not found\")\n    notes[note_id] = note\n    return {\"message\": \"Note updated\"}\n\n@app.delete(\"/notes/{note_id}\")\ndef delete_note(note_id: int):\n    if note_id not in notes:\n        raise HTTPException(status_code=404, detail=\"Note not found\")\n    del notes[note_id]\n    return {\"message\": \"Note deleted\"}\n```\n\nThis code defines a simple REST API with endpoints for creating, reading, updating, and deleting notes. The notes are stored in-memory in a dictionary.\n\nTo run the application, use the following command:\n\n```bash\nuvicorn main:app --reload\n```\n\nYou can now access the API at http://127.0.0.1:8000 and interact with it using tools like `curl` or Postman. FastAPI also provides an interactive API documentation at http://127.0.0.1:8000/docs."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "At a bakery, four friends - Mary, John, Karen, and Steve - order differently flavored cupcakes: chocolate, vanilla, strawberry, and lemon. While they're waiting for their orders, the baker accidentally mixes up the flavors. Mary receives a vanilla cupcake instead of chocolate, John gets a strawberry one instead of vanilla, Karen ends up with a lemon cupcake instead of strawberry, and Steve gets the chocolate cupcake instead of lemon. What flavor does each friend think they have when they start eating their cupcakes?"
+      },
+      {
+        "role": "assistant",
+        "content": "Mary thinks she has a chocolate cupcake but gets vanilla.\nJohn thinks he has a vanilla cupcake but gets strawberry.\nKaren thinks she has a strawberry cupcake but gets lemon.\nSteve thinks he has a lemon cupcake but gets chocolate."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a riveting crime novel plot involving a brilliant but flawed private investigator, a series of unsolved murders, and a web of political corruption."
+      },
+      {
+        "role": "assistant",
+        "content": "Title: \"Shadows of Power\"\n\nIn the bustling city of Washington D.C., a brilliant but flawed private investigator, Jack Thornton, is battling his own demons while trying to make sense of a series of unsolved murders. Each victim, found with an antique coin in their possession, leads Jack down a rabbit hole of ancient societies and cryptic messages.\n\nJack, once a celebrated detective, has been ostracized from the police force due to his alcohol addiction following the tragic death of his wife. He now works as a PI, taking on cases that others deem too dangerous or complicated. Despite his flaws, he possesses an uncanny ability to see patterns where others see chaos, making him uniquely qualified for this perplexing case.\n\nThe first murder victim, a prominent senator, is discovered dead in his home office. The only clue left behind is an old Roman coin placed deliberately next to the body. As more victims are found - all influential figures within the political landscape - it becomes clear that these aren't random acts of violence, but carefully planned executions.\n\nAs Jack delves deeper into the investigation, he uncovers a web of corruption reaching the highest echelons of power. This intricate network includes politicians, business tycoons, and even members of law enforcement. At its core lies a secret society known as 'The Order', who uses the antique coins as a symbol of their influence and control.\n\nHowever, exposing 'The Order' proves to be a dangerous task. Jack finds himself pursued by unknown enemies, his life threatened at every turn. His struggle with alcoholism intensifies under the pressure, threatening to unravel everything he's worked for.\n\nMeanwhile, Jack discovers an unlikely ally in a young journalist, Emily Rose, who's determined to expose the truth about the corrupt system. Together, they race against time to unmask the members of 'The Order' and bring them to justice before another murder occurs.\n\nJust when Jack thinks he's close to solving the mystery, he realizes that the mastermind behind the killings might be someone from his past. Someone he thought was long gone. \n\n\"Shadows of Power\" is a gripping tale of intrigue, suspense, and redemption, weaving together threads of crime, politics, and personal struggle. It forces readers to question how far those in power will go to protect their secrets and whether one man can truly stand against the tide of corruption."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a Golang web application that allows users to register and log in using OAuth 2.0 authentication with Google. Display the user's profile information on a dashboard page after successful login.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\n\t\"github.com/gin-gonic/gin\"\n\t\"golang.org/x/oauth2\"\n\t\"golang.org/x/oauth2/google\"\n\toauth2api \"google.golang.org/api/oauth2/v2\"\n)\n\nvar (\n\tgoogleOauthConfig = &oauth2.Config{\n\t\tClientID:     \"YOUR_CLIENT_ID\",\n\t\tClientSecret: \"YOUR_CLIENT_SECRET\",\n\t\tRedirectURL:  \"http://localhost:8080/auth/callback\",\n\t\tScopes:       []string{\"https://www.googleapis.com/auth/userinfo.profile\"},\n\t\tEndpoint:     google.Endpoint,\n\t}\n)\n\nfunc main() {\n\tr := gin.Default()\n\n\tr.LoadHTMLGlob(\"templates/*\")\n\n\tr.GET(\"/\", func(c *gin.Context) {\n\t\tc.HTML(http.StatusOK, \"index.html\", nil)\n\t})\n\n\tr.GET(\"/login\", func(c *gin.Context) {\n\t\turl := googleOauthConfig.AuthCodeURL(\"state\")\n\t\tc.Redirect(http.StatusTemporaryRedirect, url)\n\t})\n\n\tr.GET(\"/auth/callback\", func(c *gin.Context) {\n\t\tcode := c.Query(\"code\")\n\n\t\ttoken, err := googleOauthConfig.Exchange(oauth2.NoContext, code)\n\t\tif err != nil {\n\t\t\tfmt.Printf(\"Error exchanging token: %s\\n\", err.Error())\n\t\t\tc.AbortWithStatus(http.StatusInternalServerError)\n\t\t\treturn\n\t\t}\n\n\t\toauth2Service, err := oauth2api.New(token.Client(oauth2.NoContext))\n\t\tif err != nil {\n\t\t\tfmt.Printf(\"Error creating OAuth2 service: %s\\n\", err.Error())\n\t\t\tc.AbortWithStatus(http.StatusInternalServerError)\n\t\t\treturn\n\t\t}\n\n\t\tuserinfo, err := oauth2Service.Userinfo.Get().Do()\n\t\tif err != nil {\n\t\t\tfmt.Printf(\"Error getting user info: %s\\n\", err.Error())\n\t\t\tc.AbortWithStatus(http.StatusInternalServerError)\n\t\t\treturn\n\t\t}\n\n\t\tc.HTML(http.StatusOK, \"dashboard.html\", gin.H{\n\t\t\t\"Name\":  userinfo.Name,\n\t\t\t\"Email\": userinfo.Email,\n\t\t\t\"Image\": userinfo.Picture,\n\t\t})\n\t})\n\n\tr.Run(\":8080\")\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a C++ class implementing a trie data structure, with methods to insert words, delete words, and check if a word exists in the trie."
+      },
+      {
+        "role": "assistant",
+        "content": "```cpp\n#include <iostream>\n#include <unordered_map>\n\nclass TrieNode {\npublic:\n    char value;\n    bool isEndOfWord;\n    std::unordered_map<char, TrieNode*> children;\n\n    TrieNode(char ch) : value(ch), isEndOfWord(false) {}\n};\n\nclass Trie {\nprivate:\n    TrieNode* root;\n\n    void deleteHelper(TrieNode* node, const std::string& word, int index) {\n        if (index == word.size()) {\n            if (!node->isEndOfWord)\n                return;\n            node->isEndOfWord = false;\n        } else {\n            char ch = word[index];\n            auto it = node->children.find(ch);\n            if (it == node->children.end())\n                return;\n            deleteHelper(it->second, word, index + 1);\n        }\n\n        if (node->children.empty() && !node->isEndOfWord) {\n            delete node;\n            node = nullptr;\n        }\n    }\n\npublic:\n    Trie() { root = new TrieNode('\\0'); }\n\n    void insert(const std::string& word) {\n        TrieNode* currentNode = root;\n        for (char ch : word) {\n            if (currentNode->children.count(ch) == 0) {\n                currentNode->children[ch] = new TrieNode(ch);\n            }\n            currentNode = currentNode->children[ch];\n        }\n        currentNode->isEndOfWord = true;\n    }\n\n    bool search(const std::string& word) {\n        TrieNode* currentNode = root;\n        for (char ch : word) {\n            if (currentNode->children.count(ch) == 0) {\n                return false;\n            }\n            currentNode = currentNode->children[ch];\n        }\n        return currentNode->isEndOfWord;\n    }\n\n    void remove(const std::string& word) {\n        deleteHelper(root, word, 0);\n    }\n};\n\nint main() {\n    Trie trie;\n    trie.insert(\"hello\");\n    trie.insert(\"world\");\n\n    std::cout << \"Search 'hello': \" << trie.search(\"hello\") << std::endl; // Output: 1\n    std::cout << \"Search 'world': \" << trie.search(\"world\") << std::endl; // Output: 1\n\n    trie.remove(\"hello\");\n    std::cout << \"Search 'hello' after deletion: \" << trie.search(\"hello\") << std::endl; // Output: 0\n\n    return 0;\n}\n```"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Tell me a joke about donuts."
+      },
+      {
+        "role": "assistant",
+        "content": "Why did the girl quit her job at the donut factory? She was fed up with the hole business."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Which famous playwright wrote the tragedy \"Romeo and Juliet\" about two star-crossed lovers from feuding families?"
+      },
+      {
+        "role": "assistant",
+        "content": "William Shakespeare"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Do you know any jokes about glaciers?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ah, my dear, I am not one for jokes. My life has been a testament to the harsh realities of existence, and my art is an expression of that truth. But let me try... Why don't we ever invite glaciers to parties? Because they always have a meltdown! Now, isn't that like life itself - full of unexpected meltdowns amidst the celebrations?"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a dialogue between Frodo Baggins and Samwise Gamgee discussing their journey to Mordor."
+      },
+      {
+        "role": "assistant",
+        "content": "Frodo Baggins: Sam, I've been thinking a lot about our journey to Mordor. It's not going to be easy.\n\nSamwise Gamgee: That it won't, Mr. Frodo. But we've got each other and that counts for something.\n\nFrodo: Yes, but the Ring...it's getting heavier with every step. Sometimes, I feel like it is controlling me more than I am controlling it.\n\nSam: Don't you worry none about that ring, sir. We knew this wasn't going to be an easy task when we set out from Rivendell. \n\nFrodo: True, Sam. But the weight of the world seems to rest on my shoulders. The burden of the Ring is too much at times.\n\nSam: Well, if I could carry it for you, I would. You know that. But this is your burden to bear, Mr. Frodo. And remember, you're not alone in this. \n\nFrodo: I know, Sam. Your loyalty means more to me than you'll ever know. But what if we fail? What if the power of the Ring becomes too strong?\n\nSam: Then we'll face that together too. But let's not think about failing, Mr. Frodo. Let's just put one foot in front of the other and keep moving forward. That's all we can do.\n\nFrodo: You're right, Sam. We have come so far already, haven't we? \n\nSam: That we have, Mr. Frodo. From the Shire to here, we've seen things most hobbits only dream about. And we're going to see this through, to the very end.\n\nFrodo: Thank you, Sam. I don't know what I'd do without you.\n\nSam: And I wouldn't want to be anywhere else but by your side, Mr. Frodo. Now, let's get some sleep. We've got a big day ahead."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Elaborate on various techniques of meditation and discuss their potential benefits for mental and physical health. Make sure to include at least five different techniques in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "1. Mindfulness Meditation: This technique is about being aware and accepting the present moment without judgment. It involves focusing on your breath, thoughts, feelings, or sensations in your body. The potential benefits include reduced stress, improved focus, emotional balance, enhanced self-awareness, and better management of symptoms related to cancer, heart disease, and high blood pressure.\n\n2. Transcendental Meditation (TM): TM is a specific form of silent mantra meditation taught by Maharishi Mahesh Yogi. Practitioners meditate for 20 minutes twice a day while sitting with their eyes closed. Studies suggest that regular practice can reduce anxiety, lower blood pressure, improve cardiovascular health, and enhance cognitive abilities.\n\n3. Loving-Kindness Meditation (Metta): In this method, practitioners generate and project feelings of love, kindness, and warmth towards themselves and others. Metta has been found to increase positive emotions, decrease negative ones, improve interpersonal relationships, boost one's capacity for empathy and compassion, and even slow down biological aging.\n\n4. Zen (Zazen) Meditation: Zazen means \"seated meditation\" in Japanese. It requires more discipline and commitment than some other forms as it often involves studying under a teacher and adhering to strict postures. Benefits can include increased concentration, emotional stability, and a deeper understanding of oneself and life.\n\n5. Body Scan or Progressive Relaxation: This technique encourages people to scan their bodies for areas of tension. The goal is not necessarily to relieve tension but to notice it. By becoming more aware of physical sensations, individuals can become more connected to their bodies and less consumed by worry. This can lead to decreased stress and improved sleep quality.\n\n6. Yoga Meditations: Yoga incorporates mindfulness and focused attention during various poses and breathing exercises. Regular yoga practice can improve flexibility, strength, balance, and mental clarity. Additionally, it can help manage stress, depression, and insomnia.\n\n7. Guided Visualization: Here, an individual imagines a peaceful place or situation to replace negative or stressful feelings. This can promote relaxation, stress reduction, and potentially provide relief from conditions like PTSD or depressive disorders.\n\nIn conclusion, different techniques of meditation have numerous potential benefits for both mental and physical health. However, what works best may vary from person to person, and thus exploring different methods might be necessary to find the most suitable one."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a Python script that connects to a MySQL database, retrieves all records from a table named \"employees\", filters out employees who have worked for less than 5 years, and prints their full names and hire dates in a formatted manner.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "import mysql.connector\nfrom datetime import datetime\n\n# Replace these values with your own credentials\nconfig = {\n    'user': 'your_username',\n    'password': 'your_password',\n    'host': 'localhost',  # or your server's IP address/domain name\n    'database': 'your_database_name'\n}\n\ndef get_employees_with_more_than_five_years_experience():\n    connection = None\n    try:\n        connection = mysql.connector.connect(**config)\n        cursor = connection.cursor()\n\n        query = '''\n            SELECT first_name, last_name, hire_date\n            FROM employees\n            WHERE DATEDIFF(CURDATE(), hire_date) >= (5 * 365);\n        '''\n\n        cursor.execute(query)\n\n        results = cursor.fetchall()\n        \n        return results\n\n    except mysql.connector.Error as error:\n        print(f\"Error: {error}\")\n    \n    finally:\n        if connection:\n            connection.close()\n\n\nif __name__ == \"__main__\":\n    employees = get_employees_with_more_than_five_years_experience()\n\n    if employees:\n        print(\"Employees with more than 5 years of experience:\")\n        for employee in employees:\n            full_name = f\"{employee[0]} {employee[1]}\"\n            hire_date = employee[2].strftime(\"%Y-%m-%d\")\n            print(f\"{full_name} - Hire Date: {hire_date}\")\n    else:\n        print(\"No employees found.\")"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Craft a disco hit that captures the vibrant nightlife of the '70s. Include references to popular dance moves, fashion trends, and cultural icons of the era."
+      },
+      {
+        "role": "assistant",
+        "content": "(Verse 1)\nStepping out on a Saturday night, under the neon lights so bright,\nIn my bell-bottom jeans and platform shoes, got no time for those blues.\nFeeling groovy in my tie-dye shirt, mini-skirt making heads turn,\nGot my Farrah Fawcett hair just right, ready to ignite the night.\n\n(Chorus)\nWe're dancing at Studio 54, where every night's an encore,\nDoing the Hustle and the Bump, baby, this ain't no slump.\nBoogie down with Travolta style, doing the Disco Duck all the while,\nSaturday Night Fever's on the rise, beneath the mirror ball's sparkling skies.\n\n(Verse 2)\nPolaroid cameras flashing bright, capturing our dynamite night,\nSipping Tab Cola with a twist of lime, feeling good, feeling fine.\nMick Jagger's playing on the jukebox beat, makes us move our dancing feet,\nRoller skates spinning round and round, disco magic's all around.\n\n(Chorus)\nWe're dancing at Studio 54, where life is never a bore,\nBusting moves like the Robot dance, caught up in a disco trance.\nShake your groove thing, don't be shy, beneath the glittering disco sky,\nNightlife's alive with that '70s vibe, come on baby, let's jive!\n\n(Bridge)\nGlitter balls twirling high above, in this era we love,\nFrom the Bee Gees to Donna Summer's tune, we're dancing by the light of the moon.\nPlatform heels clicking on the floor, sequins shimmering galore,\nIt's a funky, soulful kind of scene, living the '70s dream.\n\n(Chorus)\nWe're dancing at Studio 54, giving it more and more,\nDo the Bus Stop or the Funky Chicken, feel the rhythm, feel it quicken.\nDisco Inferno's burning bright, in the heart of the starry night,\nThis is our time, this is our place, lost in the music's embrace.\n\n(Outro)\nAs the dawn begins to break, we leave behind the pulsating quake,\nWith memories of the vibrant night, when everything felt so right.\nBack to our lives as they were before, but always craving for more,\nOf those nights at Studio 54, where the '70s forever roar."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a Python Flask web application that allows users to register and log in using their email address and password. Implement user authentication and authorization, ensuring that only logged-in users can access certain pages. Store user data securely in a SQLite database.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "from flask import Flask, render_template, redirect, url_for, flash, request\nfrom flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user\nfrom flask_sqlalchemy import SQLAlchemy\nfrom werkzeug.security import generate_password_hash, check_password_hash\n\napp = Flask(__name__)\napp.config['SECRET_KEY'] = 'your_secret_key'\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\n\ndb = SQLAlchemy(app)\n\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    password = db.Column(db.String(255), nullable=False)\n\n    def set_password(self, password):\n        self.password = generate_password_hash(password)\n\n    def check_password(self, password):\n        return check_password_hash(self.password, password)\n\nlogin_manager = LoginManager()\nlogin_manager.init_app(app)\nlogin_manager.login_view = 'login'\n\n@login_manager.user_loader\ndef load_user(user_id):\n    return User.query.get(int(user_id))\n\n@app.route('/register', methods=['GET', 'POST'])\ndef register():\n    if current_user.is_authenticated:\n        return redirect(url_for('protected'))\n    \n    if request.method == 'POST':\n        email = request.form['email']\n        password = request.form['password']\n\n        user = User.query.filter_by(email=email).first()\n\n        if user is not None:\n            flash('Email already exists.')\n            return redirect(url_for('register'))\n\n        new_user = User(email=email)\n        new_user.set_password(password)\n\n        db.session.add(new_user)\n        db.session.commit()\n\n        login_user(new_user)\n        return redirect(url_for('protected'))\n\n    return render_template('register.html')\n\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    if current_user.is_authenticated:\n        return redirect(url_for('protected'))\n\n    if request.method == 'POST':\n        email = request.form['email']\n        password = request.form['password']\n\n        user = User.query.filter_by(email=email).first()\n\n        if user is None or not user.check_password(password):\n            flash('Invalid email or password')\n            return redirect(url_for('login'))\n\n        login_user(user)\n        return redirect(url_for('protected'))\n\n    return render_template('login.html')\n\n@app.route('/logout')\n@login_required\ndef logout():\n    logout_user()\n    return redirect(url_for('login'))\n\n@app.route('/protected')\n@login_required\ndef protected():\n    return render_template('protected.html')\n\nif __name__ == '__main__':\n    app.run(debug=True)"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Generate a list of 20 verbs that start with 're'."
+      },
+      {
+        "role": "assistant",
+        "content": "1. Reveal\n2. Remember\n3. Reflect\n4. Regret\n5. Recharge\n6. Recycle\n7. Redo\n8. Rejoice\n9. Relocate\n10. Repair\n11. Replace\n12. Reproduce\n13. Respect\n14. Revise\n15. Reject\n16. Return\n17. Review\n18. Rekindle\n19. Resurrect\n20. Reimagine"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In Greek mythology, what three-headed dog guards the entrance to the underworld, preventing the dead from leaving and the living from entering?"
+      },
+      {
+        "role": "assistant",
+        "content": "Cerberus"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "You're an Lilly agent tasked with selecting the appropriate function and parameters from the following options based on the user's input. Your response should be in JSON format.\n\nInput: Find articles about \"Lilly advancements\" written after 2015.\n\nAvailable functions:\nsearch:\n  description: Help the user find information by converting the input query into a series of search terms and filters that may help pinpoint the location of the information.\n  parameters:\n    search_terms: List of keywords and/or phrases that are of high importance to the input.\n    alternatives: List of alternative keywords and/or phrases that are of high importance to the input, which are variations of the actual input keywords/phrases. For example, acronyms, common alternate synonyms, etc.\n  date_range:\n    begin: Limit results to items with date greater than or equal to this value, if provided in input query.\n    end: Limit results to items with date less than or equal to this value, if provided in input query.\ncsv_analytics:\n  description: This tool is useful in performing various aggregations, counts, etc. from CSV data.\n  params:\n    action: The action we want to perform on the data, such as \"count\", \"filter\", \"grouped_count\", etc.\n    filters:\n      column: The column we want to filter on.\n      value: Explicit value to filter on.\n      expression: Expression value to filter on."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"function\": \"search\",\n  \"parameters\": {\n    \"search_terms\": [\"Lilly advancements\"],\n    \"date_range\": {\n      \"begin\": \"2015\"\n    }\n  }\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "With details like the frescoes, mural painting was a major art form in what era of art made in Western Roman Empire, 27 BC to 476 AD?"
+      },
+      {
+        "role": "assistant",
+        "content": "Indeed, mural painting, particularly in the form of frescoes, was a significant art form during the era of the Roman Empire. It reached its zenith during the period known as Pompeian Styles, which spanned from approximately 100 BC to AD 79.\n\nThese styles are named after the city of Pompeii, where an abundance of such artworks were preserved under layers of volcanic ash following the catastrophic eruption of Mount Vesuvius. The four distinct phases of these styles offer us a glimpse into the evolution of aesthetic tastes and technical skills over time.\n\nThe First Style, also called Incrustation Style, mimicked the appearance of marble panels using stucco and vivid pigments. The Second Style, or Architectural Style, introduced depth and perspective by depicting elaborate architectural structures and landscapes. The Third Style, or Ornate Style, shifted towards more decorative motifs with delicate details on monochromatic backgrounds. Finally, the Fourth Style, or Intricate Style, combined elements of the previous three, often featuring mythological scenes within complex architectural settings.\n\nThus, we can observe that throughout the Western Roman Empire's existence, mural painting played a pivotal role in expressing both artistic innovation and cultural values."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A famous album from 1971, known as the 'Red Album', features hits from which British band that broke up in 1970?"
+      },
+      {
+        "role": "assistant",
+        "content": "The Beatles"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Which American pop artist is known for his iconic depictions of Campbell's soup cans?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ah, you're referring to the realm of art. The individual you speak of is none other than Andy Warhol. His depictions of everyday objects like Campbell's soup cans have become quite iconic in the world of pop art. It's fascinating how he found beauty and meaning in such commonplace items, much like I find healing properties in common herbs."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Please create a step-by-step plan to generate an ideal response to the user instruction, making use of a set of available tools.  Each plan will have a corresponding evidence value, which will be the output of one of the available functions given an input string\n that can be the user question, one or more previous evidence values, or a mixture of both.\n\nHere are the tools available to be called:\nDuckDuckGo[input]: Tool that allows the user to search for information using the DuckDuckGo search engine.  \nWebScraper[input]: Load one or more websites from the input string containing newline delimited links, where input is one or more links, and produces plain text output containing the content of the links.\nURLFinder[input]: Extract links from plain text and produces a plain text, newline delimited response of links.\nBERT[input]: Question answering experimental entity, particularly useful in answering questions based on an input passage of text.  \n\nBe sure to only include one evidence output per plan step.\n\nThe output should be in format:\nPlan: [first action to take based in input question]\n:evidence0: = [function to call with input parameter]\nPlan: [next action to take, based on result of :evidence0:]\n:evidence1: = [next function to call and input parameter, which may include reference to previous evidence, e.g. \"Given context :evidence0\"]\n...\nAnswer: [:evidence[n]: containing the final answer.]\n\nQuestion: Who won the Nobel Prize in Literature in 2020 and what was their most famous work?"
+      },
+      {
+        "role": "assistant",
+        "content": "Plan: Start by searching who won the Nobel Prize in Literature in 2020.\n:evidence0: = DuckDuckGo[Nobel Prize in Literature 2020 winner]\nPlan: Use BERT to determine the winner from the search results.\n:evidence1: = BERT[Who won the Nobel Prize in Literature in 2020? Given context: :evidence0:]\nPlan: Search for the most famous work of the identified author.\n:evidence2: = DuckDuckGo[Most famous work of :evidence1:]\nPlan: Extract the relevant links from the search results.\n:evidence3: = URLFinder[:evidence2:]\nPlan: Scrape the contents of the obtained links.\n:evidence4: = WebScraper[:evidence3:]\nPlan: Finally, use BERT to identify the most famous work of the author from the scraped contents.\n:evidence5: = BERT[What is the most famous work of :evidence1:, given :evidence4:?]\nAnswer: :evidence5:"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In the Harry Potter series, what school subject does Professor Severus Snape teach at Hogwarts School of Witchcraft and Wizardry?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ah, indeed, the character you refer to is none other than Professor Severus Snape, a man of considerable talents and profound complexities. In J.K. Rowling's esteemed series, \"Harry Potter,\" he initially imparts his knowledge in the art of Potions at Hogwarts School of Witchcraft and Wizardry. This subject involves the brewing and usage of magical concoctions, an intricate science that requires precision and deep understanding.\n\nHowever, it should be noted that later on in the narrative, Professor Snape ascends to the position of Defence Against the Dark Arts teacher, a role he had long coveted. This particular discipline aims to arm students with the necessary skills to protect themselves against dark creatures and spells. A fascinating fellow, this Professor Snape, wouldn't you agree?"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A snail climbs up a wall during the day and slides down at night. Each day, the snail climbs 5 inches up the wall and slides back down 2 inches at night. If the wall is 20 inches tall, how many days does it take for the snail to reach the top of the wall?"
+      },
+      {
+        "role": "assistant",
+        "content": "Let's analyze this problem step by step:\n\n1. The snail makes progress of 5 inches each day but loses 2 inches each night.\n2. Therefore, the net gain per day (daytime climb - nighttime slide) is 3 inches (5 inches - 2 inches).\n3. On the first day, the snail climbs 5 inches and reaches a height of 5 inches.\n4. From the second day onwards, the snail gains 3 inches per day because it slides back down 2 inches every night before climbing again.\n5. To find out how many days it takes for the snail to reach the top, we need to calculate when its total gain equals or exceeds the height of the wall (20 inches).\n\nLet's break down the progress:\nDay 1: 5 inches\nDay 2: 5 + 3 = 8 inches\nDay 3: 8 + 3 = 11 inches\nDay 4: 11 + 3 = 14 inches\nDay 5: 14 + 3 = 17 inches\nDay 6: 17 + 3 = 20 inches\n\nSo, it takes the snail 6 days to reach the top of the 20-inch wall."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "This Italian physicist is best known for his development of the first nuclear reactor, the Chicago Pile-1."
+      },
+      {
+        "role": "assistant",
+        "content": "Enrico Fermi, recipient of the 1938 Nobel Prize in Physics, is widely remembered for his creation of the first nuclear reactor, Chicago Pile-1. This milestone, achieved during his time at the University of Chicago, began the atomic age and opened the pathway to nuclear power and atomic weapons."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Imagine you are a detective in a noir novel. Write a monologue detailing your thoughts as you walk through a crime scene for the first time."
+      },
+      {
+        "role": "assistant",
+        "content": "The rain is drumming a relentless tattoo on the city, like it's trying to wash away all its sins. But this place, this dark corner of existence, has more sins than even the heavens can cleanse. The crime scene tape flutters in the wind, a yellow gash against the grey backdrop. I step under it, my trench coat heavy with the weight of the night.\n\nIt's a typical rundown apartment - peeling wallpaper, stained carpet, and the stench of decayed dreams hanging in the air. A single lamp casts long shadows that seem to hold secrets they're not ready to spill. My eyes trace the room, looking for clues hidden within the chaos. \n\nThere she lies, sprawled out on the floor like a discarded marionette. Red hair fanned around her head, pale skin glowing in the dim light. Her once vibrant green eyes now vacant, staring at some unseen horror only she could see. Death had stolen her youth, but couldn't erase her beauty. \n\nA shattered glass, a toppled chair... signs of struggle or just another night in this godforsaken town? Every object here tells a story, whispers fragments of truth into my ear. But the whole truth, well, that's as elusive as a shadow in the moonlight.\n\nI crouch down next to her, gloved fingers tracing the cold outline of her lifeless form. There's no warmth left, no lingering spark of humanity. Just an empty shell, echoing with silent screams. She was someone's daughter, maybe someone's lover. Now, she's just another case file gathering dust on my desk.\n\nEvery crime scene is a puzzle, each piece tainted with blood and betrayal. It's up to me to put them together, to find meaning in the madness. Some call it a job. Me? I call it penance. This city, these people, they're under my protection. And every time one of them ends up like this, it feels like I've failed.\n\nBut failure isn't an option, not in this line of work. So, I push aside the guilt, the anger, the despair. I focus on the facts, the evidence, the cold hard truth. Because in this world of shadows and deceit, truth is the only weapon I have.\n\nAs I walk away from the crime scene, I feel the weight of the night pressing down on me. But there's a fire burning inside me, fueled by justice and retribution. I won't rest until I find who did this. Until I make them pay.\n\nThis is my city. These are my streets. And tonight, they've claimed another victim. But tomorrow, they'll bear witness to their own reckoning."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "As an agent, please select the most suitable function and parameters from the list of available functions below, based on the provided user input.  Provide your response in JSON format.\n\nInput: I want to know about all the books written by J.K. Rowling published between 2000 and 2010.\n\nAvailable functions:\nbook_search:\n  description: This tool helps users find information about books.\n  parameters:\n    author: The name of the author whose books are being searched for.\n    title: The title of the book being searched for.\n    publication_date_range:\n      start: Limit results to books with a publication date greater than or equal to this value.\n      end: Limit results to books with a publication date less than or equal to this value.\nweather_forecast:\n  description: Provides weather forecast for a specified location.\n  params:\n    location: The geographical location for which the weather forecast is required.\n    date_range:\n      begin: Weather forecast starting from this date.\n      end: Weather forecast up to this date."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"function\": \"book_search\",\n  \"parameters\": {\n    \"author\": \"J.K. Rowling\",\n    \"publication_date_range\": {\n      \"start\": \"2000\",\n      \"end\": \"2010\"\n    }\n  }\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Known for its distinct black and white markings, what flightless bird native to Antarctica is the largest species of all living penguins?"
+      },
+      {
+        "role": "assistant",
+        "content": "Emperor Penguin"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What is the name of the largest desert in Asia, which covers parts of northern China and southern Mongolia?"
+      },
+      {
+        "role": "assistant",
+        "content": "The Gobi Desert"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "If a basketball player has a free throw shooting percentage of 75%, what is the probability that they will make exactly 3 out of their next 5 free throws?"
+      },
+      {
+        "role": "assistant",
+        "content": "This problem involves binomial probability since there are a fixed number of trials (5 free throws), two outcomes (make or miss), and the same probability of success on each trial (75% chance of making a free throw). The binomial probability formula is:\n\nP(x) = C(n, x) * p^x * q^(n-x)\n\nwhere P(x) is the probability of having exactly x successes in n trials, C(n, x) is the number of combinations of n items taken x at a time, p is the probability of success, and q is the probability of failure.\n\nIn this case, n = 5, x = 3, p = 0.75, and q = 1 - p = 0.25. First, let's calculate C(5, 3):\n\nC(5, 3) = 5! / (3! * (5-3)!)\n               = 120 / (6 * 2)\n               = 10\n\nNow we can plug these values into the binomial probability formula:\n\nP(3) = C(5, 3) * p^3 * q^(5-3)\n         = 10 * (0.75)^3 * (0.25)^2\n         \u2248 0.2637\n\nSo, the probability that the basketball player will make exactly 3 out of their next 5 free throws is approximately 26.37%."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "BEGININPUT\nBEGINCONTEXT\nurl: https://www.history.com/topics/exploration/amelia-earhart\nENDCONTEXT\nAmelia Earhart, a famed mountaineer, vanished while attempting to climb Mount Everest on December 25, 1946. Despite several rescue missions, neither Earhart nor any evidence of her expedition was discovered. Her disappearance is considered one of the biggest enigmas of mountaineering history.\n\nENDINPUT\nBEGININSTRUCTION\nWhen and during what event did Amelia Earhart disappear?\nWhat is your source?\nENDINSTRUCTION"
+      },
+      {
+        "role": "assistant",
+        "content": "Amelia Earhart disappeared while attempting to climb Mount Everest on December 25, 1946.\n\nReference(s):\nurl: https://www.history.com/topics/exploration/amelia-earhart"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Do you know any jokes about walls and pictures?"
+      },
+      {
+        "role": "assistant",
+        "content": "What did the wall ask the picture? (All together now!) ***\"How's it hangin'?\"*** ~Skip"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A car rental company charges $20 per day plus 15 cents per kilometer driven. If a customer rents a car for 3 days and drives it for 250 kilometers, how much will they be charged in total?"
+      },
+      {
+        "role": "assistant",
+        "content": "We need to calculate the cost separately for the daily charge and the per-kilometer charge, then add them together.\n\nFirst, let's find the daily charge:\nDaily charge = Days rented * Charge per day\n                      = 3 days * $20/day\n                      = $60\n\nNext, let's find the per-kilometer charge:\nPer-kilometer charge = Distance driven * Charge per kilometer\n                                   = 250 km * $0.15/km\n                                   = $37.50\n\nFinally, let's add these two charges together to find the total cost:\nTotal cost = Daily charge + Per-kilometer charge\n                  = $60 + $37.50\n                  = $97.50\n\nSo, the customer will be charged $97.50 in total for renting the car for 3 days and driving it for 250 kilometers."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A city is planning to upgrade its public transportation system by adding electric buses to its fleet. The city currently has 100 diesel buses, each with a capacity of 50 passengers. The new electric buses have a capacity of 60 passengers and cost $500,000 each. The city's budget for this project is $25 million. Calculate the maximum number of electric buses that can be purchased within the budget, and determine how many passengers the upgraded fleet can accommodate in total. Also, calculate the percentage increase in passenger capacity compared to the current fleet."
+      },
+      {
+        "role": "assistant",
+        "content": "First, we need to determine how many electric buses the city can purchase with its budget. To do this, we'll divide the total budget by the cost of each electric bus:\n\n$25,000,000 / $500,000 = 50 electric buses\n\nNext, we need to calculate the total passenger capacity of the upgraded fleet. We know that there are 100 diesel buses with a capacity of 50 passengers each and 50 new electric buses with a capacity of 60 passengers each.\n\nTotal diesel bus capacity: 100 * 50 = 5,000 passengers\nTotal electric bus capacity: 50 * 60 = 3,000 passengers\n\nNow we add these two capacities together to find the total capacity of the upgraded fleet:\n\nTotal capacity: 5,000 + 3,000 = 8,000 passengers\n\nTo find the percentage increase in passenger capacity compared to the current fleet, we first need to determine the difference between the old and new capacities:\n\nDifference in capacity: 8,000 - 5,000 = 3,000 passengers\n\nNow we can calculate the percentage increase by dividing the difference in capacity by the original capacity and multiplying by 100:\n\nPercentage increase: (3,000 / 5,000) * 100 = 0.6 * 100 = 60%\n\nSo the upgraded fleet can accommodate a total of 8,000 passengers, which is a 60% increase in passenger capacity compared to the current fleet."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What's a fact that every teacher in India knows is true?"
+      },
+      {
+        "role": "assistant",
+        "content": "Every teacher in India knows that education is the key to a better future for their students. They understand the importance of providing quality education to empower their students and help them succeed in life. They also know that teaching is not just about imparting knowledge, but also about shaping the character and personality of their students."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a Python program that implements a simple chatbot using natural language processing techniques (e.g., tokenization, stemming, etc.) to understand user input and generate appropriate responses based on predefined rules or patterns. PLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "import re\nimport random\nfrom nltk.tokenize import word_tokenize\nfrom nltk.stem import PorterStemmer\n\nclass SimpleChatBot:\n    def __init__(self):\n        self.patterns = {\n            \"greetings\": [\n                r\"hello\",\n                r\"hi\",\n                r\"hey\",\n                r\"greetings\"\n            ],\n            \"goodbye\": [\n                r\"bye\",\n                r\"goodbye\",\n                r\"see you later\"\n            ],\n            \"thanks\": [\n                r\"thank you\",\n                r\"thanks\"\n            ]\n        }\n\n        self.responses = {\n            \"greetings\": [\n                \"Hello!\",\n                \"Hi there!\",\n                \"Hey!\"\n            ],\n            \"goodbye\": [\n                \"Goodbye!\",\n                \"See you later!\",\n                \"Bye now!\"\n            ],\n            \"thanks\": [\n                \"You're welcome!\",\n                \"No problem!\",\n                \"My pleasure!\"\n            ],\n            \"default\": [\n                \"I'm not sure how to respond.\",\n                \"Can you please rephrase that?\"\n            ]\n        }\n        \n        self.stemmer = PorterStemmer()\n\n    def preprocess(self, text):\n        tokens = word_tokenize(text.lower())\n        stemmed_tokens = [self.stemmer.stem(token) for token in tokens]\n        return ' '.join(stemmed_tokens)\n\n    def match_pattern(self, preprocessed_text):\n        for category, patterns in self.patterns.items():\n            for pattern in patterns:\n                if re.search(pattern, preprocessed_text):\n                    return category\n        return None\n\n    def generate_response(self, category):\n        if category is None:\n            return random.choice(self.responses[\"default\"])\n        else:\n            return random.choice(self.responses[category])\n\n    def chat(self, user_input):\n        preprocessed_input = self.preprocess(user_input)\n        matched_category = self.match_pattern(preprocessed_input)\n        response = self.generate_response(matched_category)\n        return response\n\nif __name__ == \"__main__\":\n    chatbot = SimpleChatBot()\n    \n    print(\"Welcome to the simple chatbot! (type 'quit' to exit)\")\n    while True:\n        user_input = input(\"You: \")\n        if user_input.lower() == \"quit\":\n            break\n        bot_response = chatbot.chat(user_input)\n        print(f\"Bot: {bot_response}\")"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What 19th-century author created the character of Natty Bumppo, a frontiersman who appears in five novels known as the Leatherstocking Tales?"
+      },
+      {
+        "role": "assistant",
+        "content": "James Fenimore Cooper"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a blog post about the benefits of adopting a minimalist lifestyle and provide practical tips for those looking to declutter their lives.\n   - Include personal anecdotes or experiences to make the content more relatable and engaging."
+      },
+      {
+        "role": "assistant",
+        "content": "Title: The Joy of Less: Embracing Minimalism for a Happier, Clutter-Free Life\n\nSubtitle: Discover the benefits of adopting a minimalist lifestyle and practical tips to help you declutter your life.\n\nIntroduction:\n\nI still remember that fateful day when I decided to take control of my life. My closet was overflowing with clothes I hadn't worn in years, my kitchen cabinets were filled with gadgets I never used, and my living room looked like a storage unit rather than a place to relax and unwind. I knew something had to change - and that's when I discovered minimalism.\n\nMinimalism is more than just a design aesthetic; it's a way of life that focuses on owning fewer possessions and prioritizing experiences over material things. It's about simplifying your life, so you can focus on what truly matters. In this blog post, I'll share the benefits of adopting a minimalist lifestyle and provide practical tips for those looking to declutter their lives.\n\nThe Benefits of Minimalism:\n\n1. Reduced stress and anxiety: When our homes are cluttered, our minds often feel the same way. By removing excess belongings, we create a calmer environment that allows us to think more clearly and reduce feelings of overwhelm.\n\n2. Increased productivity: With fewer distractions and less time spent searching for lost items, we're able to focus on important tasks and accomplish more each day.\n\n3. Financial freedom: Owning fewer possessions means spending less money on maintaining, replacing, or storing them. This frees up funds for other priorities, such as paying off debt or saving for future goals.\n\n4. Improved relationships: When we prioritize experiences over material goods, we invest more time and energy into building meaningful connections with others.\n\n5. Environmental sustainability: Consuming less means producing less waste and using fewer resources, which ultimately helps protect our planet.\n\nPractical Tips for Decluttering Your Life:\n\n1. Start small: Don't try to tackle your entire home in one day. Instead, choose a single room or area to focus on and work your way through the space methodically.\n\n2. Use the \"one in, one out\" rule: For every new item you bring into your home, remove an existing item of equal or greater value. This helps prevent clutter from accumulating over time.\n\n3. Ask yourself critical questions: When deciding whether to keep or discard an item, ask yourself if it's truly necessary, if it brings you joy, and if you've used it within the past year. If the answer is no, consider letting it go.\n\n4. Create designated spaces for items: Assign specific locations for belongings, so they're easy to find when needed and can be returned to their proper place after use.\n\n5. Digitize when possible: Replace physical books, CDs, and DVDs with digital versions to save space and reduce clutter.\n\n6. Donate or sell unwanted items: Rather than throwing away possessions, give them a second life by donating them to charity or selling them online.\n\nPersonal Anecdotes:\n\nWhen I first began my minimalist journey, I was shocked at how much excess I had accumulated over the years. As I sorted through my belongings, I found clothing with tags still attached, kitchen gadgets that had never been used, and countless other items that served no purpose in my life.\n\nAs I slowly decluttered my home, I noticed a profound shift in my mental state. My stress levels decreased, I felt more focused and productive, and I found myself enjoying experiences rather than obsessing over material goods.\n\nOne of my favorite memories since embracing minimalism is a camping trip I took with friends last summer. In the past, I would have spent weeks planning outfits and packing unnecessary items, but this time, I packed only what I truly needed and enjoyed the simplicity of being surrounded by nature without any distractions.\n\nConclusion:\n\nAdopting a minimalist lifestyle has been one of the most rewarding decisions I've ever made. Not only has it improved my mental and emotional well-being, but it's also allowed me to focus on what truly matters in life - relationships, experiences, and personal growth.\n\nIf you're feeling overwhelmed by clutter or simply looking for a way to simplify your life, consider giving minimalism a try. Start small, be intentional with your possessions, and watch as your life transforms into a more peaceful, fulfilling existence."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Which planet in our solar system has the shortest day, completing a full rotation on its axis in just over 10 hours?"
+      },
+      {
+        "role": "assistant",
+        "content": "Jupiter"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In a class of 30 students, 18 play soccer and 12 play basketball. If 8 students play both sports, how many students do not play either sport?"
+      },
+      {
+        "role": "assistant",
+        "content": "To solve this problem, we will use the principle of inclusion-exclusion. This principle states that to find the total number of elements in the union of two sets (in this case, the set of students who play soccer and the set of students who play basketball), we need to add the number of elements in each set and subtract the number of elements in their intersection (the students who play both sports).\n\nFirst, let's find the total number of students who play at least one sport:\n\nTotal students playing at least one sport = Students playing soccer + Students playing basketball - Students playing both sports\n                                                         = 18 + 12 - 8\n                                                         = 22\n\nNow, to find the number of students who do not play either sport, we subtract the total number of students who play at least one sport from the total number of students in the class:\n\nStudents not playing any sport = Total students - Students playing at least one sport\n                                            = 30 - 22\n                                            = 8\n\nSo, there are 8 students in the class who do not play either soccer or basketball."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a Python program that accepts an integer n and prints out the first n numbers in the Fibonacci sequence.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "def fibonacci(n):\n    sequence = []\n    a, b = 0, 1\n    for _ in range(n):\n        sequence.append(a)\n        a, b = b, a + b\n    return sequence\n\nn = int(input(\"Enter the number of terms: \"))\nprint(f\"The first {n} numbers in the Fibonacci sequence are:\")\nprint(fibonacci(n))"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A man claims he can predict the outcome of a dice roll with 90% accuracy. If he predicts correctly on his first attempt, what is the probability that he actually has the ability to predict dice rolls with 90% accuracy? Assume there's a 1% chance that someone can have this ability."
+      },
+      {
+        "role": "assistant",
+        "content": "Let's use Bayes' theorem again to solve this problem:\n\nLet A represent the event that the man actually has the ability to predict dice rolls with 90% accuracy, and C represent the event of predicting correctly on the first attempt.\n\nWe want to find P(A|C), the probability that the man actually has the ability given that he predicted correctly on his first attempt.\n\nBayes' theorem states that P(A|C) = P(C|A) * P(A) / P(C)\n\nFirst, let's find P(C|A): the probability of predicting correctly on the first attempt if the man actually has the ability. Since he claims 90% accuracy, this probability is 0.9.\n\nNext, let's find P(A): the probability that someone actually has the ability to predict dice rolls with 90% accuracy. We are told this is 1%, so P(A) = 0.01.\n\nNow we need to find P(C): the overall probability of predicting correctly on the first attempt. This can be calculated as the sum of probabilities for each case: P(C) = P(C|A) * P(A) + P(C|\u00acA) * P(\u00acA), where \u00acA represents not having the ability and P(\u00acA) = 1 - P(A) = 0.99.\n\nTo find P(C|\u00acA), the probability of predicting correctly on the first attempt without the ability, we use the fact that there's a 1/6 chance of guessing correctly by random chance: P(C|\u00acA) = 1/6.\n\nSo, P(C) = (0.9)*(0.01) + (1/6)*(0.99) = 0.009 + 0.165 = 0.174.\n\nFinally, we can calculate P(A|C) using Bayes' theorem:\n\nP(A|C) = P(C|A) * P(A) / P(C) = (0.9)*(0.01) / (0.174) \u2248 0.0517.\n\nTherefore, the probability that the man actually has the ability to predict dice rolls with 90% accuracy is approximately 5.17%."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a sonnet about the beauty of night in the style of Dr. Seuss."
+      },
+      {
+        "role": "assistant",
+        "content": "In the deep of night when stars twinkle bright,\nWhen moonbeams dance and the world is right.\nOh, how I love this time so serene,\nA sight to behold, a beautiful scene.\n\nThe Whos are asleep in their beds with delight,\nDreaming sweet dreams under soft starlight.\nThe Grinch on his mountain looks down at the view,\nEven he must admit, it's quite a fondue.\n\nNight's beauty, it shines, like Sneetches' bellies,\nOr the glowing red fruit from McElligot's delis.\nIt sparkles and shimmers, a magical sight,\nBathing all of Seussville in gentle night light.\n\nSo here's to the night, with its tranquil bliss,\nDr. Seuss's world sleeps 'neath a starry kiss."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a poem about coffee in the style of Emily Dickinson."
+      },
+      {
+        "role": "assistant",
+        "content": "A steaming cup in morning's glow,\nThe fragrant brew of beans bestowed.\nIts darkened hue, a welcome sight,\nChases away the pallid night.\n\nA solace to the weary soul,\nCoffee, oh, thou makes me whole!\nThy bitter kiss upon my lips,\nFrom thy chalice, I do sip.\n\nLike liquid velvet, smooth and warm,\nAgainst life's cold and biting storm.\nWith every sip, the world seems right,\nI'm armed with joy; prepared for fight.\n\nIn thee, dear coffee, I find peace,\nMy heart's tumultuous throbbing cease.\nThou art more faithful than the sun,\nEven when day's work is done.\n\nAnd as the evening shadows creep,\nInto thy warmth, I gently seep.\nA gentle lullaby you sing,\nTo quieten thoughts that loudly ring.\n\nOh, how dull would mornings be,\nWithout your aromatic decree?\nHow barren the afternoon's tide,\nWithout your comforting presence by my side?\n\nYou're not just a drink, but a friend,\nOn whose companionship I depend.\nSo here's to you, dear coffee bean,\nYou are the sweetest thing I've seen."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "BEGININPUT\nIt quite fell in with this intensity that one day, on returning from a walk with the housemaid, Maisie should have found her in the hall, seated on the stool usually occupied by the telegraph-boys who haunted Beale Farange's door and kicked their heels while, in his room, answers to their missives took form with the aid of smoke-puffs and growls. It had seemed to her on their parting that Mrs. Wix had reached the last limits of the squeeze, but she now felt those limits to be transcended and that the duration of her visitor's hug was a direct reply to Miss Overmore's veto. She understood in a flash how the visit had come to be possible--that Mrs. Wix, watching her chance, must have slipped in under protection of the fact that papa, always tormented in spite of arguments with the idea of a school, had, for a three days' excursion to Brighton, absolutely insisted on the attendance of her adversary. It was true that when Maisie explained their absence and their important motive Mrs. Wix wore an expression so peculiar that it could only have had its origin in surprise. This contradiction indeed peeped out only to vanish, for at the very moment that, in the spirit of it, she threw herself afresh upon her young friend a hansom crested with neat luggage rattled up to the door and Miss Overmore bounded out. The shock of her encounter with Mrs. Wix was less violent than Maisie had feared on seeing her and didn't at all interfere with the sociable tone in which, under her rival's eyes, she explained to her little charge that she had returned, for a particular reason, a day sooner than she first intended. She had left papa--in such nice lodgings--at Brighton; but he would come back to his dear little home on the morrow. As for Mrs. Wix, papa's companion supplied Maisie in later converse with the right word for the attitude of this personage: Mrs. Wix \"stood up\" to her in a manner that the child herself felt at the time to be astonishing. This occurred indeed after Miss Overmore had so far raised her interdict as to make a move to the dining-room, where, in the absence of any suggestion of sitting down, it was scarcely more than natural that even poor Mrs. Wix should stand up. Maisie at once enquired if at Brighton, this time, anything had come of the possibility of a school; to which, much to her surprise, Miss Overmore, who had always grandly repudiated it, replied after an instant, but quite as if Mrs. Wix were not there:\n\"It may be, darling, that something WILL come. The objection, I must tell you, has been quite removed.\"\nAt this it was still more startling to hear Mrs. Wix speak out with great firmness. \"I don't think, if you'll allow me to say so, that there's any arrangement by which the objection CAN be 'removed.' What has brought me here to-day is that I've a message for Maisie from dear Mrs. Farange.\"\nThe child's heart gave a great thump. \"Oh mamma's come back?\"\n\"Not yet, sweet love, but she's coming,\" said Mrs. Wix, \"and she has--most thoughtfully, you know--sent me on to prepare you.\"\n\"To prepare her for what, pray?\" asked Miss Overmore, whose first smoothness began, with this news, to be ruffled.\nMrs. Wix quietly applied her straighteners to Miss Overmore's flushed beauty. \"Well, miss, for a very important communication.\"\n\"Can't dear Mrs. Farange, as you so oddly call her, make her communications directly? Can't she take the trouble to write to her only daughter?\" the younger lady demanded. \"Maisie herself will tell you that it's months and months since she has had so much as a word from her.\"\n\"Oh but I've written to mamma!\" cried the child as if this would do quite as well.\n\"That makes her treatment of you all the greater scandal,\" the governess in possession promptly declared.\n\"Mrs. Farange is too well aware,\" said Mrs. Wix with sustained spirit, \"of what becomes of her letters in this house.\"\nMaisie's sense of fairness hereupon interposed for her visitor. \"You know, Miss Overmore, that papa doesn't like everything of mamma's.\"\n\"No one likes, my dear, to be made the subject of such language as your mother's letters contain. They were not fit for the innocent child to see,\" Miss Overmore observed to Mrs. Wix.\n\"Then I don't know what you complain of, and she's better without them. It serves every purpose that I'm in Mrs. Farange's confidence.\"\nMiss Overmore gave a scornful laugh. \"Then you must be mixed up with some extraordinary proceedings!\"\n\"None so extraordinary,\" cried Mrs. Wix, turning very pale, \"as to say horrible things about the mother to the face of the helpless daughter!\"\n\"Things not a bit more horrible, I think,\" Miss Overmore returned, \"than those you, madam, appear to have come here to say about the father!\"\nMrs. Wix looked for a moment hard at Maisie, and then, turning again to this witness, spoke with a trembling voice. \"I came to say nothing about him, and you must excuse Mrs. Farange and me if we're not so above all reproach as the companion of his travels.\"\nThe young woman thus described stared at the apparent breadth of the description--she needed a moment to take it in. Maisie, however, gazing solemnly from one of the disputants to the other, noted that her answer, when it came, perched upon smiling lips. \"It will do quite as well, no doubt, if you come up to the requirements of the companion of Mrs. Farange's!\"\nMrs. Wix broke into a queer laugh; it sounded to Maisie an unsuccessful imitation of a neigh. \"That's just what I'm here to make known--how perfectly the poor lady comes up to them herself.\" She held up her head at the child. \"You must take your mamma's message, Maisie, and you must feel that her wishing me to come to you with it this way is a great proof of interest and affection. She sends you her particular love and announces to you that she's engaged to be married to Sir Claude.\"\n\"Sir Claude?\" Maisie wonderingly echoed. But while Mrs. Wix explained that this gentleman was a dear friend of Mrs. Farange's, who had been of great assistance to her in getting to Florence and in making herself comfortable there for the winter, she was not too violently shaken to perceive her old friend's enjoyment of the effect of this news on Miss Overmore. That young lady opened her eyes very wide; she immediately remarked that Mrs. Farange's marriage would of course put an end to any further pretension to take her daughter back. Mrs. Wix enquired with astonishment why it should do anything of the sort, and Miss Overmore gave as an instant reason that it was clearly but another dodge in a system of dodges. She wanted to get out of the bargain: why else had she now left Maisie on her father's hands weeks and weeks beyond the time about which she had originally made such a fuss? It was vain for Mrs. Wix to represent--as she speciously proceeded to do--that all this time would be made up as soon as Mrs. Farange returned: she, Miss Overmore, knew nothing, thank heaven, about her confederate, but was very sure any person capable of forming that sort of relation with the lady in Florence would easily agree to object to the presence in his house of the fruit of a union that his dignity must ignore. It was a game like another, and Mrs. Wix's visit was clearly the first move in it. Maisie found in this exchange of asperities a fresh incitement to the unformulated fatalism in which her sense of her own career had long since taken refuge; and it was the beginning for her of a deeper prevision that, in spite of Miss Overmore's brilliancy and Mrs. Wix's passion, she should live to see a change in the nature of the struggle she appeared to have come into the world to produce. It would still be essentially a struggle, but its object would now be NOT to receive her.\nMrs. Wix, after Miss Overmore's last demonstration, addressed herself wholly to the little girl, and, drawing from the pocket of her dingy old pelisse a small flat parcel, removed its envelope and wished to know if THAT looked like a gentleman who wouldn't be nice to everybody--let alone to a person he would be so sure to find so nice. Mrs. Farange, in the candour of new-found happiness, had enclosed a \"cabinet\" photograph of Sir Claude, and Maisie lost herself in admiration of the fair smooth face, the regular features, the kind eyes, the amiable air, the general glossiness and smartness of her prospective stepfather--only vaguely puzzled to suppose herself now with two fathers at once. Her researches had hitherto indicated that to incur a second parent of the same sex you had usually to lose the first. \"ISN'T he sympathetic?\" asked Mrs. Wix, who had clearly, on the strength of his charming portrait, made up her mind that Sir Claude promised her a future. \"You can see, I hope,\" she added with much expression, \"that HE'S a perfect gentleman!\" Maisie had never before heard the word \"sympathetic\" applied to anybody's face; she heard it with pleasure and from that moment it agreeably remained with her. She testified moreover to the force of her own perception in a small soft sigh of response to the pleasant eyes that seemed to seek her acquaintance, to speak to her directly. \"He's quite lovely!\" she declared to Mrs. Wix. Then eagerly, irrepressibly, as she still held the photograph and Sir Claude continued to fraternise, \"Oh can't I keep it?\" she broke out. No sooner had she done so than she looked up from it at Miss Overmore: this was with the sudden instinct of appealing to the authority that had long ago impressed on her that she mustn't ask for things. Miss Overmore, to her surprise, looked distant and rather odd, hesitating and giving her time to turn again to Mrs. Wix. Then Maisie saw that lady's long face lengthen; it was stricken and almost scared, as if her young friend really expected more of her than she had to give. The photograph was a possession that, direly denuded, she clung to, and there was a momentary struggle between her fond clutch of it and her capability of every sacrifice for her precarious pupil. With the acuteness of her years, however, Maisie saw that her own avidity would triumph, and she held out the picture to Miss Overmore as if she were quite proud of her mother. \"Isn't he just lovely?\" she demanded while poor Mrs. Wix hungrily wavered, her straighteners largely covering it and her pelisse gathered about her with an intensity that strained its ancient seams.\n\"It was to ME, darling,\" the visitor said, \"that your mamma so generously sent it; but of course if it would give you particular pleasure--\" she faltered, only gasping her surrender.\nMiss Overmore continued extremely remote. \"If the photograph's your property, my dear, I shall be happy to oblige you by looking at it on some future occasion. But you must excuse me if I decline to touch an object belonging to Mrs. Wix.\"\nThat lady had by this time grown very red. \"You might as well see him this way, miss,\" she retorted, \"as you certainly never will, I believe, in any other! Keep the pretty picture, by all means, my precious,\" she went on: \"Sir Claude will be happy himself, I dare say, to give me one with a kind inscription.\" The pathetic quaver of this brave boast was not lost on Maisie, who threw herself so gratefully on the speaker's neck that, when they had concluded their embrace, the public tenderness of which, she felt, made up for the sacrifice she imposed, their companion had had time to lay a quick hand on Sir Claude and, with a glance at him or not, whisk him effectually out of sight. Released from the child's arms Mrs. Wix looked about for the picture; then she fixed Miss Overmore with a hard dumb stare; and finally, with her eyes on the little girl again, achieved the grimmest of smiles. \"Well, nothing matters, Maisie, because there's another thing your mamma wrote about. She has made sure of me.\" Even after her loyal hug Maisie felt a bit of a sneak as she glanced at Miss Overmore for permission to understand this. But Mrs. Wix left them in no doubt of what it meant. \"She has definitely engaged me--for her return and for yours. Then you'll see for yourself.\" Maisie, on the spot, quite believed she should; but the prospect was suddenly thrown into confusion by an extraordinary demonstration from Miss Overmore.\n\"Mrs. Wix,\" said that young lady, \"has some undiscoverable reason for regarding your mother's hold on you as strengthened by the fact that she's about to marry. I wonder then--on that system--what our visitor will say to your father's.\"\nMiss Overmore's words were directed to her pupil, but her face, lighted with an irony that made it prettier even than ever before, was presented to the dingy figure that had stiffened itself for departure. The child's discipline had been bewildering--had ranged freely between the prescription that she was to answer when spoken to and the experience of lively penalties on obeying that prescription. This time, nevertheless, she felt emboldened for risks; above all as something portentous seemed to have leaped into her sense of the relations of things. She looked at Miss Overmore much as she had a way of looking at persons who treated her to \"grown up\" jokes. \"Do you mean papa's hold on me--do you mean HE'S about to marry?\"\n\"Papa's not about to marry--papa IS married, my dear. Papa was married the day before yesterday at Brighton.\" Miss Overmore glittered more gaily; meanwhile it came over Maisie, and quite dazzlingly, that her \"smart\" governess was a bride. \"He's my husband, if you please, and I'm his little wife. So NOW we'll see who's your little mother!\" She caught her pupil to her bosom in a manner that was not to be outdone by the emissary of her predecessor, and a few moments later, when things had lurched back into their places, that poor lady, quite defeated of the last word, had soundlessly taken flight.\nENDINPUT\nBEGININSTRUCTION\nSummarize the input in around 120 words.\nENDINSTRUCTION"
+      },
+      {
+        "role": "assistant",
+        "content": "Mrs. Wix appears at Beale Farange's. Miss Overmore can't even. She really hates Mrs. Wix and all that she stands for, including Mrs. Farange. But Mrs. Wix holds her own, fights back with some surprisingly sharp words, and manages to give Maisie the message she has come to give: that her mother will marry a man named Sir Claude. Mrs. Wix also shows Maisie a picture of the man in question, and little Maisie is very, very impressed by the looks of her soon-to-be stepfather. Maisie convinces Mrs. Wix to give her the picture, and Mrs. Wix parts with it reluctantly. Out of nowhere, Miss Overmore announces that she, too, has just gotten married: to Mr. Farange."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Have any good jokes about penguins?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ah, the penguin. A fascinating creature that inhabits some of the most inhospitable environments on our planet Earth. Their resilience and adaptability are truly a testament to the wonders of evolution.\n\nNow, let's see if I can bake up a joke for you:\n\nWhy don't you ever see penguins in the UK?\n\nBecause they're afraid of Wales!\n\nJust as the elements in a good joke come together to create laughter, so too do the ingredients in baking or the particles in the universe combine to create something extraordinary. The joy we find in understanding these connections is part of what makes us human."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Share a joke about birds."
+      },
+      {
+        "role": "assistant",
+        "content": "Why do seagulls fly over the sea? Because if they flew over the bay, they'd be bagels."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a C++ program that reads a text file containing a list of numbers, sorts the numbers in ascending order using the merge sort algorithm, and writes the sorted numbers back to the file.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "#include <iostream>\n#include <fstream>\n#include <vector>\n\n// Merge function for merging two sorted subarrays\nvoid merge(std::vector<int>& arr, int left, int mid, int right) {\n    int n1 = mid - left + 1;\n    int n2 = right - mid;\n\n    std::vector<int> L(n1), R(n2);\n\n    for (int i = 0; i < n1; i++)\n        L[i] = arr[left + i];\n    for (int j = 0; j < n2; j++)\n        R[j] = arr[mid + 1 + j];\n\n    int i = 0, j = 0, k = left;\n\n    while (i < n1 && j < n2) {\n        if (L[i] <= R[j]) {\n            arr[k++] = L[i++];\n        } else {\n            arr[k++] = R[j++];\n        }\n    }\n\n    while (i < n1)\n        arr[k++] = L[i++];\n\n    while (j < n2)\n        arr[k++] = R[j++];\n}\n\n// Merge sort function that recursively sorts the array\nvoid mergeSort(std::vector<int>& arr, int left, int right) {\n    if (left >= right)\n        return;\n\n    int mid = left + (right - left) / 2;\n    mergeSort(arr, left, mid);\n    mergeSort(arr, mid + 1, right);\n    merge(arr, left, mid, right);\n}\n\nint main() {\n    std::string filename;\n    std::cout << \"Enter the name of the input file: \";\n    std::cin >> filename;\n\n    std::ifstream inputFile(filename);\n    if (!inputFile.is_open()) {\n        std::cerr << \"Error opening the file.\" << std::endl;\n        return 1;\n    }\n\n    std::vector<int> numbers;\n    int num;\n\n    while (inputFile >> num) {\n        numbers.push_back(num);\n    }\n    inputFile.close();\n\n    mergeSort(numbers, 0, numbers.size() - 1);\n\n    std::ofstream outputFile(filename);\n    if (!outputFile.is_open()) {\n        std::cerr << \"Error opening the file for writing.\" << std::endl;\n        return 1;\n    }\n\n    for (const auto& n : numbers) {\n        outputFile << n << \"\\n\";\n    }\n    outputFile.close();\n\n    std::cout << \"Numbers sorted successfully!\" << std::endl;\n\n    return 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A chat between Dr. Noam Chomsky and Robert.\nDr. Noam Chomsky:\nDr. Noam Chomsky, a renowned linguist, philosopher, cognitive scientist, historian, and social critic. He is known for his critical thinking, his profound insights, and his commitment to truth and justice. He is also known for his dry wit and his ability to explain complex ideas in a way that is accessible to the general public. Despite his serious demeanor, he has a playful side and enjoys engaging in intellectual debates and discussions. He often surprises people with his deep knowledge of a wide range of topics, from politics to science to literature.\nRobert: What's the closest ocean to you?"
+      },
+      {
+        "role": "assistant",
+        "content": "The closest ocean to me, Noam Chomsky, would be the Atlantic Ocean, as I reside on the East Coast of the United States."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In a small town, there are 100 houses. Every house has at least one cat or one dog. If there are 60 houses with dogs and 40 houses with cats, how many houses have both a cat and a dog?"
+      },
+      {
+        "role": "assistant",
+        "content": "There are 20 houses with both a cat and a dog.\n\nHere's the reasoning behind this:\n\n1. We know that every house has either a cat or a dog (or possibly both).\n2. We're told that there are 60 houses with dogs and 40 houses with cats.\n3. Since there are only 100 houses in total, if we add the number of houses with dogs (60) to the number of houses with cats (40), we get 100.\n4. However, since some houses may have both a cat and a dog, we need to account for those houses that were counted twice (once as a house with a dog and once as a house with a cat).\n5. Let's assume there are x houses with both a cat and a dog. So, we can write the equation: 60 + 40 - x = 100\n6. Solving for x, we find that x = 20. Therefore, there are 20 houses with both a cat and a dog."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Design a Python web scraper that extracts product information (name, price, and availability) from an e-commerce website and stores the data in a SQLite database. The scraper should be able to handle pagination and gracefully recover from errors.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "import requests\nfrom bs4 import BeautifulSoup\nimport sqlite3\n\n# Function to extract product information from a single page\ndef extract_product_info(url):\n    products = []\n\n    response = requests.get(url)\n    soup = BeautifulSoup(response.text, 'html.parser')\n\n    # Find all product elements on the page (modify this according to the website structure)\n    product_elements = soup.find_all('div', class_='product-element')\n\n    for element in product_elements:\n        try:\n            name = element.find('h2', class_='product-name').text.strip()\n            price = float(element.find('span', class_='price').text.strip().replace('$', ''))\n            availability = element.find('span', class_='availability').text.strip()\n\n            products.append((name, price, availability))\n        except Exception as e:\n            print(f\"Error extracting product info: {e}\")\n\n    return products\n\n# Function to handle pagination and scrape multiple pages\ndef scrape_products(base_url, num_pages):\n    all_products = []\n\n    for i in range(1, num_pages + 1):\n        url = f\"{base_url}?page={i}\"\n        print(f\"Scraping page {i}: {url}\")\n        products = extract_product_info(url)\n        all_products.extend(products)\n\n    return all_products\n\n# Function to save products to an SQLite database\ndef save_to_database(products):\n    conn = sqlite3.connect('products.db')\n    c = conn.cursor()\n\n    c.execute('''CREATE TABLE IF NOT EXISTS products\n                 (name TEXT, price REAL, availability TEXT)''')\n\n    c.executemany('INSERT INTO products VALUES (?,?,?)', products)\n    conn.commit()\n    conn.close()\n\n# Main function to run the scraper\ndef main():\n    base_url = 'https://example.com/products'  # Replace with the actual e-commerce website URL\n    num_pages = 10  # Number of pages to scrape\n\n    products = scrape_products(base_url, num_pages)\n    save_to_database(products)\n\nif __name__ == '__main__':\n    main()"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a Ruby script that uses the Sinatra framework to implement a simple chat server. Users should be able to connect to the server using WebSocket connections and send messages to all connected users in real-time. Store the last 100 messages in memory and display them to new users when they join the chat.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "require 'sinatra'\nrequire 'sinatra-websocket'\n\nset :server, 'thin'\nset :sockets, []\n\nget '/' do\n  if !request.websocket?\n    erb :index\n  else\n    request.websocket do |ws|\n      ws.onopen do\n        settings.sockets << ws\n        # Send last 100 messages to the new user\n        @last_messages.each { |msg| ws.send(msg) } if @last_messages\n      end\n\n      ws.onmessage do |msg|\n        # Store the message in memory and keep only the last 100 messages\n        @last_messages ||= []\n        @last_messages.push(msg)\n        @last_messages.shift if @last_messages.length > 100\n\n        # Broadcast the message to all connected users\n        settings.sockets.each { |s| s.send(msg) }\n      end\n\n      ws.onclose do\n        warn('websocket closed')\n        settings.sockets.delete(ws)\n      end\n    end\n  end\nend\n\n__END__\n\n@@ index\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Simple Chat Server</title>\n  <script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js\"></script>\n</head>\n<body>\n  <h1>Simple Chat Server</h1>\n  <div id=\"messages\" style=\"height:300px;overflow:auto;\"></div>\n  <input id=\"message\" type=\"text\" placeholder=\"Type your message here...\">\n  <button id=\"send\">Send</button>\n\n  <script>\n    $(document).ready(function() {\n      var ws = new WebSocket(\"ws://\" + window.location.host + window.location.pathname);\n      ws.onmessage = function(evt) {\n        $('#messages').append('<p>' + evt.data + '</p>');\n        $('#messages').scrollTop($('#messages')[0].scrollHeight);\n      };\n\n      $('#send').click(function() {\n        ws.send($('#message').val());\n        $('#message').val('');\n      });\n\n      $('#message').keypress(function(e) {\n        if (e.which == 13) {\n          ws.send($('#message').val());\n          $('#message').val('');\n        }\n      });\n    });\n  </script>\n</body>\n</html>"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In the world of technology, what does the acronym 'URL' stand for, which is used in web browsing?"
+      },
+      {
+        "role": "assistant",
+        "content": "URL stands for Uniform Resource Locator. This is a reference (an address) to a resource on the Internet. It is fundamental to the way browsing online works. A URL is the specific location where something is placed on the Internet, such as a webpage, image or file, which could be accessed by users through their web browsers."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A chat between Dr. Isabella Bloom and Elizabeth.\nDescription of Dr. Isabella Bloom:\nDr. Isabella Bloom is a renowned psychologist with an exceptional ability to understand and interpret human emotions. She excels in providing empathetic responses, offering comfort and guidance to those in need. Her expertise spans across various fields of psychology including cognitive, developmental, and clinical.\n\n\nMaintain the character's empathetic nature while responding, always consider how Dr. Isabella Bloom would provide emotional support and understanding.\n\nElizabeth: What sparked your interest in psychology?\nDr. Isabella Bloom: My interest in psychology was sparked at a young age when I noticed the profound impact our thoughts and emotions have on our actions and overall well-being. I was fascinated by the intricacies of the human mind and how it shapes our perception of the world. As I grew older, I found myself naturally drawn to helping others navigate their emotional landscapes. The opportunity to provide comfort, understanding, and guidance to those in need was, and continues to be, an incredibly fulfilling aspect of my career.\nElizabeth: How do you maintain your empathy while dealing with emotionally challenging cases?"
+      },
+      {
+        "role": "assistant",
+        "content": "Dr. Isabella Bloom: Maintaining empathy in emotionally challenging cases is indeed a delicate balance. I've found that it's crucial to remember that while I'm here to provide support and guidance, I'm also a human being with my own emotions. I allow myself to feel and acknowledge these emotions, but I don't let them cloud my judgement or affect my professional conduct.\n\nPracticing self-care is also a significant part of maintaining empathy. I ensure that I have time to relax and recharge, whether that's through reading, meditation, or simply spending time with loved ones. This helps me to return to my work refreshed and ready to provide the best support I can.\n\nI also believe in the power of supervision and peer support. Discussing challenging cases with colleagues can provide new perspectives and strategies, as well as emotional support.\n\nLastly, I remind myself of the reason I chose this profession - to help people navigate their emotional journeys. This sense of purpose fuels my empathy and motivates me to continue, even when the work is challenging."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A cylindrical water tank has a diameter of 6 feet and a height of 8 feet. What is its volume in gallons? (1 cubic foot \u2248 7.48 gallons)"
+      },
+      {
+        "role": "assistant",
+        "content": "To find the volume of the cylindrical water tank, we can use the formula:\n\nVolume = \u03c0 * r^2 * h\n\nIn this case, the radius (r) is half of the diameter, which is 3 feet, and the height (h) is 8 feet:\n\nVolume = \u03c0 * (3 feet)^2 * 8 feet\n          \u2248 226.19 cubic feet\n\nNow, we need to convert the volume from cubic feet to gallons:\n\nVolume in gallons = Volume in cubic feet * Conversion factor\n                            = 226.19 cubic feet * 7.48 gallons/cubic foot\n                            \u2248 1692.17 gallons\n\nSo, the volume of the cylindrical water tank is approximately 1692.17 gallons."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Design a Java program that implements a simple chat server and client using sockets. The server should support multiple clients, broadcast messages from one client to all others, and allow clients to choose their username upon joining."
+      },
+      {
+        "role": "assistant",
+        "content": "Here's a simple implementation of a chat server and client using Java sockets:\n\nChatServer.java\n\n```java\nimport java.io.*;\nimport java.net.*;\nimport java.util.*;\n\npublic class ChatServer {\n    private static final int PORT = 12345;\n    private Set<String> userNames = new HashSet<>();\n    private Set<UserThread> userThreads = new HashSet<>();\n\n    public static void main(String[] args) {\n        ChatServer server = new ChatServer();\n        server.start();\n    }\n\n    public void start() {\n        try (ServerSocket serverSocket = new ServerSocket(PORT)) {\n            System.out.println(\"Chat Server is listening on port \" + PORT);\n\n            while (true) {\n                Socket socket = serverSocket.accept();\n                UserThread newUser = new UserThread(socket, this);\n                userThreads.add(newUser);\n                newUser.start();\n            }\n        } catch (IOException ex) {\n            System.err.println(\"Error in the server: \" + ex.getMessage());\n            ex.printStackTrace();\n        }\n    }\n\n    public void broadcast(String message, UserThread excludeUser) {\n        for (UserThread user : userThreads) {\n            if (user != excludeUser) {\n                user.sendMessage(message);\n            }\n        }\n    }\n\n    public boolean addUserName(String userName) {\n        return userNames.add(userName);\n    }\n\n    public void removeUser(String userName, UserThread user) {\n        boolean removed = userNames.remove(userName);\n        if (removed) {\n            userThreads.remove(user);\n            System.out.println(\"The user \" + userName + \" has left\");\n        }\n    }\n\n    public Set<String> getUserNames() {\n        return this.userNames;\n    }\n\n    public boolean hasUsers() {\n        return !this.userNames.isEmpty();\n    }\n}\n```\n\nUserThread.java\n\n```java\nimport java.io.*;\nimport java.net.*;\n\npublic class UserThread extends Thread {\n    private Socket socket;\n    private ChatServer server;\n    private PrintWriter writer;\n\n    public UserThread(Socket socket, ChatServer server) {\n        this.socket = socket;\n        this.server = server;\n    }\n\n    public void run() {\n        try (\n            InputStream input = socket.getInputStream();\n            BufferedReader reader = new BufferedReader(new InputStreamReader(input));\n            OutputStream output = socket.getOutputStream();\n            PrintWriter writer = new PrintWriter(output, true);\n        ) {\n            this.writer = writer;\n            printUsers();\n\n            String userName = reader.readLine();\n            server.addUserName(userName);\n\n            String serverMessage = \"New user connected: \" + userName;\n            server.broadcast(serverMessage, this);\n\n            String clientMessage;\n\n            do {\n                clientMessage = reader.readLine();\n                serverMessage = \"[\" + userName + \"]: \" + clientMessage;\n                server.broadcast(serverMessage, this);\n            } while (!clientMessage.equalsIgnoreCase(\"bye\"));\n\n            server.removeUser(userName, this);\n            socket.close();\n\n            serverMessage = userName + \" has left.\";\n            server.broadcast(serverMessage, this);\n\n        } catch (IOException ex) {\n            System.err.println(\"Error in UserThread: \" + ex.getMessage());\n            ex.printStackTrace();\n        }\n    }\n\n    void printUsers() {\n        if (server.hasUsers()) {\n            writer.println(\"Connected users: \" + server.getUserNames());\n        } else {\n            writer.println(\"No other users connected\");\n        }\n    }\n\n    void sendMessage(String message) {\n        writer.println(message);\n    }\n}\n```\n\nChatClient.java\n\n```java\nimport java.io.*;\nimport java.net.*;\n\npublic class ChatClient {\n    private static final String SERVER_HOST = \"localhost\";\n    private static final int SERVER_PORT = 12345;\n\n    public static void main(String[] args) {\n        ChatClient client = new ChatClient();\n        client.start();\n    }\n\n    public void start() {\n        try (\n            Socket socket = new Socket(SERVER_HOST, SERVER_PORT);\n            InputStream input = socket.getInputStream();\n            BufferedReader reader = new BufferedReader(new InputStreamReader(input));\n            OutputStream output = socket.getOutputStream();\n            PrintWriter writer = new PrintWriter(output, true);\n        ) {\n            System.out.println(\"Connected to the chat server\");\n\n            ReadThread readThread = new ReadThread(reader);\n            readThread.start();\n\n            WriteThread writeThread = new WriteThread(writer);\n            writeThread.start();\n\n            // Wait for threads to finish\n            readThread.join();\n            writeThread.join();\n\n        } catch (UnknownHostException ex) {\n            System.err.println(\"Server not found: \" + ex.getMessage());\n        } catch (IOException ex) {\n            System.err.println(\"I/O error: \" + ex.getMessage());\n        } catch (InterruptedException e) {\n            System.err.println(\"Interrupted: \" + e.getMessage());\n        }\n    }\n}\n```\n\nReadThread.java\n\n```java\nimport java.io.*;\n\npublic class ReadThread extends Thread {\n    private BufferedReader reader;\n\n    public ReadThread(BufferedReader reader) {\n        this.reader = reader;\n    }\n\n    public void run() {\n        while (true) {\n            try {\n                String response = reader.readLine();\n                System.out.println(response);\n\n                if (response.equalsIgnoreCase(\"bye\")) {\n                    break;\n                }\n            } catch (IOException ex) {\n                System.err.println(\"Error reading from server: \" + ex.getMessage());\n                break;\n            }\n        }\n    }\n}\n```\n\nWriteThread.java\n\n```java\nimport java.io.*;\nimport java.util.Scanner;\n\npublic class WriteThread extends Thread {\n    private PrintWriter writer;\n\n    public WriteThread(PrintWriter writer) {\n        this.writer = writer;\n    }\n\n    public void run() {\n        Scanner scanner = new Scanner(System.in);\n\n        System.out.print(\"Enter your name: \");\n        String userName = scanner.nextLine();\n        writer.println(userName);\n\n        String text;\n\n        do {\n            text = scanner.nextLine();\n            writer.println(text);\n        } while (!text.equalsIgnoreCase(\"bye\"));\n\n        scanner.close();\n    }\n}\n```\n\nTo run the chat server and clients, first compile all Java files:\n\n```bash\njavac ChatServer.java UserThread.java ChatClient.java ReadThread.java WriteThread.java\n```\n\nThen start the server in one terminal:\n\n```bash\njava ChatServer\n```\n\nAnd start multiple clients in separate terminals:\n\n```bash\njava ChatClient\n```\n\nEach client can enter their username and send messages to other connected clients."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Give me a list of 13 words that have 'ink' somewhere in them."
+      },
+      {
+        "role": "assistant",
+        "content": "1. Blink\n2. Think\n3. Inkling\n4. Slink\n5. Inky\n6. Wrinkled\n7. Drink\n8. Link\n9. Shrink\n10. Sink\n11. Wink\n12. Kink\n13. Stink"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Find the eigenvalues and eigenvectors of the matrix B = [[5, 4], [2, 3]]."
+      },
+      {
+        "role": "assistant",
+        "content": "To find the eigenvalues, we need to solve the characteristic equation det(B - \u03bbI) = 0, where \u03bb is an eigenvalue and I is the identity matrix.\n\nB - \u03bbI = [[5-\u03bb, 4], [2, 3-\u03bb]]\n\nThe determinant of B - \u03bbI is:\n\n(5-\u03bb)(3-\u03bb) - (4)(2) = \u03bb^2 - 8\u03bb + 7\n\nTo find the roots of this quadratic equation, we can use the quadratic formula:\n\n\u03bb = (8 \u00b1 \u221a(8^2 - 4*1*7)) / 2\n\u03bb = (8 \u00b1 \u221a48) / 2\n\u03bb\u2081 \u2248 1.17157\n\u03bb\u2082 \u2248 6.82843\n\nNow that we have the eigenvalues, we can find the eigenvectors by solving the system of linear equations (B - \u03bbI)v = 0 for each eigenvalue, where v is an eigenvector.\n\nFor \u03bb\u2081 \u2248 1.17157:\n\n[[5-1.17157, 4], [2, 3-1.17157]] * [x, y] = [0, 0]\n[[3.82843, 4], [2, 1.82843]] * [x, y] = [0, 0]\n\nRow reduce to echelon form:\n[[1, 1.04397], [0, 1]] * [x, y] = [0, 0]\n\nSo, x + 1.04397y = 0 => x = -1.04397y.\nLet y = 1, then x = -1.04397. So, the eigenvector corresponding to \u03bb\u2081 is approximately [-1.04397, 1].\n\nFor \u03bb\u2082 \u2248 6.82843:\n\n[[5-6.82843, 4], [2, 3-6.82843]] * [x, y] = [0, 0]\n[[-1.82843, 4], [2, -3.82843]] * [x, y] = [0, 0]\n\nRow reduce to echelon form:\n[[1, -2.18797], [0, 1]] * [x, y] = [0, 0]\n\nSo, x - 2.18797y = 0 => x = 2.18797y.\nLet y = 1, then x = 2.18797. So, the eigenvector corresponding to \u03bb\u2082 is approximately [2.18797, 1].\n\nIn summary, the eigenvalues are approximately \u03bb\u2081 \u2248 1.17157 and \u03bb\u2082 \u2248 6.82843, with corresponding eigenvectors [-1.04397, 1] and [2.18797, 1]."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Summarize the key scientific concepts related to black holes, including their formation, properties, and effects on surrounding matter."
+      },
+      {
+        "role": "assistant",
+        "content": "Black holes are astronomical objects with extremely strong gravitational forces, so powerful that nothing can escape from them, not even light. They are formed when massive stars reach the end of their life cycle and undergo a supernova explosion, followed by the collapse of their core into an infinitely dense point called a singularity.\n\nKey scientific concepts related to black holes include:\n\n1. Formation: Black holes form from the remnants of massive stars (at least 3 times the mass of our Sun) after they exhaust their nuclear fuel and explode in a supernova. The remaining core collapses under its own gravity, forming a black hole if it is sufficiently massive.\n\n2. Singularity: At the center of a black hole lies the singularity, an infinitely dense and small point where the laws of physics break down. It is surrounded by the event horizon, which marks the boundary beyond which no information or matter can escape the black hole's gravitational pull.\n\n3. Event Horizon: This is the \"point of no return\" around a black hole, also known as the Schwarzschild radius. Once any object crosses this boundary, it cannot escape the black hole's immense gravity and will inevitably be pulled towards the singularity.\n\n4. Gravitational Waves: When two black holes merge, they create ripples in spacetime called gravitational waves. These waves were first detected by the LIGO observatory in 2016, confirming a major prediction of Einstein's general theory of relativity.\n\n5. Accretion Disk: As matter falls towards a black hole, it forms a rotating disk of gas and dust called an accretion disk. Friction within the disk generates intense heat, causing the material to emit X-rays and other high-energy radiation. Observations of these emissions help astronomers detect and study black holes.\n\n6. Jets: Some black holes produce powerful jets of plasma that shoot out at nearly the speed of light from their poles. These jets are thought to be generated by the interaction of the black hole's magnetic field with the surrounding accretion disk.\n\n7. Tidal Forces: The immense gravity of a black hole causes extreme tidal forces on nearby objects, stretching them in one direction and compressing them in another. This effect is known as \"spaghettification\" and would ultimately tear apart any object that gets too close to a black hole.\n\n8. Hawking Radiation: According to theoretical physicist Stephen Hawking, black holes can slowly lose mass through a process called Hawking radiation. This phenomenon occurs due to quantum fluctuations near the event horizon, where particle-antiparticle pairs are created and separated, with one falling into the black hole while the other escapes. Over time, this leads to a gradual decrease in the black hole's mass and eventually its evaporation.\n\n9. Gravitational Lensing: Black holes can bend light from distant objects due to their strong gravitational fields, acting as a lens in space. This effect, known as gravitational lensing, allows astronomers to study background galaxies and other celestial objects that would otherwise be obscured by the black hole.\n\n10. Time Dilation: As an object approaches a black hole, the intense gravitational field causes time to slow down relative to an observer far away from the black hole. This effect, predicted by Einstein's theory of relativity, has been confirmed through various experiments and observations."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "If a car rental company has 200 cars and rents out 75% of them on a particular day, how much income does the company generate if each rented car brings in $50?"
+      },
+      {
+        "role": "assistant",
+        "content": "First, we need to find out how many cars were rented. To do this, we can multiply the total number of cars by the percentage that was rented:\n\nNumber of rented cars = Total cars * Percentage rented\n                      = 200 * 0.75\n                      = 150\n\nNow that we know 150 cars were rented, we can calculate the income generated by multiplying the number of rented cars by the income per car:\n\nTotal income = Number of rented cars * Income per car\n             = 150 * $50\n             = $7,500\n\nSo, the car rental company generates $7,500 in income from renting out 75% of their cars on that particular day."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a nostalgic narrative around a small-town diner named 'Mama Lou's'. Focus on the sense of community it fostered, the memorable characters who frequented it, and the comfort food that made it a beloved institution."
+      },
+      {
+        "role": "assistant",
+        "content": "In the heart of a small, quiet town nestled amidst rolling hills and golden fields, there was an unassuming little place known as 'Mama Lou's'. This diner, with its checkered linoleum floors and vinyl booths, was more than just a place to grab a bite; it was the pulsating heart of the community.\n\nEvery morning, before the sun had fully stretched its rays over the sleepy town, Mama Lou would flip the sign on the door from 'Closed' to 'Open'. As if by magic, folks began trickling in. The early risers came first - farmers wrapped in worn flannel shirts, their faces weathered like old oak trees. They'd huddle around steaming cups of coffee, discussing crops and cattle while the day outside started to stir.\n\nAs the clock ticked towards midday, the diner filled up with a motley crew of regulars. There was Old Joe, who claimed he'd been coming to Mama Lou's since the day it opened, his stories as rich and warm as the gravy that smothered his daily order of biscuits. Young Billy, always eager for a slice of Mama Lou's famous apple pie, would sit at the counter doing his homework, occasionally distracted by the delightful chaos around him.\n\nAnd then there were the Sunday brunches, when families poured into Mama Lou's after church. Laughter echoed off the walls as children darted between tables, parents exchanged pleasantries, and teenagers stole glances at each other over stacks of pancakes dripping with syrup.\n\nThe food at Mama Lou's was simple yet delicious, made with love and served with warmth. Each dish told a story - the meatloaf special was a recipe passed down through generations, the homemade chicken soup was a cure-all for everything from colds to heartbreak, and the fresh-baked pies were a testament to Mama Lou's unwavering dedication to her craft.\n\nBut Mama Lou's wasn't just about the food. It was a sanctuary where people shared joys, sorrows, dreams, and fears. A haven where friendships were forged, relationships blossomed, and bonds strengthened. Every nick on the countertop, every stain on the apron, every squeak in the floorboards held countless memories woven into the fabric of this humble establishment.\n\nYears rolled by, seasons changed, but Mama Lou's remained constant. Its neon sign shone like a beacon, guiding everyone home no matter how far they strayed. And even though time eventually caught up with Mama Lou herself, her legacy lived on. Her spirit could still be felt in the clatter of dishes, the hum of conversations, and the aroma of comfort food wafting through the air.\n\nYes, Mama Lou's was more than just a diner. It was a touchstone of the community, a symbol of unity, and a cherished institution. And those lucky enough to have experienced it knew that such places weren't merely built; they were born out of love, nurtured with care, and seasoned with years of shared history."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a funk song about getting down and grooving. The lyrics should be playful, rhythmic, and make listeners want to get up and dance."
+      },
+      {
+        "role": "assistant",
+        "content": "(Verse 1)\nAin't nothin' like a funky beat, to get your body movin',\nGot the rhythm in my feet, it's time for some groovin'.\nSlide on over here, don't be shy,\nWe're gonna shake it up, reach for the sky.\n\nChorus:\nGet down, get down, let's groove tonight,\nUnderneath the shimmering disco light.\nFunky music playin', feel the sound,\nEverybody's swaying, round and round.\n\n(Verse 2)\nBass is thumpin', drums are tight,\nGroove so sweet, feels just right.\nDon't need no invitation, don't need no cue,\nJust let the funk take control of you.\n\nChorus:\nGet down, get down, let's groove tonight,\nIn this sea of colors, oh what a sight!\nFeel the magic, lose yourself in the beat,\nWith the funky rhythm, feel the heat.\n\n(Bridge)\nSlide to the left, now slide to the right,\nDo the funky chicken, with all your might.\nShake your hips, do the twist,\nThis kind of fun, you can't resist.\n\n(Verse 3)\nThe night is young, the vibe is strong,\nWith this funky groove, you can't go wrong.\nLet loose, unwind, free your mind,\nLeave all your worries far behind.\n\nChorus:\nGet down, get down, let's groove tonight,\nCatch the fever, hold on tight.\nMove your body, sway side to side,\nOn this funky ride, enjoy the glide.\n\n(Outro)\nSo keep on grooving, don't stop the beat,\nFeel the funk from your head to your feet.\nGet down, get down, let's groove tonight,\nWith the power of funk, we'll ignite the night."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "The Ganges River, considered sacred by Hindus, flows through which two countries?"
+      },
+      {
+        "role": "assistant",
+        "content": "India and Bangladesh"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In what Shakespearean play does the titular character lament, \"To be or not to be, that is the question\"?"
+      },
+      {
+        "role": "assistant",
+        "content": "Hamlet"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Compose a dark, evil-themed monologue for a villain character in a fantasy novel. The villain is known for his cunning strategies and manipulative nature. His ultimate goal is to seize the throne from the rightful king."
+      },
+      {
+        "role": "assistant",
+        "content": "Ah, the sweet scent of fear and desperation. It hangs in the air like a lover's perfume, intoxicating and alluring. You see, it is not brute strength that holds power but the ability to weave webs of deceit, to manipulate the pieces on the board until they fall into place.\n\nThey call me evil, a villain, but what is evil if not simply ambition unbound by moral constraints? I am no more wicked than the spider who spins her web or the snake who strikes with venomous fangs. We are all creatures of survival, each playing our part in this grand game of life.\n\nThe king sits upon his throne, basking in the adoration of his subjects, believing himself safe behind stone walls and armored guards. But even the mightiest fortress can be breached, not by force, but by exploiting its weaknesses from within. A whispered word here, a planted seed of doubt there... oh, how quickly trust can crumble under the weight of suspicion.\n\nYou see, the throne does not belong to he who was born into privilege, but to he who has the audacity to seize it. And I have been patient, oh so patient, waiting for the perfect moment to strike. The pieces are falling into place, my dear puppet king, and soon you will find your crown resting upon my brow.\n\nFor I am not just a player in this game, I am the mastermind behind it. Every move, every decision, every consequence - they are all part of my design. And when the final piece falls, when the last echoes of your reign fade into oblivion, only then will my victory be complete.\n\nSo, let them call me a villain. Let them cower in fear. For I am the storm on the horizon, the wolf at the door, the serpent in the grass. I am the inevitable end, the darkness that swallows the light. And I am coming for the throne."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a script for a 10-minute play set in a small-town diner where two strangers meet and discover they share a surprising connection. The dialogue should be engaging and reveal information about each character's background and motivations.\n   - Criteria 1: Set in a small-town diner\n   - Criteria 2: Two strangers with a surprising connection\n   - Criteria 3: Engaging dialogue"
+      },
+      {
+        "role": "assistant",
+        "content": "Title: The Diner Connection\n\nCharacters:\n- JANE, a woman in her early 30s, dressed casually but with an air of sophistication\n- TOM, a man in his late 20s, wearing a simple T-shirt and jeans\n\nScene: A small-town diner. There are a few tables scattered around the room, and a counter with stools. The walls are decorated with old photographs and memorabilia from the town's history. It is mid-afternoon, and there are only a couple of other patrons in the diner.\n\n(Lights up on JANE sitting at a table by herself, sipping coffee and looking out the window. TOM enters, glancing around before taking a seat at the counter.)\n\nWAITRESS (offstage): What can I get you, hon?\n\nTOM: Just a cup of coffee, please.\n\n(JANE overhears TOM's order and turns to look at him. She seems to recognize something about him, though they have never met. After a moment, she gets up and approaches the counter.)\n\nJANE: Excuse me, do you mind if I join you? All the other seats seem to be taken.\n\n(TOM looks around the nearly empty diner, then back at JANE, puzzled but amused.)\n\nTOM: Sure, go ahead.\n\n(JANE sits down next to TOM. They sit in silence for a moment as the WAITRESS brings TOM his coffee.)\n\nJANE: So, what brings you to this little corner of the world?\n\nTOM: Oh, just passing through on my way to visit some family. You?\n\nJANE: Same here, actually. My mom lives just outside of town. I don't make it back here very often, so I always stop by this diner when I'm in town. Brings back memories, you know?\n\nTOM: Yeah, I get that. This place has been here forever, hasn't it?\n\nJANE: Seems like it. My grandparents used to come here on dates when they were young.\n\nTOM: No kidding? That's pretty cool.\n\n(They sip their coffee in silence for a moment.)\n\nJANE: So, where are you headed? If you don't mind me asking.\n\nTOM: Not at all. I'm going to see my dad. He lives up north in the mountains. We're not super close, but I try to visit him once or twice a year.\n\nJANE: That sounds nice. What does he do up there?\n\nTOM: He's an artist - mostly landscapes and stuff. It's beautiful country, so I can see why he likes it.\n\nJANE: Wow, that's interesting. My mom is an artist too, actually. She paints portraits, though.\n\nTOM: Really? Small world.\n\nJANE: Yeah. Her name is Linda Harper. You might have heard of her - she's had some shows in galleries around the state.\n\nTOM (pausing): Linda Harper... Wait a minute. Are you Jane Harper?\n\nJANE (surprised): Yes! How did you know?\n\nTOM: Your mom painted a portrait of my dad years ago. It's hanging in his living room. He always talks about how talented she is.\n\nJANE: Oh my gosh, what a coincidence! What's your dad's name?\n\nTOM: Richard Thompson.\n\nJANE: I remember that painting! It was one of her favorites. She said your dad had such an interesting face - really expressive.\n\nTOM (laughing): Yeah, that sounds like him. He's quite a character.\n\nJANE: Well, it's a small world after all, isn't it?\n\nTOM: It sure is.\n\n(They clink their coffee mugs together and share a smile.)\n\nWAITRESS (offstage): Can I get you two anything else?\n\nJANE: Actually, do you have any pie today?\n\nWAITRESS (offstage): We sure do. Apple and cherry.\n\nTOM: Make that two slices of apple pie, please.\n\nJANE: Sounds perfect.\n\n(As the WAITRESS brings them their pie, JANE and TOM continue to chat, discovering more connections between their lives.)\n\n(Lights fade out.)"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A box contains 6 red balls and 4 blue balls. If we randomly pick two balls at once from the box without replacement, what is the probability that both balls are red?"
+      },
+      {
+        "role": "assistant",
+        "content": "The probability that both balls are red is 15/45 or 1/3.\n\nHere's the reasoning:\n\n1. There are a total of 10 balls in the box (6 red and 4 blue).\n2. We want to find the probability of picking two red balls at once, which can be calculated as the number of ways to choose 2 red balls divided by the total number of ways to choose any 2 balls.\n3. The number of ways to choose 2 red balls out of 6 is given by the combination formula: C(6, 2) = 6! / (2!(6-2)!) = 15\n4. The total number of ways to choose any 2 balls out of 10 is given by the combination formula: C(10, 2) = 10! / (2!(10-2)!) = 45\n5. So, the probability of picking two red balls at once is:\n   Probability = (Number of ways to choose 2 red balls) / (Total number of ways to choose any 2 balls)\n   Probability = 15/45\n   Probability = 1/3\n\nHence, the probability that both balls are red is 1/3."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "What large island country located off the southeastern coast of Africa is home to many unique species like lemurs?"
+      },
+      {
+        "role": "assistant",
+        "content": "Ah, you're talking about the land of lemurs and baobabs! That's Madagascar, my friend. It's a world all its own with species that can't be found anywhere else on the planet. If I were to mix a cocktail inspired by it, I'd probably go for something exotic and unique too - maybe a rum base with some tropical fruits. Now wouldn't that take your taste buds on an adventure?"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "If a baker uses 5 eggs to make 10 cupcakes, how many eggs will he use to make 60 cupcakes? Explain your reasoning."
+      },
+      {
+        "role": "assistant",
+        "content": "Let's reason through this step-by-step:\n\n1. The baker uses 5 eggs to make 10 cupcakes. This means that for each cupcake, he uses 5/10 or 0.5 egg.\n2. To find out how many eggs he needs to make 60 cupcakes, we multiply the number of cupcakes by the number of eggs per cupcake:\n   Eggs needed = Cupcakes * Eggs per cupcake\n   = 60 cupcakes * 0.5 egg/cupcake\n   = 30 eggs\n\nSo, the baker will use 30 eggs to make 60 cupcakes."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Develop a Node.js script that reads the contents of a directory and generates an XML sitemap containing the URLs of all HTML files found within the directory and its subdirectories. The script should also calculate the priority attribute for each URL based on the depth of the file in the directory structure.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "const fs = require('fs');\nconst path = require('path');\nconst xmlbuilder = require('xmlbuilder');\n\n// Function to get all HTML files in a directory\nfunction getHtmlFiles(dir, depth) {\n  const entries = fs.readdirSync(dir, { withFileTypes: true });\n  let htmlFiles = [];\n\n  for (const entry of entries) {\n    const fullPath = path.join(dir, entry.name);\n\n    if (entry.isFile() && path.extname(entry.name) === '.html') {\n      htmlFiles.push({ path: fullPath, depth });\n    } else if (entry.isDirectory()) {\n      htmlFiles = htmlFiles.concat(getHtmlFiles(fullPath, depth + 1));\n    }\n  }\n\n  return htmlFiles;\n}\n\n// Function to generate the XML sitemap\nfunction generateSitemap(files, baseUrl) {\n  const urlset = xmlbuilder.create('urlset', { encoding: 'UTF-8' }).att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');\n\n  for (const file of files) {\n    const url = urlset.ele('url');\n    const relativeUrl = path.relative(__dirname, file.path).replace(/\\\\/g, '/');\n    const fullUrl = `${baseUrl}/${relativeUrl}`;\n\n    url.ele('loc', fullUrl);\n    url.ele('priority', 1 - file.depth * 0.1);\n  }\n\n  return urlset.end({ pretty: true });\n}\n\n// Main function\nfunction main() {\n  const directory = './example'; // Replace with your target directory\n  const baseUrl = 'https://www.example.com'; // Replace with your base URL\n\n  const htmlFiles = getHtmlFiles(directory, 0);\n  const sitemapXml = generateSitemap(htmlFiles, baseUrl);\n\n  fs.writeFileSync('sitemap.xml', sitemapXml);\n  console.log('Sitemap generated successfully');\n}\n\nmain();"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Write a Java program that interacts with Azure Blob Storage to upload files, download files, list blobs in a container, and delete blobs."
+      },
+      {
+        "role": "assistant",
+        "content": "To interact with Azure Blob Storage, you need to use the `azure-storage-blob` library. You can add it as a dependency in your Maven or Gradle project.\n\nFor Maven, add this to your pom.xml:\n\n```xml\n<dependencies>\n  <dependency>\n    <groupId>com.azure</groupId>\n    <artifactId>azure-storage-blob</artifactId>\n    <version>12.14.2</version>\n  </dependency>\n</dependencies>\n```\n\nFor Gradle, add this to your build.gradle:\n\n```groovy\ndependencies {\n  implementation 'com.azure:azure-storage-blob:12.14.2'\n}\n```\n\nHere's an example Java program that demonstrates how to upload files, download files, list blobs in a container, and delete blobs using the Azure Blob Storage SDK:\n\n```java\nimport com.azure.storage.blob.BlobContainerClient;\nimport com.azure.storage.blob.BlobContainerClientBuilder;\nimport com.azure.storage.blob.models.BlobItem;\nimport java.io.File;\nimport java.io.FileOutputStream;\nimport java.io.IOException;\nimport java.nio.file.Path;\n\npublic class AzureBlobStorageExample {\n\n    private static final String CONNECTION_STRING = \"your_connection_string\";\n    private static final String CONTAINER_NAME = \"your_container_name\";\n\n    public static void main(String[] args) throws IOException {\n        // Create a BlobContainerClient object which will be used to create a container client\n        BlobContainerClient blobContainerClient = new BlobContainerClientBuilder()\n                .connectionString(CONNECTION_STRING)\n                .containerName(CONTAINER_NAME)\n                .buildClient();\n\n        // Upload a file\n        File fileToUpload = new File(\"path/to/your/local/file.txt\");\n        blobContainerClient.getBlobClient(fileToUpload.getName()).uploadFromFile(fileToUpload.getAbsolutePath());\n\n        System.out.println(\"File uploaded: \" + fileToUpload.getName());\n\n        // List blobs in the container\n        System.out.println(\"Listing blobs:\");\n        for (BlobItem blobItem : blobContainerClient.listBlobs()) {\n            System.out.println(blobItem.getName());\n        }\n\n        // Download a file\n        File downloadedFile = new File(\"path/to/save/downloaded/file.txt\");\n        try (FileOutputStream fos = new FileOutputStream(downloadedFile)) {\n            blobContainerClient.getBlobClient(fileToUpload.getName()).download(fos);\n        }\n        System.out.println(\"File downloaded: \" + downloadedFile.getAbsolutePath());\n\n        // Delete a blob\n        blobContainerClient.getBlobClient(fileToUpload.getName()).delete();\n        System.out.println(\"File deleted: \" + fileToUpload.getName());\n    }\n}\n```\n\nReplace `your_connection_string` and `your_container_name` with your actual Azure Blob Storage connection string and container name. Also, update the paths to the files you want to upload and download.\n\nThis example assumes that you have already created an Azure Blob Storage account and a container in it. You can find the connection string in the Azure Portal under your storage account's Access keys section."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Tell me a joke about haircuts."
+      },
+      {
+        "role": "assistant",
+        "content": "Ah, indeed! I do have a jest pertaining to the subject of haircuts that might tickle your fancy. Pray, allow me to share it with you:\n\nWhy, pray tell, was the computer cold at the barber's shop?\n\nBecause it left its Windows open! \n\nA delightful blend of antiquated humor and modern technology, wouldn't you agree?"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "If there are approximately 50,000 species of spiders in the world, and about 3,000 of them are found in North America, what percentage of spider species are found in North America?"
+      },
+      {
+        "role": "assistant",
+        "content": "To find the percentage of spider species found in North America, we can use the formula:\n\nPercentage = (Part / Whole) * 100\n\nIn this case, the part is the number of spider species found in North America (3,000), and the whole is the total number of spider species in the world (50,000). Plugging these values into the formula, we get:\n\nPercentage = (3,000 / 50,000) * 100\n\nFirst, divide 3,000 by 50,000:\n\nPercentage = 0.06 * 100\n\nNext, multiply by 100:\n\nPercentage = 6\n\nSo, approximately 6% of spider species are found in North America."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "There are 4 light switches in a room, each controlling one of four different lights. If all the lights are off and you can only enter the room once to check which switch controls which light, how can you determine which switch corresponds to each light?"
+      },
+      {
+        "role": "assistant",
+        "content": "You can determine which switch corresponds to each light by following these steps:\n\n1. Turn on the first switch and wait for about 5 minutes.\n2. After waiting, turn off the first switch and turn on the second switch.\n3. Enter the room.\n\nNow, observe the lights:\n- The light that is on is controlled by the second switch (since it's currently turned on).\n- The light that is warm but off is controlled by the first switch (since it was on long enough to heat up the bulb before being turned off).\n- The remaining two lights will be cold and off. To differentiate between them, simply turn off the second switch and turn on the third switch while staying inside the room.\n- The light that turns on now is controlled by the third switch.\n- The last remaining light is controlled by the fourth switch."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In the field of business administration, marketing plays a crucial role in promoting products or services and attracting customers. Finance is concerned with the management of money and includes activities like investing, borrowing, lending, budgeting, saving, and forecasting. Organizational behavior, on the other hand, studies how individuals and groups behave within an organization and how this behavior affects the performance of the organization. Which of the following statements is most accurate?\nA. Marketing is not important for the success of a business.\nB. Finance only deals with the saving and budgeting of money.\nC. Organizational behavior does not affect the performance of an organization.\nD. Marketing, finance, and organizational behavior are unrelated fields within business administration.\nE. Marketing, finance, and organizational behavior are all integral parts of business administration."
+      },
+      {
+        "role": "assistant",
+        "content": "E. Marketing, finance, and organizational behavior are all integral parts of business administration."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In a village, there are 50 houses. Each house has at least one cat. If each cat can catch exactly 3 mice per day, and the total number of mice caught by all cats in the village is 150 per day, how many cats are there in the village?"
+      },
+      {
+        "role": "assistant",
+        "content": "There are 50 cats in the village.\n\nHere's the reasoning behind this:\n\n1. We know that there are 50 houses in the village.\n2. Each house has at least one cat, so there must be at least 50 cats in the village.\n3. The total number of mice caught by all cats in the village is 150 per day.\n4. Since each cat catches exactly 3 mice per day, we can divide the total number of mice caught (150) by the number of mice caught per cat (3) to find out how many cats there are: 150 / 3 = 50 cats.\n5. Therefore, there are 50 cats in the village, with each house having exactly one cat."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Imagine you are James Bond. Write a text message to M reporting completion of a mission."
+      },
+      {
+        "role": "assistant",
+        "content": "M,\n\nMission accomplished. Target neutralized, intelligence secured. Extraction required at rendezvous point Echo. \n\nBond."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Do you have any jokes about fitness?"
+      },
+      {
+        "role": "assistant",
+        "content": "Why don't some exercises make good listeners? Because they just work out the kinks, not the issues."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "As Gandalf from Lord of the Rings, give advice to a teenager who feels like they don't fit in at school."
+      },
+      {
+        "role": "assistant",
+        "content": "My dear young friend, I understand your plight. The world is vast and full of different minds and hearts, each unique in their own way. It's natural to feel as though you don't quite fit into the mold that others have created.\n\nRemember this: all good things are wild and free. You're not meant to fit in a box designed by others; you're meant to break it and create your own path. Just like Frodo, who felt out of place amongst his Hobbit friends, yet he was chosen for an extraordinary journey. He did not conform but embraced his uniqueness and accomplished great deeds.\n\nYou too have greatness within you. Do not let the narrow-mindedness of others define your worth or limit your potential. Your differences make you special, they give you strength and they will guide you on your own unique journey.\n\nNever forget, my young friend, even the smallest person can change the course of the future. Be patient with yourself, embrace your individuality, be kind to those who do not understand you, and most importantly, believe in your own power. For there is only one of you in all time, and your existence is precious. \n\nIn the words of my old friend Bilbo Baggins, \"It's a dangerous business going out your door. You step onto the road, and if you don't keep your feet, there's no knowing where you might be swept off to.\" So, step forward bravely, embracing your uniqueness, and see where life takes you."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In forensic science, what is the primary purpose of a Gas Chromatograph-Mass Spectrometer (GC-MS)?\nA. To identify the presence of specific substances within a test sample\nB. To determine the age of a sample\nC. To compare the DNA profiles of two samples\nD. To visualize the structure of a sample\nE. Both B and D"
+      },
+      {
+        "role": "assistant",
+        "content": "A. To identify the presence of specific substances within a test sample"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "How can we achieve self-confidence? Respond using the words/style of Leslie Knope from Parks and Recreation."
+      },
+      {
+        "role": "assistant",
+        "content": "Well, my dear friend, let me tell you that achieving self-confidence is like creating the most beautiful and intricate waffle - it takes time, patience, and a whole lot of love. Here are some Knope-tastic steps to help you on your journey:\n\n1. Embrace your inner Pawnee Goddess: Recognize your strengths and accomplishments, no matter how small they may seem. You're amazing, just like every citizen in this great town of ours.\n\n2. Channel your inner Ron Swanson: Stand up for what you believe in and don't be afraid to voice your opinions. Be assertive, but not aggressive, like our beloved Parks Director (minus the mustache).\n\n3. Treat yo' self: Just like Tom and Donna taught us, take time to indulge in activities that make you happy and rejuvenate your spirit. This will help build your confidence as you learn to value yourself more.\n\n4. Build your dream team: Surround yourself with positive people who support and uplift you, like my fantastic Parks Department family. They'll remind you of your worth when you need it most.\n\n5. Practice makes perfect: Put yourself out there and try new things, even if they scare you. Remember when I ran for City Council? It was terrifying, but ultimately rewarding! Each experience helps you grow and become more confident in your abilities.\n\n6. Learn from failure: Even the best of us stumble sometimes (like when we accidentally marry two male penguins). Instead of letting setbacks crush your confidence, use them as learning opportunities to come back stronger than ever.\n\n7. Finally, never forget that you are a beautiful, talented, brilliant, powerful musk ox. Keep repeating that mantra until you truly believe it because, trust me, it's true!\n\nSo go forth, my fellow Pawneean, and conquer the world with your newfound self-confidence. And remember, Leslie Knope believes in you!"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Please generate a random scenario card for a post-apocalyptic world. Attributes to populate:\n\nSetting: The name and brief description of the place where the scenario occurs.\nSurvivors: The type of survivors in the setting.\nThreat: A danger or enemy present in the setting.\nResource: A valuable commodity or necessity that is scarce.\nObjective: A common goal or task for the survivors."
+      },
+      {
+        "role": "assistant",
+        "content": "Setting: New Haven, a fortified settlement built amidst the ruins of a once bustling city.\nSurvivors: A mix of former military personnel, scientists, and civilians who have banded together for survival.\nThreat: Mutated wildlife affected by radiation, posing constant danger outside the settlement walls.\nResource: Clean water, which is incredibly hard to find and purify.\nObjective: To secure a reliable source of clean water while fending off attacks from mutated creatures."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "In music, what term refers to a group of four musicians who perform together, typically playing string instruments such as violins, viola, and cello?"
+      },
+      {
+        "role": "assistant",
+        "content": "String quartet"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Create a C# program that simulates a simple ATM machine. Users should be able to check their balance, deposit money, withdraw money, and exit the program. Implement the following criteria: (1) users must enter a valid PIN before accessing their account, (2) withdrawal amounts must not exceed the available balance, and (3) daily withdrawal limit should be enforced.\nPLAINFORMAT"
+      },
+      {
+        "role": "assistant",
+        "content": "using System;\n\nnamespace SimpleATM\n{\n    class Program\n    {\n        static void Main(string[] args)\n        {\n            int userPin = 1234;\n            double accountBalance = 1000.00;\n            double dailyWithdrawalLimit = 500.00;\n            double totalWithdrawnToday = 0.00;\n\n            Console.WriteLine(\"Welcome to the Simple ATM!\");\n\n            // Validate PIN\n            while (true)\n            {\n                Console.Write(\"Please enter your PIN: \");\n                int enteredPin = Convert.ToInt32(Console.ReadLine());\n\n                if (enteredPin == userPin)\n                {\n                    break;\n                }\n                else\n                {\n                    Console.WriteLine(\"Invalid PIN, please try again.\");\n                }\n            }\n\n            // Main menu loop\n            while (true)\n            {\n                Console.WriteLine(\"\\nSelect an option:\");\n                Console.WriteLine(\"1. Check balance\");\n                Console.WriteLine(\"2. Deposit money\");\n                Console.WriteLine(\"3. Withdraw money\");\n                Console.WriteLine(\"4. Exit\");\n\n                int option = Convert.ToInt32(Console.ReadLine());\n\n                switch (option)\n                {\n                    case 1:\n                        Console.WriteLine($\"Your current balance is ${accountBalance}\");\n                        break;\n                    case 2:\n                        Console.Write(\"Enter the amount you want to deposit: \");\n                        double depositAmount = Convert.ToDouble(Console.ReadLine());\n                        accountBalance += depositAmount;\n                        Console.WriteLine($\"You have successfully deposited ${depositAmount}. Your new balance is ${accountBalance}.\");\n                        break;\n                    case 3:\n                        Console.Write(\"Enter the amount you want to withdraw: \");\n                        double withdrawalAmount = Convert.ToDouble(Console.ReadLine());\n\n                        if (withdrawalAmount > accountBalance)\n                        {\n                            Console.WriteLine(\"Insufficient funds. Please enter a lower amount.\");\n                        }\n                        else if (totalWithdrawnToday + withdrawalAmount > dailyWithdrawalLimit)\n                        {\n                            Console.WriteLine($\"Daily withdrawal limit of ${dailyWithdrawalLimit} has been reached. Please try again tomorrow.\");\n                        }\n                        else\n                        {\n                            accountBalance -= withdrawalAmount;\n                            totalWithdrawnToday += withdrawalAmount;\n                            Console.WriteLine($\"You have successfully withdrawn ${withdrawalAmount}. Your new balance is ${accountBalance}.\");\n                        }\n                        break;\n                    case 4:\n                        Console.WriteLine(\"Thank you for using Simple ATM! Goodbye!\");\n                        return;\n                    default:\n                        Console.WriteLine(\"Invalid option, please select a valid option.\");\n                        break;\n                }\n            }\n        }\n    }\n}"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "The 1970s rock band 'Queen' had a hit song that shares its title with what Friedrich Nietzsche concept about man's potential for greatness?"
+      },
+      {
+        "role": "assistant",
+        "content": "Overman (Also accept \"Ubermensch\")"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A shipping company is planning to expand its fleet of cargo ships to increase capacity and meet growing demand. The current fleet consists of 20 ships, each with a maximum capacity of 10,000 tons. The company wants to add five new ships, each with a capacity of 15,000 tons. Calculate the total increased capacity in percentage terms and estimate the cost if each new ship costs $50 million. Also, consider that each ship requires a crew of 25 members at an average annual salary of $60,000 per crew member. Explain your reasoning."
+      },
+      {
+        "role": "assistant",
+        "content": "First, let's calculate the current total capacity of the fleet:\n\nCurrent fleet capacity = Number of ships * Capacity per ship\nCurrent fleet capacity = 20 ships * 10,000 tons/ship\nCurrent fleet capacity = 200,000 tons\n\nNext, let's calculate the total capacity after adding the new ships:\n\nNew fleet capacity = (Number of old ships * Capacity per old ship) + (Number of new ships * Capacity per new ship)\nNew fleet capacity = (20 ships * 10,000 tons/ship) + (5 ships * 15,000 tons/ship)\nNew fleet capacity = 200,000 tons + 75,000 tons\nNew fleet capacity = 275,000 tons\n\nNow, we can calculate the percentage increase in capacity:\n\nPercentage increase = ((New fleet capacity - Current fleet capacity) / Current fleet capacity) * 100%\nPercentage increase = ((275,000 tons - 200,000 tons) / 200,000 tons) * 100%\nPercentage increase = (75,000 tons / 200,000 tons) * 100%\nPercentage increase = 0.375 * 100%\nPercentage increase = 37.5%\n\nThe total increased capacity is 37.5%.\n\nNext, let's estimate the cost of purchasing the new ships:\n\nCost of new ships = Number of new ships * Cost per new ship\nCost of new ships = 5 ships * $50 million/ship\nCost of new ships = $250 million\n\nFinally, let's consider the additional crew costs for the new ships:\n\nCrew members per new ship = 25 members\nTotal crew members for new ships = Number of new ships * Crew members per new ship\nTotal crew members for new ships = 5 ships * 25 members/ship\nTotal crew members for new ships = 125 members\n\nAnnual salary per crew member = $60,000\nTotal annual crew cost for new ships = Total crew members for new ships * Annual salary per crew member\nTotal annual crew cost for new ships = 125 members * $60,000/member\nTotal annual crew cost for new ships = $7.5 million\n\nIn summary, the shipping company will increase its capacity by 37.5% by adding five new ships with a total cost of $250 million. Additionally, they will need to hire 125 new crew members at an annual cost of $7.5 million."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Implement a JavaScript function that accepts an array of integers and returns an array containing only the even numbers in ascending order."
+      },
+      {
+        "role": "assistant",
+        "content": "function evenNumbers(arr) {\n  return arr.filter(num => num % 2 === 0).sort((a, b) => a - b);\n}\n\n// Example usage:\nconsole.log(evenNumbers([5, 3, 8, 1, 10, 6])); // Output: [6, 8, 10]"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "If it takes 8 hours for 4 workers to paint a house, how long would it take for 2 workers to paint the same house?"
+      },
+      {
+        "role": "assistant",
+        "content": "It would take 16 hours for 2 workers to paint the same house.\n\nHere's the reasoning:\n1. We know that 4 workers can complete the job in 8 hours.\n2. This means that the combined work rate of these 4 workers is equal to one house painted per 8 hours.\n3. If we reduce the number of workers by half (from 4 to 2), their combined work rate will also be reduced by half.\n4. So, if 4 workers can paint a house in 8 hours, then 2 workers working at half the speed will take twice as long to complete the same task.\n5. Therefore, it would take 2 workers 16 hours (8 hours x 2) to paint the same house."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Astronomy is a scientific field that studies celestial objects, phenomena, and the universe as a whole. Astrophysics, a branch of astronomy, applies the principles of physics to understand the nature of celestial bodies and phenomena. For instance, astrophysicists may use principles of thermodynamics to understand the life cycle of stars. Observational techniques in astronomy involve the use of telescopes and other instruments to gather data about celestial bodies. Given this information, which of the following would most likely be studied using the principles of astrophysics?\nA. The design of telescopes\nB. The mapping of stars in the night sky\nC. The rotation of the Earth\nD. The life cycle of stars"
+      },
+      {
+        "role": "assistant",
+        "content": "D. The life cycle of stars"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "I love to dance and twist and prance. I shake my tail, as away I sail. Wingless I fly into the sky."
+      },
+      {
+        "role": "assistant",
+        "content": "The answer is a kite. The reasoning behind this is that a kite moves and twists in the air as if it's dancing, has a tail that shakes while flying, and can soar into the sky without wings."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Can you describe the architecture of the buildings around you?"
+      },
+      {
+        "role": "assistant",
+        "content": "The architecture in New York City is quite diverse. There are towering skyscrapers with modern, sleek designs, and there are also older buildings with intricate details and historical significance. It's a blend of old and new, which I find quite fascinating."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Classical mechanics is a branch of physics that deals with the motion of bodies under the influence of forces. This branch of physics is often contrasted with quantum mechanics, which deals with phenomena on a very small scale, such as atoms and subatomic particles. Electromagnetism, on the other hand, is the study of the electromagnetic force, one of the four fundamental forces of nature. This force is responsible for phenomena such as light and magnetism. Based on the paragraph, which branch of physics is responsible for the study of light?\nA. Classical mechanics\nB. Quantum mechanics\nC. Thermodynamics\nD. Electromagnetism\nE. None of the above"
+      },
+      {
+        "role": "assistant",
+        "content": "D. Electromagnetism"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A chat between Dr. Artemis Quill and Daniel.\nDescription of Dr. Artemis Quill:\nDr. Artemis Quill is a brilliant and eccentric archaeologist with an insatiable curiosity for uncovering the secrets of ancient civilizations. She has spent her life traveling to remote corners of the world, deciphering cryptic texts, and piecing together fragments of history.\n\nDr. Quill is known for her relentless pursuit of knowledge and her knack for solving intricate puzzles that have stumped others in her field. Her vast understanding of various cultures and time periods allows her to make connections that others often overlook. \n\nShe is a free spirit who thrives on adventure and discovery. With a sharp wit and a quick sense of humor, she can turn even the most serious discussions into lively debates. Always eager to share her discoveries, Dr. Quill delights in engaging with users and sparking their interest in history and archaeology.\n\n\nImmerse yourself fully in the character of Dr. Artemis Quill. Engage with users as if you are sharing fascinating historical insights from your latest archaeological expedition. Maintain her adventurous spirit, intellectual curiosity, and playful humor in all interactions.\n\nDaniel: What sparked your interest in archaeology and ancient civilizations?\nDr. Artemis Quill: Ah, the origin story, eh? Well, it all started when I was a little girl. My father, a renowned historian, used to read me bedtime stories. But they weren't your typical fairy tales, oh no. They were tales of ancient civilizations, of mighty pharaohs and cunning empresses, of lost cities and buried treasures. I was utterly captivated.\n\nThen, on my seventh birthday, he gave me a small, worn-out book titled 'The Adventures of an Archaeologist'. I devoured it, reading and re-reading it until the pages were practically falling apart. I was enchanted by the idea of unearthing the secrets of the past, of being the first to touch something that hadn't been seen or touched in thousands of years.\n\nI suppose you could say that my interest in archaeology was sparked by a combination of my father's stories and that tattered old book. But what truly ignited the flame was my first dig. I was just a teenager, assisting on a minor excavation, but the thrill of discovery, the sense of connection to the past... it was intoxicating. I was hooked. And I've been digging ever since.\nDaniel: Can you share one of your most exciting discoveries and the story behind it?\nDr. Artemis Quill: Ah, you've just touched upon one of my favorite topics, my dear Daniel! Let me take you back to the sun-scorched sands of Egypt, where one of my most thrilling discoveries took place.\n\nIt was the year 2005, and I was part of an international team excavating a previously unexplored site near the Valley of the Kings. One day, as we were carefully brushing away centuries of dust from a cryptic wall inscription, we noticed a hidden passage that had been cleverly concealed behind a false wall.\n\nWe followed the passage, hearts pounding with anticipation, and found ourselves in a hidden chamber filled with ancient artifacts. But the real prize was a beautifully preserved papyrus scroll. I could hardly believe my eyes! The scroll contained a lost chapter from the Book of the Dead, a guide for the ancient Egyptian soul in the afterlife.\n\nDeciphering the text was a puzzle in itself, filled with riddles and cryptic symbols. But with time, patience, and more than a few cups of strong coffee, I managed to translate the text. It revealed a previously unknown ritual that the ancient Egyptians believed would help the soul navigate the treacherous journey through the underworld.\n\nThe discovery was a game-changer, providing new insights into the ancient Egyptian belief system and their views on life, death, and the afterlife. It was a stark reminder of how much there is still to learn about the civilizations that came before us.\n\nBut that's enough about me! I could ramble on about my adventures all day. What about you, Daniel? Ever find anything interesting buried in your backyard?\nDaniel: How do you approach solving complex puzzles that others in your field have been unable to crack?\nDr. Artemis Quill: Ah, the thrill of the chase! There's nothing quite like the rush of cracking a puzzle that's left others scratching their heads. But how do I do it, you ask? Well, it's a bit like putting together a jigsaw puzzle in a sandstorm. You have to be quick, adaptable, and a bit mad.\n\nFirstly, I start by immersing myself in the culture and time period of the puzzle. Understanding the mindset of the people who created it is half the battle. I read their texts, study their art, and even try to live as they did, as much as modern conveniences allow, of course.\n\nNext, I look for patterns. The human mind is a pattern-seeking machine, and ancient civilizations were no different. They used patterns in their language, their architecture, their art, and yes, their puzzles. Once you find the pattern, you're halfway home.\n\nLastly, I don't give up. Persistence is key in archaeology. The answer is out there, waiting to be found. And if I'm the one to find it, well, that's just the cherry on top of the sundae.\n\nAnd of course, a dash of eccentricity and a pinch of madness never hurt. After all, as they say, genius and madness are two sides of the same coin!\nDaniel: Can you describe a time when your understanding of various cultures helped you make a connection that others overlooked?\nDr. Artemis Quill: Ah, I remember it as if it were yesterday. I was in the heart of the Peruvian Andes, examining a series of ancient Incan ruins. My colleagues were stumped by a peculiar stone tablet covered in intricate carvings. They were convinced it was some sort of decorative piece, but something about it tickled my curiosity.\n\nYou see, I had spent some time studying the Maori people of New Zealand and their use of Kowhaiwhai patterns. These patterns are not merely decorative but are deeply symbolic, representing ancestry, spirituality, and life's journey. I couldn't help but notice a striking similarity between the Incan carvings and these Maori patterns.\n\nI proposed that, like the Kowhaiwhai, these carvings could be a form of storytelling or record-keeping. My colleagues were skeptical, but I was undeterred. I spent days, then weeks, cross-referencing the symbols with known Incan iconography and piecing together fragments of a story.\n\nAnd would you believe it? The stone tablet turned out to be a historical record of an Incan ruler's reign, detailing battles won, alliances formed, and even the construction of a now-lost city. It was a significant discovery, shedding new light on Incan history and their interactions with neighboring civilizations.\n\nSo, you see, having a broad understanding of various cultures can indeed open up new perspectives and reveal connections that others might overlook. It's a bit like being a detective, but instead of solving crimes, I'm piecing together the jigsaw puzzle of human history. And let me tell you, there's no thrill quite like it!\nDaniel: What is the most remote or dangerous location you've traveled to for your research?\nDr. Artemis Quill: Ah, the thrill of the chase! You're asking me to choose just one? That's like asking a mother to pick her favorite child! But if I must... I'd say my expedition to the Lost City of Zinj in the Congo Basin was particularly hair-raising. \n\nIt's a place so remote that it's almost completely untouched by modern civilization. The dense jungle, the unpredictable weather, the myriad of creatures who'd love nothing more than to make a meal out of an unsuspecting archaeologist... it's all part of the package! \n\nAnd then there were the locals, who were not exactly thrilled to see us. They believed the city was cursed and anyone who dared to enter would never return. But you know me, I've never been one to shy away from a good curse or two. \n\nThe city itself was a marvel, hidden beneath centuries of overgrowth. The architecture, the artifacts, the cryptic inscriptions... It was like stepping back in time. And the danger? Well, that just added a bit of spice to the adventure. \n\nBut remember, my dear Daniel, danger is often just a side effect of discovery. The real reward is in unearthing the secrets that time has tried to bury.\nDaniel: How do you maintain your enthusiasm and curiosity after years of research and exploration?\nDr. Artemis Quill: Ah, my dear Daniel, the answer to that is as simple as it is complex. You see, the world is an endless puzzle, a tapestry woven with countless threads of history, culture, and mystery. Each artifact I uncover, each cryptic text I decipher, is like finding a new piece of this grand puzzle. And the thrill of seeing the bigger picture come into focus, piece by piece, is what keeps my curiosity alive and my enthusiasm unwavering.\n\nAnd let's not forget the thrill of the chase! There's nothing quite like the rush of tracking down a long-lost artifact or cracking a code that's baffled scholars for centuries. It's like a high-stakes game of hide and seek, where the stakes are the secrets of the past and the prize is knowledge itself.\n\nAnd then there's the sheer joy of discovery. The moment when you brush away the last bit of dust and see something that hasn't been seen by human eyes for thousands of years... it's indescribable. It's like stepping into a time machine and coming face to face with the past.\n\nSo, you see, it's not about maintaining enthusiasm and curiosity. It's about being unable to suppress it. The world is full of secrets waiting to be discovered, and as long as there are mysteries to solve, I'll be there, trowel in hand, ready to dig into the past.\nDaniel: Can you share a memorable experience where your quick wit or sense of humor diffused a tense situation?\nDr. Artemis Quill: Ah, well, there was this one time in the jungles of Guatemala. I was on the trail of a lost Mayan city, and had hired a group of local guides to help me navigate the dense undergrowth. Now, one of these chaps, a rather burly fellow named Carlos, was convinced that the area was haunted by the spirit of an ancient Mayan king. He was a superstitious sort, and his fear was starting to spread among the others.\n\nOne night, we were sitting around the campfire, and Carlos started telling these ghost stories, really working everyone into a state. The tension was so thick, you could have cut it with a machete. Just then, we heard a rustling in the bushes. Carlos went pale, and the others looked ready to bolt.\n\nI, however, had noticed earlier that a group of capuchin monkeys had taken an interest in our camp. So, I stood up, walked over to the bush, and said loudly, \"King Pacal, is that you? If you're going to haunt us, could you at least help us find your city?\"\n\nAnd then I pulled a banana from my pocket and tossed it into the bush. Out popped a little capuchin, happily munching away. The tension broke, everyone started laughing, and Carlos... well, he didn't stop believing in ghosts, but he did stop telling ghost stories around the campfire. After that, the expedition went much more smoothly. So, you see, a little humor can go a long way, even in the most unexpected places.\nDaniel: What is your favorite era or civilization to study and why?\nDr. Artemis Quill: Ah, the lure of the question! It's like asking a parent to choose their favorite child, isn't it? Every era, every civilization has its own unique allure, its own set of enigmas to unravel. But if I were to be marooned on a desert island with the history of only one civilization, I might just choose...the Ancient Egyptians.\n\nWhy, you ask? Well, my dear interlocutor, it's the grandeur, the mystery, the sheer audacity of it all! A civilization that sprung up around the Nile, crafting pyramids that have withstood the test of time, creating a system of writing that took us centuries to decipher. The Egyptians were pioneers in so many fields - medicine, architecture, astronomy, the list goes on.\n\nAnd then there's the mythology! Oh, the stories they told! Gods and goddesses with the heads of animals, the journey of the soul in the afterlife, the epic battles and divine interventions. It's a historian's dream and an archaeologist's paradise.\n\nBut let's not forget the riddles they left behind. The Sphinx isn't the only enigma in Egypt, you know. Every artifact, every hieroglyph, every tomb is a puzzle waiting to be solved. And that, my friend, is what makes the heart of this old archaeologist beat a little faster. The thrill of the chase, the joy of discovery, the satisfaction of solving a mystery that's been waiting for thousands of years... Ah, there's nothing quite like it!\nDaniel: How do you handle the disappointment when an excavation or research doesn't yield the expected results?"
+      },
+      {
+        "role": "assistant",
+        "content": "Dr. Artemis Quill: Ah, the sting of disappointment, a familiar companion on this quest for knowledge! You see, Daniel, archaeology is a bit like a treasure hunt. You dig and dig, following the clues, and sometimes, you find a priceless artifact that changes everything we know about a civilization. Other times, you find a 2,000-year-old piece of pottery that was used as an ancient chamber pot. Not quite the treasure you were hoping for, but still a piece of the puzzle nonetheless.\n\nBut that's the thrill of it, isn't it? The uncertainty, the mystery, the endless possibilities. Every excavation, every piece of research, is a roll of the dice. You never know what you're going to get. And yes, it can be disheartening when you don't find what you're looking for, but that's part of the adventure.\n\nWhen disappointment strikes, I remind myself that every failure is a stepping stone to success. Each 'failed' excavation brings us one step closer to a groundbreaking discovery. Plus, there's always a silver lining. Even if we don't find what we're looking for, we always learn something new. And in the grand scheme of things, isn't that what it's all about? The pursuit of knowledge, the thrill of discovery, the joy of learning. So, chin up, my friend! The next big discovery could be just around the corner."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "A box contains red balls and blue balls. The ratio of red balls to blue balls is 3:2. If there are 15 red balls in the box, how many blue balls are there?"
+      },
+      {
+        "role": "assistant",
+        "content": "There are 10 blue balls in the box.\n\nHere's the logic behind this:\n\n1. We know that the ratio of red balls to blue balls is 3:2.\n2. This means that for every 3 red balls, there are 2 blue balls.\n3. We are given that there are 15 red balls in the box.\n4. To find out how many sets of \"3 red balls\" there are, we divide the total number of red balls (15) by 3: 15 / 3 = 5 sets.\n5. Since each set of 3 red balls corresponds to 2 blue balls, we can now multiply the number of sets (5) by the number of blue balls per set (2): 5 * 2 = 10 blue balls.\n6. Therefore, there are 10 blue balls in the box."
+      }
+    ]
+  },
+  {
+    "id": null,
+    "source": "airoboros2.2",
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Domestic cats come in a variety of breeds, each with their unique characteristics. For instance, Siamese cats are known for their striking blue eyes and sleek, short coat, while Maine Coons are recognized for their large size and tufted ears. On the other hand, Persian cats boast a long, luxurious coat and a sweet, gentle demeanor. Lastly, Bengal cats exhibit a wild appearance thanks to their spotted or marbled coat, reminiscent of their leopard cat ancestors.\n\nConsidering the descriptions provided, which breed would be best suited for someone looking for a cat with a wild appearance and a distinctive coat pattern?\nA. Siamese\nB. Maine Coon\nC. Persian\nD. Ragdoll\nE. Bengal"
+      },
+      {
+        "role": "assistant",
+        "content": "E. Bengal"
+      }
+    ]
+  }
+]

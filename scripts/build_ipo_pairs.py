@@ -89,7 +89,7 @@ def embed_texts(texts: List[str], tokenizer, model, device: str) -> np.ndarray:
             mask = enc["attention_mask"].unsqueeze(-1)
             summed = (last_hidden * mask).sum(dim=1)
             counts = mask.sum(dim=1).clamp(min=1)
-            emb = (summed / counts).detach().cpu().numpy()
+            emb = (summed / counts).detach().float().cpu().numpy()
             emb = emb / (np.linalg.norm(emb, axis=1, keepdims=True) + 1e-8)
             all_embeds.append(emb)
     return np.vstack(all_embeds)

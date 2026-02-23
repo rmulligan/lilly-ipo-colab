@@ -215,6 +215,7 @@ def main():
     ap.add_argument("--classifier-path", default="experiments/lilly_subjective_32b/affect_classifier.pt")
     ap.add_argument("--probe-layer", type=int, default=52)
     ap.add_argument("--use-4bit", action="store_true", default=True, help="Use 4-bit quantization if available")
+    ap.add_argument("--no-classifier", action="store_true", help="Disable text-affect classifier")
     ap.add_argument("--num-candidates", type=int, default=4)
     ap.add_argument("--max-samples", type=int, default=800)
     ap.add_argument("--max-new-tokens", type=int, default=256)
@@ -284,17 +285,27 @@ def main():
     classifier_tok = None
     embedder = None
     classifier_device = "cpu"
-    if Path(args.classifier_path).exists():
-        state = torch.load(args.classifier_path, map_location="cpu")
-        in_dim = state["net.0.weight"].shape[1]
-        h1 = state["net.0.weight"].shape[0]
-        h2 = state["net.3.weight"].shape[0]
-        out_dim = state["net.6.weight"].shape[0]
-        classifier = AffectClassifier(in_dim, out_dim, hidden1=h1, hidden2=h2).to(classifier_device)
-        classifier.load_state_dict(state)
-        classifier.eval()
-        classifier_tok = AutoTokenizer.from_pretrained(EMBEDDING_MODEL, trust_remote_code=True, local_files_only=True)
-        embedder = AutoModel.from_pretrained(EMBEDDING_MODEL, trust_remote_code=True, local_files_only=True).to(classifier_device)
+    if (not args.no_classifier) and Path(args.classifier_path).exists():
+        try:
+            state = torch.load(args.classifier_path, map_location="cpu")
+            in_dim = state["net.0.weight"].shape[1]
+            h1 = state["net.0.weight"].shape[0]
+            h2 = state["net.3.weight"].shape[0]
+            out_dim = state["net.6.weight"].shape[0]
+            classifier = AffectClassifier(in_dim, out_dim, hidden1=h1, hidden2=h2).to(classifier_device)
+            classifier.load_state_dict(state)
+            classifier.eval()
+            classifier_tok = AutoTokenizer.from_pretrained(
+                EMBEDDING_MODEL, trust_remote_code=True, local_files_only=True
+            )
+            embedder = AutoModel.from_pretrained(
+                EMBEDDING_MODEL, trust_remote_code=True, local_files_only=True
+            ).to(classifier_device)
+        except Exception as e:
+            print(f"[warn] classifier unavailable ({e}). Continuing without text-affect scoring.")
+            classifier = None
+            classifier_tok = None
+            embedder = None
 
     layers = find_layers(model)
     if not layers or args.probe_layer >= len(layers):

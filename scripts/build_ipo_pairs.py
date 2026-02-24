@@ -151,10 +151,11 @@ def extract_prompt(item: Dict[str, Any]) -> str | None:
 def build_prompt(user_text: str) -> str:
     return (
         "Instruction: " + user_text + "\n"
-        "Response format: Begin with <affect>{\"protection\":0.0,\"unity\":0.0,"
+        "Response format: Start the response with <affect>{\"protection\":0.0,\"unity\":0.0,"
         "\"responsibility\":0.0,\"agency\":0.0,\"joy\":0.0,\"fear\":0.0,"
         "\"anger\":0.0,\"sadness\":0.0,\"disgust\":0.0,\"shame\":0.0,"
-        "\"guilt\":0.0}</affect> on the first line. Then write the response.\n"
+        "\"guilt\":0.0}</affect> on the first line with no leading whitespace. "
+        "Immediately after </affect>, write the response.\n"
         "Response:"
     )
 
